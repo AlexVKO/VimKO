@@ -359,6 +359,10 @@
   on_ft: go
   on_i: 1
 
+- repo: junegunn/fzf
+  if: has('nvim') && empty($VIM_MINIMAL)
+  build: ./install --all
+
 - repo: zchee/deoplete-jedi
   if: has('nvim') && empty($VIM_MINIMAL)
   on_ft: python
