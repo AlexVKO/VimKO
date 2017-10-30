@@ -17,7 +17,7 @@ let g:deoplete#sources#jedi#statement_length = 30
 let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#sources#jedi#short_types = 1
 
-call deoplete#custom#set('_', 'min_pattern_length', 2)
+call deoplete#custom#set('_', 'min_pattern_length', 0)
 
 " }}}
 " Limit Sources " {{{
