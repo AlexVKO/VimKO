@@ -19,6 +19,7 @@
     autocmd MyAutoCmd InsertEnter * let b:cursorword=0
     autocmd MyAutoCmd InsertLeave * let b:cursorword=1
 
+- { repo: terryma/vim-multiple-cursors } #TODO trigger on_cmd: UndotreeToggle }
 # Lazy Loading
 # ==========================================
 
