@@ -172,6 +172,16 @@ set laststatus=2        " Always show a status line
 set colorcolumn=80      " Highlight the 80th character limit
 set display=lastline
 
+" Toggle between normal and relative numbering.
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set number
+  else
+    set rnu
+  endif
+endfunc
+
 " Do not display completion messages
 " Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
 if has('patch-7.4.314')
