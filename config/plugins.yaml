@@ -32,8 +32,8 @@
 - { repo: othree/csscomplete.vim, on_ft: css }
 
 - { repo: pearofducks/ansible-vim, on_ft: ansible }
-- { repo: mitsuhiko/vim-jinja, on_ft: [ htmljinja, jinja ]}
-- { repo: mustache/vim-mustache-handlebars, on_ft: html }
+# - { repo: mitsuhiko/vim-jinja, on_ft: [ htmljinja, jinja ]}
+# - { repo: mustache/vim-mustache-handlebars, on_ft: html }
 
 - repo: othree/html5.vim
   on_ft: html
@@ -66,6 +66,7 @@
     let g:gfm_syntax_highlight_emoji = 0
     let g:gfm_syntax_enable_filetypes = ['markdown']
 
+# JAVASCRIPT
 - repo: pangloss/vim-javascript
   on_ft: [ javascript, jsx, javascript.jsx ]
   hook_source: |
@@ -76,8 +77,9 @@
 - { repo: othree/jspc.vim, on_ft: [ javascript, jsx, javascript.jsx ] }
 - { repo: MaxMEllon/vim-jsx-pretty, on_ft: [ javascript, jsx, javascript.jsx ]}
 - { repo: heavenshell/vim-jsdoc, on_ft: [ javascript, jsx, javascript.jsx ] }
-- { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
+# - { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
 - { repo: elzr/vim-json, on_ft: json }
+- { repo: Galooshi/vim-import-js, on_ft: javascript }
 
 # pangloss/javascript vs. othree/yajs
 #- { repo: othree/yajs.vim, on_ft: [ javascript, jsx, javascript.jsx ]}
@@ -101,8 +103,8 @@
 - { repo: tmhedberg/SimpylFold, on_ft: python }
 - { repo: raimon49/requirements.txt.vim, on_ft: requirements }
 
-- { repo: StanAngeloff/php.vim, on_ft: php }
-- { repo: shawncplus/phpcomplete.vim, on_ft: php, on_i: 1 }
+# - { repo: StanAngeloff/php.vim, on_ft: php }
+# - { repo: shawncplus/phpcomplete.vim, on_ft: php, on_i: 1 }
 
 - { repo: tbastos/vim-lua, on_ft: lua }
 - { repo: osyo-manga/vim-monster, on_ft: ruby }
@@ -133,6 +135,7 @@
   hook_post_source: source $VIMPATH/config/plugins/nerdtree.vim
 
 - { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
+- { repo: ryanoasis/vim-devicons, on_source: nerdtree }
 - { repo: tpope/vim-commentary, on_map: <Plug>Commentary }
 - { repo: t9md/vim-choosewin, on_map: { n: <Plug> }}
 - { repo: Shougo/vinarise.vim, on_cmd: Vinarise }
