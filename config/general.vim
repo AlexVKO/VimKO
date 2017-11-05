@@ -255,4 +255,11 @@ nmap n nzz
 nmap N Nzz
 " }}}
 
+" Make 0 go to the first character rather than the beginning
+" of the line. When we're programming, we're almost always
+" interested in working with text rather than empty space. If
+" you want the traditional beginning of line, use ^
+nnoremap 0 ^
+nnoremap ^ 0
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
