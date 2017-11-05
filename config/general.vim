@@ -268,4 +268,10 @@ nnoremap ^ 0
 " replace all words under cursor
 :nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" switch to relative numbers in normal mode
+autocmd BufLeave * :set norelativenumber
+autocmd BufEnter * :set relativenumber
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
