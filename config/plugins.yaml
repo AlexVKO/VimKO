@@ -434,8 +434,9 @@
 # ==========================================
 # Text objects
 # ------------
-- { repo: vim-indent-object, on_func: textobj#user# }
 - { repo: kana/vim-textobj-user, on_func: textobj#user# }
+- { repo: vim-scripts/vim-indent-object }
+- { repo: lucapette/vim-textobj-underscore }
 - { repo: bkad/CamelCaseMotion, on_map: { nox: <Plug>CamelCaseMotion }}
 - { repo: terryma/vim-expand-region, on_map: { x: <Plug> }}
 - { repo: AndrewRadev/sideways.vim, on_map: { ox: <Plug>Sideways }}

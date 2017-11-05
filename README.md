@@ -599,6 +599,7 @@ Name           | Description
 | Key           | Mode            | Action            |
 | ------------- | :-------------: | -----:            |
 | `i`           | Normal          | Indentation level |
+| `_`           | Normal          | underscore        |
 
 # Languages
 
