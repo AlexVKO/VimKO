@@ -599,7 +599,9 @@ Name           | Description
 | Key           | Mode            | Action            |
 | ------------- | :-------------: | -----:            |
 | `i`           | Normal          | Indentation level |
-| `_`           | Normal          | underscore        |
+| `_`           | Normal          | Underscore        |
+| `e`           | Normal          | Entire file       |
+| `r`           | Normal          | Ruby block        |
 
 # Languages
 
@@ -608,6 +610,7 @@ Name           | Description
 | Key           | Mode            | Action                        |
 | ------------- | :-------------: | -----:                        |
 | `,#`          | Normal          | ruby string interpolation #{} |
+| `r`           | Normal          | Ruby block        |
 |               |                 |                               |
 
 ## Javascript
