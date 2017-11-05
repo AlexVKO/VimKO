@@ -108,12 +108,12 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ## Find and Replace between all files (Far)
 
-| Key                        | Mode            | Action                            |
-| -------------              | :-------------: | -----:                            |
-| `:Far <from> <to> <files>` | Command         | Open find and replace console     |
-| `t`                        | Far             | Toggle the match above the cursor |
-| `:Fardo`                   | Far             | Do the replacement                |
-| `:F <patter>`              | Command         | find all                          |
+| Key                        | Mode            | Action                                      |
+| -------------              | :-------------: | -----:                                      |
+| `:Far <from> <to> <files>` | Command         | Open find and replace console (alt+shift+f) |
+| `t`                        | Far             | Toggle the match above the cursor           |
+| `:Fardo`                   | Far             | Do the replacement                          |
+| `:F <patter>`              | Command         | find all                                    |
 
 ## Multiple Cursor
 
