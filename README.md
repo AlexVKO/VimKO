@@ -404,279 +404,209 @@ Name           | Description
 [osyo-manga/vim-textobj-multiblock]: https://github.com/osyo-manga/vim-textobj-multiblock
 [kana/vim-textobj-function]: https://github.com/kana/vim-textobj-function
 
-## Custom Key-mappings
+# Some Key-mappings
 
-Note that,
+## General Editing
 
-* Leader key is set as <kbd>Space</kbd>
-* Local-leader is set as <kbd>;</kbd> and used for Denite & NERDTree
+| Key           | Mode            | Action                                     |
+| ------------- | :-------------: | -----:                                     |
+| `cp`          | Normal          | Duplicate Paragraph                        |
+| `, + Space`   | Normal          | Remove all spaces at EOL                   |
+| `<leader>+a`  | Normal          | Align Paragraph                            |
+| `<leader>+d`  | Normal/Visual   | Duplicate line or selection                |
+| `W!!`         | Command         | Write as root                              |
+| `<leader>+o`  | Normal          | Open tag-bar                               |
+| `<leader>+G`  | Normal          | Toggle distraction-free writing            |
+| `gc`          | Normal/visual   | Toggle comments                            |
+| `cn/cN`       | Normal/Visual   | Change current word in a repeatable manner |
+| `:DiffOrig`   | Command         | Show the diff of the last save             |
+| `Ctrl+o`      | Insert          | Expand snippet                             |
+| `s`           | Visual          | Replace within se area                     |
+| `Ctrl+o`      | Insert          | Expand snippet                             |
+| `v`           | Visual/select   | Expand selection                           |
+| `V`           | Visual/select   | Reduce selection                           |
+| `gp`          | Normal          | Select last paste                          |
 
-Key   | Mode | Action
------ |:----:| ------------------
-`Space` | _All_ | **Leader**
-`;` | _All_ | **Local Leader**
-Arrows | Normal | Resize splits (* Enable `g:elite_mode` in `.vault.vim`)
-`Backspace` | Normal | Match bracket (%)
-`K` | Normal | Open Zeal or Dash on some file types (except Python+Vim script)
-`Y` | Normal | Yank to the end of line (y$)
-`<Return>` | Normal | Toggle fold (za)
-`S`+`<Return>` | Normal | Focus the current fold by closing all others (zMza)
-`S`+`<Return>` | Insert | Start new line from any cursor position (\<C-o>o)
-`hjkl` | Normal | Smart cursor movements (g/hjkl)
-`Ctrl`+`f` | Normal | Smart page forward (C-f/C-d)
-`Ctrl`+`b` | Normal | Smart page backwards (C-b/C-u)
-`Ctrl`+`e` | Normal | Smart scroll down (3C-e/j)
-`Ctrl`+`y` | Normal | Smart scroll up (3C-y/k)
-`Ctrl`+`q` | Normal | Remap to `Ctrl`+`w`
-`Ctrl`+`x` | Normal | Rotate window placement
-`!` | Normal | Shortcut for `:!`
-`}` | Normal | After paragraph motion go to first non-blank char (}^)
-`<` | Visual/Normal | Indent to left and re-select
-`>` | Visual/Normal | Indent to right and re-select
-`Tab` | Visual | Indent to right and re-select
-`Shift`+`Tab` | Visual | Indent to left and re-select
-`gh` | Normal | Show highlight group that matches current cursor
-`gp` | Normal | Select last paste
-`Q` | Normal | Start/stop macro recording
-`M` | Normal/Visual | Play macro 'q'
-`mj`/`mk` | Normal/Visual | Move lines down/up
-`gQ` | Normal | Disable EX-mode
-`cp` | Normal | Duplicate paragraph
-`cn`/`cN` | Normal/Visual | Change current word in a repeatable manner
-`s` | Visual | Replace within selected area
-`Ctrl`+`a` | Command | Navigation in command line
-`Ctrl`+`b` | Command | Move cursor backward in command line
-`Ctrl`+`f` | Command | Move cursor forward in command line
-`Ctrl`+`r` | Visual | Replace selection with step-by-step confirmation
-`,`+`Space` | Normal | Remove all spaces at EOL
-`<leader>`+`<leader>` | Normal | Enter visual line-mode
-`<leader>`+`a` | Normal | Align paragraph
-`<leader>`+`os` | Normal | Load last session
-`<leader>`+`se` | Normal | Save current workspace as last session
-`<leader>`+`d` | Normal/Visual | Duplicate line or selection
-`<leader>`+`S` | Normal/Visual | Source selection
-`<leader>`+`ml` | Normal | Append modeline
+## Leaders
+| Key           | Mode            | Action        |
+| ------------- | :-------------: | -----:        |
+| `Arrows`      | All             | Resize Splits |
+| `Rotate`      | All             | Rotate Splits |
 
-### File Operations
+## Tabs
 
-Key   | Mode | Action
------ |:----:| ------------------
-`<leader>`+`cd` | Normal | Switch to the directory of opened buffer (:lcd %:p:h)
-`<leader>`+`w` | Normal/visual | Write (:w)
-`<leader>`+`y` | Normal | Copy file-path to clipboard
-`Ctrl`+`s` | _All_ | Write (:w)
-`W!!` | Command | Write as root
+| Key           | Mode            | Action                         |
+| ------------- | :-------------: | -----:                         |
+| `s+t`         | Normal          | Open new tab (:tabnew)         |
+| `s+q`         | Normal          | Closes current buffer (:close) |
+| `alt+j`       | Normal          | Next tab                       |
+| `alt+k`       | Normal          | Previous tab                   |
 
-### Editor UI
+## Windows
 
-Key   | Mode | Action
------ |:----:| ------------------
-`<leader>`+`ti` | Normal | Toggle indentation lines
-`<leader>`+`ts` | Normal | Toggle spell-checker (:setlocal spell!)
-`<leader>`+`tn` | Normal | Toggle line numbers (:setlocal nonumber!)
-`<leader>`+`tl` | Normal | Toggle hidden characters (:setlocal nolist!)
-`<leader>`+`th` | Normal | Toggle highlighted search (:set hlsearch!)
-`<leader>`+`tw` | Normal | Toggle wrap (:setlocal wrap! breakindent!)
-`g0` | Normal | Go to first tab (:tabfirst)
-`g$` | Normal | Go to last tab (:tablast)
-`gr` | Normal | Go to previous tab (:tabprevious)
-`Ctrl`+`j` | Normal | Move to split below (\<C-w>j)
-`Ctrl`+`k` | Normal | Move to upper split (\<C-w>k)
-`Ctrl`+`h` | Normal | Move to left split (\<C-w>h)
-`Ctrl`+`l` | Normal | Move to right split (\<C-w>l)
-`*` | Visual | Search selection forwards
-`#` | Visual | Search selection backwards
-`<leader>`+`j` | Normal | Next on location list
-`<leader>`+`k` | Normal | Previous on location list
-`<leader>`+`b` | Normal | Toggle colorscheme background dark/light
-`s`+`-` | Normal | Lower colorscheme contrast (Support solarized8)
-`s`+`=` | Normal | Raise colorscheme contrast (Support solarized8)
+| Key           | Mode            | Action                              |
+| ------------- | :-------------: | -----:                              |
+| `s+o`         | Normal          | Close other windows (:only)         |
+| `s+x`         | Normal          | Remove buffer, leave blank window   |
+| `s+v`         | Normal          | Horizontal split (:split)           |
+| `s+g`         | Normal          | Vertical split (:vsplit)            |
+| `<leader>+sv` | Normal          | Split with previous buffer          |
+| `<leader>+sg` | Normal          | Vertical split with previous buffer |
+| `Ctrl+<hjkl>` | Normal          | move to window                      |
 
-### Window Management
+## Scrolling
 
-Key   | Mode | Action
------ |:----:| ------------------
-`q` | Normal | Quit window (and Vim, if last window)
-`Tab` | Normal | Next window in tab
-`Shift`+`Tab` | Normal | Previous window in tab
-`Ctrl`+`Tab` | Normal | Next tab
-`Ctrl`+`Shift`+`Tab` | Normal | Previous tab
-`\`+`\` | Normal | Jump to last tab
-`s`+`v` | Normal | Horizontal split (:split)
-`s`+`g` | Normal | Vertical split (:vsplit)
-`s`+`t` | Normal | Open new tab (:tabnew)
-`s`+`o` | Normal | Close other windows (:only)
-`s`+`x` | Normal | Remove buffer, leave blank window
-`s`+`q` | Normal | Closes current buffer (:close)
-`s`+`Q` | Normal | Removes current buffer (:bdelete)
-`<leader>`+`sv` | Normal | Split with previous buffer
-`<leader>`+`sg` | Normal | Vertical split with previous buffer
+| Key           | Mode            | Action                                                    |
+| ------------- | :-------------: | -----:                                                    |
+| `z+<hjkl>`    | Normal          | scroll to position                                        |
+| `zz`          | Normal          | scroll in a way the cursors toggle between top and middle |
 
-### Plugin: Denite
+## Search for Files (Denite, Fzf)
 
-Key   | Mode | Action
------ |:----:| ------------------
-`;`+`r` | Normal | Resumes last Denite window
-`;`+`f` | Normal | File search
-`;`+`b` | Normal | Buffers and MRU
-`;`+`d` | Normal | Directories
-`;`+`l` | Normal | Location list
-`;`+`q` | Normal | Quick fix
-`;`+`n` | Normal | Dein plugin list
-`;`+`g` | Normal | Grep search
-`;`+`j` | Normal | Jump points
-`;`+`o` | Normal | Outline tags
-`;`+`s` | Normal | Sessions
-`;`+`t` | Normal | Tag under cursor
-`;`+`h` | Normal | Help
-`;`+`v` | Normal/Visual | Register
-`;`+`z` | Normal | Z (jump around)
-`;`+`;` | Normal | Command history
-`;`+`/` | Normal | Buffer lines
-`;`+`*` | Normal | Match line
-`<leader>`+`gl` | Normal | Git log (all)
-`<leader>`+`gs` | Normal | Git status
-`<leader>`+`gc` | Normal | Git changed
-`<leader>`+`gf` | Normal | Grep word under cursor
-`<leader>`+`gg` | Normal/Visual | Grep word under cursor
-| **Within _Denite_ mode** |||
-`Escape` | Normal/Insert | Toggle modes
-`jj` | Insert | Leave Insert mode
-`Ctrl`+`y` | Insert | Redraw
-`r` | Normal | Redraw
-`st` | Normal | Open in a new tab
-`sg` | Normal | Open in a vertical split
-`sv` | Normal | Open in a split
-`'` | Normal | Toggle mark current candidate
+| Key                        | Mode            | Action                            |
+| -------------              | :-------------: | -----:                            |
+| `;+f`                      | Normal          | File search                       |
+| `st`                       | Denite          | Open in a new tab                 |
+| `sg`                       | Denite          | Open in a vertical split          |
+| `sv`                       | Denite          | Open in a horizontal split        |
 
-### Plugin: NERDTree
+## Search -> jump to text (EasyMotion)
 
-Key   | Mode | Action
------ |:----:| ------------------
-`;`+`e` | Normal | Toggle file explorer
-`;`+`a` | Normal | Toggle file explorer on current file
-| **Within _NERDTree_ buffers** |||
-`h/j/k/l` | Normal | Movement + collapse/expand + file open
-`w` | Normal | Toggle window size
-`N` | Normal | Create new file or directory
-`yy` | Normal | Yank selected item to clipboard
-`st` | Normal | Open file in new tab
-`sv` | Normal | Open file in a horizontal split
-`sg` | Normal | Open file in a vertical split
-`&` | Normal | Jump to project root
-`gh` | Normal | Jump to user's home directory
-`gd` | Normal | Open split diff on selected file
-`gf` | Normal | Search in selected directory for files
-`gr` | Normal | Grep in selected directory
+| Key           | Mode            | Action                            |
+| ------------- | :-------------: | -----:                            |
+| `;+/`         | Normal          | Search on lines of current file   |
+| `s+s`         | Normal          | Jump to two characters from input |
+| `s+f`         | Normal          | Jump over-windows                 |
+| `s+/`         | Normal/operator | Jump to free-search               |
+| `?`           | Normal          | go to last edit position          |
+| `?`           | Normal          | go to previous cursor position    |
+| `<leader>+gg` | Normal/Visual   | Grep word under cursor            |
+|               |                 |                                   |
 
-### Plugin: Deoplete / Emmet / Neocomplete
+## Find and Replace between all files (Far)
 
-Key   | Mode | Action
------ |:----:| ------------------
-`Enter` | Insert | Select completion or expand snippet
-`Tab` | Insert/select | Smart tab movement or completion
-`Ctrl`+`j/k/f/b/d/u` | Insert | Movement in completion pop-up
-`Ctrl`+`<Return>` | Insert | Expand Emmet sequence
-`Ctrl`+`o` | Insert | Expand snippet
-`Ctrl`+`g` | Insert | Undo completion
-`Ctrl`+`l` | Insert | Refresh candidates
-`Ctrl`+`e` | Insert | Cancel selection and close pop-up
-`Ctrl`+`y` | Insert | Close pop-up
+| Key                        | Mode            | Action                            |
+| -------------              | :-------------: | -----:                            |
+| `:Far <from> <to> <files>` | Command         | Open find and replace console     |
+| `t`                        | Far             | Toggle the match above the cursor |
+| `:Fardo`                   | Far             | Do the replacement                |
+| `:F <patter>`              | Command         | find all                          |
 
-### Plugin: Commentary
+## Multiple Cursor
 
-Key   | Mode | Action
------ |:----:| ------------------
-`<leader>`+`v` | Normal/visual | Toggle single-line comments
-`<leader>`+`V` | Normal/visual | Toggle comment block
+| Key           | Mode            | Action                |
+| ------------- | :-------------: | -----:                |
+| `ctrl+n`      | Normal          | Select next occurence |
+| `ctrl+p`      | Normal          | Undo selection        |
+| `ctrl+x`      | Normal          | Skip current          |
 
-### Plugin: Expand-Region
+## Bookmarks
 
-Key   | Mode | Action
------ |:----:| ------------------
-`v` | Visual/select | Expand selection
-`V` | Visual/select | Reduce selection
+| Key           | Mode            | Action                          |
+| ------------- | :-------------: | -----:                          |
+| `Key`         | Mode            | Action                          |
+| `m+a`         | Normal          | Show list of all bookmarks      |
+| `m+x`         | Normal          | Remove all bookmarks            |
+| `m+m`         | Normal          | Toggle bookmark in current line |
+| `m+n`         | Normal          | Jump to next bookmark           |
+| `m+p`         | Normal          | Jump to previous bookmark       |
+| `m+i`         | Normal          | Annotate bookmark               |
 
-### Plugin: Easymotion
+## Sessions
 
-Key   | Mode | Action
------ |:----:| ------------------
-`s`+`s` | Normal | Jump to two characters from input
-`s`+`d` | Normal | Jump to a character from input
-`s`+`f` | Normal | Jump over-windows
-`s`+`h` | Normal | Jump backwards in-line
-`s`+`l` | Normal | Jump forwards in-line
-`s`+`j` | Normal | Jump downwards
-`s`+`k` | Normal | Jump upwards
-`s`+`/` | Normal/operator | Jump to free-search
-`s`+`n` | Normal | Smart next occurrence
-`s`+`p` | Normal | Smart previous occurrence
+| Key           | Mode            | Action                                 |
+| ------------- | :-------------: | -----:                                 |
+| `<leader>+se` | Normal          | Save current workspace as last session |
+| `<leader>+os` | Normal          | Load last session                      |
 
-### Plugin: ChooseWin
+## Misc
 
-Key   | Mode | Action
------ |:----:| ------------------
-`-` | Normal | Choose a window to edit
-`<leader>`+`-` | Normal | Switch editing window with selected
+| Key           | Mode            | Action                                   |
+| ------------- | :-------------: | -----:                                   |
+| `<leader>+b`  | Normal          | Toggle colorscheme background dark/light |
 
-### Plugin: Bookmarks
+## Spelling
 
-Key   | Mode | Action
------ |:----:| ------------------
-`m`+`a` | Normal | Show list of all bookmarks
-`m`+`m` | Normal | Toggle bookmark in current line
-`m`+`n` | Normal | Jump to next bookmark
-`m`+`p` | Normal | Jump to previous bookmark
-`m`+`i` | Normal | Annotate bookmark
+| Key           | Mode            | Action                  |
+| ------------- | :-------------: | -----:                  |
+| `<leader>+K`  | Normal          | Thesaurus               |
+| `<leader>+?`  | Normal          | Dictionary (macOS only) |
 
-### Plugin: Easygit
+## Foldings
 
-Key   | Mode | Action
------ |:----:| ------------------
-`<leader>`+`ga` | Normal | Git add current file
-`<leader>`+`gS` | Normal | Git status
-`<leader>`+`gd` | Normal | Git diff
-`<leader>`+`gD` | Normal | Close diff
-`<leader>`+`gc` | Normal | Git commit
-`<leader>`+`gb` | Normal | Git blame
-`<leader>`+`gB` | Normal | Open in browser
-`<leader>`+`gp` | Normal | Git push
+| Key           | Mode            | Action                                                                         |
+| ------------- | :-------------: | -----:                                                                         |
+| `za`          | Normal          | Toggle Fold current level                                                      |
+| `zr`          | Normal          | reduces folding by opening one more level of folds throughout the whole buffer |
+| `zR`          | Normal          | Open all folds                                                                 |
+| `zMza`>       | Normal          | Close the others except current                                                |
 
-### Plugin: GitGutter
+## NerdTree and Sidebar
 
-Key   | Mode | Action
------ |:----:| ------------------
-`<leader>`+`hj` | Normal | Jump to next hunk
-`<leader>`+`hk` | Normal | Jump to previous hunk
-`<leader>`+`hs` | Normal | Stage hunk
-`<leader>`+`hr` | Normal | Revert hunk
-`<leader>`+`hp` | Normal | Preview hunk
+| Key           | Mode            | Action                                 |
+| ------------- | :-------------: | -----:                                 |
+| `;+e`         | Normal          | Toggle file explorer                   |
+| `;+a`         | Normal          | Toggle file explorer on current file   |
+| `<leader>+y`  | Normal          | Copy file-path to clipboard(relative)  |
+| `<leader>+Y`  | Normal          | Copy file-path to clipboard(absolute)  |
+| `w`           | Inside NerdTree | Toggle window size                     |
+| `N`           | Inside NerdTree | Create new file or directory           |
+| `st`          | Inside NerdTree | Open file in new tab                   |
+| `sv`          | Inside NerdTree | Open file in a horizontal split        |
+| `sg`          | Inside NerdTree | Open file in a vertical split          |
+| `&`           | Inside NerdTree | Jump to project root                   |
+| `gf`          | Inside NerdTree | Search in selected directory for files |
+| `gr`          | Inside NerdTree | Grep in selected directory             |
 
-### Plugin: Linediff
+## Git
 
-Key   | Mode | Action
------ |:----:| ------------------
-`,`+`df` | Visual | Mark lines and open diff if 2nd region
-`,`+`da` | Visual | Mark lines for diff
-`,`+`ds` | Normal | Shows the diff between all the marked areas
-`,`+`dr` | Normal | Removes the signs denoting the diff'ed regions
+| Key           | Mode            | Action               |
+| ------------- | :-------------: | -----:               |
+| `<leader>+gl` | Normal          | Git log (all)        |
+| `<leader>+gs` | Normal          | Git status           |
+| `<leader>+gc` | Normal          | Git changed          |
+| `<leader>+ga` | Normal          | Git add current file |
+| `<leader>+gS` | Normal          | Git status           |
+| `<leader>+gd` | Normal          | Git diff             |
+| `<leader>+gD` | Normal          | Close diff           |
+| `<leader>+gc` | Normal          | Git commit           |
+| `<leader>+gb` | Normal          | Git blame            |
+| `<leader>+gB` | Normal          | Open in browser      |
+| `<leader>+gp` | Normal          | Git push             |
+| `m+g`         | Normal          | Open Magit           |
 
-### Misc Plugins
+## Tabular
 
-Key   | Mode | Action
------ |:----:| ------------------
-`m`+`g` | Normal | Open Magit
-`<leader>`+`o` | Normal | Open tag-bar
-`<leader>`+`G` | Normal | Toggle distraction-free writing
-`<leader>`+`gu` | Normal | Open undo tree
-`<leader>`+`W` | Normal | Wiki
-`<leader>`+`K` | Normal | Thesaurus
-`<leader>`+`?` | Normal | Dictionary (macOS only)
+| Key           | Mode            | Action                    |
+| ------------- | :-------------: | -----:                    |
+| `alt+shif+a`  | Normal/Visual   | Alig text by given patter |
 
-## Credits & Contribution
+## Surround motions
 
-Big thanks to the Rafael Bodill and dark knight [Shougo].
-[Rafi]: https://github.com/rafi
-[Shougo]: https://github.com/Shougo
-[lazy-loaded]: ./config/plugins.yaml#L21
-[yaml2json]: https://github.com/koraa/large-yaml2json-json2yaml
+| Key           | Mode            | Action     |
+| ------------- | :-------------: | -----:     |
+| `,"`          | Normal          | surround " |
+| `,'`          | Normal          | surround ' |
+| `,]`          | Normal          | surround ] |
+| `,[`          | Normal          | surround [ |
+| `,{`          | Normal          | surround { |
+| `,}`          | Normal          | surround } |
+| `,(`          | Normal          | surround ( |
+| `,)`          | Normal          | surround ) |
+
+
+# Languages
+
+## Ruby
+
+| Key           | Mode            | Action           |
+| ------------- | :-------------: | -----:           |
+| `,#`          | Normal          | erb surround #{} |
+|               |                 |                  |
+
+## Javascript
+
+| Key            | Mode            | Action                                                              |
+| -------------  | :-------------: | -----:                                                              |
+| `:ImportJSFix` | Command         | Import any missing modules and remove any modules that are not used |
+| `:JsDoc`       | Command         | Generate JSDoc for the function                                     |
