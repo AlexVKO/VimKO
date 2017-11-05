@@ -610,7 +610,7 @@ Name           | Description
 | Key           | Mode            | Action                        |
 | ------------- | :-------------: | -----:                        |
 | `,#`          | Normal          | ruby string interpolation #{} |
-| `r`           | Normal          | Ruby block        |
+| `r`           | Normal          | Ruby block                    |
 |               |                 |                               |
 
 ## Javascript

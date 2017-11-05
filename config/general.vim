@@ -274,4 +274,9 @@ autocmd BufEnter * :set relativenumber
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
+" Bookmarks Plugin
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
