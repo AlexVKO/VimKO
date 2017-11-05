@@ -101,6 +101,9 @@
 
 #### Language: RUBY
 - { repo: osyo-manga/vim-monster, on_ft: ruby }
+- { repo: vim-ruby/vim-ruby, on_ft: ruby }
+- { repo: tpope/vim-rails }
+
 
 #### Language: SWIFT
 - { repo: toyamarinyon/vim-swift, on_ft: swift }

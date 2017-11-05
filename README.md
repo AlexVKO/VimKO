@@ -612,11 +612,14 @@ Name           | Description
 
 ## Ruby
 
-| Key           | Mode            | Action                        |
-| ------------- | :-------------: | -----:                        |
-| `,#`          | Normal          | ruby string interpolation #{} |
-| `r`           | Normal          | Ruby block                    |
-|               |                 |                               |
+| Key           | Mode            | Action                                  |
+| ------------- | :-------------: | -----:                                  |
+| `,#`          | Normal          | ruby string interpolation #{}           |
+| `r`           | Normal          | Ruby block                              |
+| ]m            | Normal          | To edit start of next method definition |
+| ]M            | Normal          | To go to end of next method definition  |
+| [m            | Normal          | To start of previous method definition  |
+| [M            | Normal          | To end of previous method definition    |
 
 ## Javascript
 
