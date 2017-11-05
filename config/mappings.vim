@@ -41,6 +41,10 @@ nnoremap <leader>a =ip
 " Toggle fold
 nnoremap <CR> za
 
+" Tabularize - alignment
+nmap <A-A> :Tabularize /
+vmap <A-A> :Tabularize /
+
 " Focus the current fold by closing all others
 nnoremap <S-Return> zMza
 
