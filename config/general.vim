@@ -265,4 +265,7 @@ nnoremap ,ow "_diwhp
 nnoremap 0 ^
 nnoremap ^ 0
 
+" replace all words under cursor
+:nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

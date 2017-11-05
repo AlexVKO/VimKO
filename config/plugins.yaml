@@ -420,6 +420,7 @@
 # Operators
 # ---------
 - { repo: kana/vim-operator-user, lazy: 1 }
+- { repo: kana/vim-textobj-user, lazy: 1 }
 
 - repo: kana/vim-operator-replace
   depends: vim-operator-user
@@ -434,9 +435,8 @@
 # ==========================================
 # Text objects
 # ------------
-- { repo: kana/vim-textobj-user, on_func: textobj#user# }
 - { repo: vim-scripts/vim-indent-object }
-- { repo: lucapette/vim-textobj-underscore }
+- { repo: lucapette/vim-textobj-underscore, depends: vim-textobj-user }
 - { repo: bkad/CamelCaseMotion, on_map: { nox: <Plug>CamelCaseMotion }}
 - { repo: terryma/vim-expand-region, on_map: { x: <Plug> }}
 - { repo: AndrewRadev/sideways.vim, on_map: { ox: <Plug>Sideways }}
