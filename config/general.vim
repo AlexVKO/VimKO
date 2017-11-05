@@ -246,6 +246,10 @@ function! FoldText()
 	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endfunction
 
+" AutoClose for vim erb
+let g:AutoClosePairs = { '#{': '}'}
+let g:AutoCloseProtectedRegions = ["Character"]
+
 " }}}
 
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
