@@ -18,6 +18,8 @@
 
 #### Misc
 # ---------
+#### Languages
+- { repo: chrisbra/NrrwRgn }
 
 #### Language: CSS
 - { repo: hail2u/vim-css3-syntax, on_ft: css }

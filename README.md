@@ -604,6 +604,11 @@ Name           | Description
 | `r`           | Normal          | Ruby block        |
 
 # Languages
+## General
+| Key           | Mode            | Action                                              |
+| ------------- | :-------------: | -----:                                              |
+| NR            | Command         | - Open the selected region in a new narrowed window |
+|               |                 |                                                     |
 
 ## Ruby
 
