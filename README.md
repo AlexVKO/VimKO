@@ -266,6 +266,7 @@ Name           | Description
 
 Name           | Description
 -------------- | ----------------------
+[michaeljsmith/vim-indent-object] | Representing lines of code at the same indent level
 [kana/vim-operator-user] | Define your own custom operators
 [kana/vim-operator-replace] | Operator to replace text with register content
 [rhysd/vim-operator-surround] | Operator to enclose text objects
@@ -594,15 +595,19 @@ Name           | Description
 | `,(`          | Normal          | surround ( |
 | `,)`          | Normal          | surround ) |
 
+# Extra Text Objects
+| Key           | Mode            | Action            |
+| ------------- | :-------------: | -----:            |
+| `i`           | Normal          | Indentation level |
 
 # Languages
 
 ## Ruby
 
-| Key           | Mode            | Action           |
-| ------------- | :-------------: | -----:           |
-| `,#`          | Normal          | erb surround #{} |
-|               |                 |                  |
+| Key           | Mode            | Action                        |
+| ------------- | :-------------: | -----:                        |
+| `,#`          | Normal          | ruby string interpolation #{} |
+|               |                 |                               |
 
 ## Javascript
 
