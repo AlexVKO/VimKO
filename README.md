@@ -1,6 +1,12 @@
-# Rafael Bodill's Neo/vim Config
+# VKO vim configuration
 
-Lean mean Neo/vim machine, 30-45ms startup time.
+Most Advanced VIM Configuration for Full stack Developers, for now it's support.
+- Backend mostly for Ruby (Rails, Hanami), Elixir, Python, GO
+- Javascript mostly for React
+- Ops: Docker, Nginx, Ansible.
+
+This is a merge between [Alex's old config](https://github.com/AlexVKO/my-vimrc) and
+[Rafi's config](https://github.com/rafi/vim-config)
 
 Best with Neovim or Vim 8 with +python3 extensions enabled.
 
@@ -669,8 +675,8 @@ Key   | Mode | Action
 
 ## Credits & Contribution
 
-Big thanks to the dark knight [Shougo].
-
+Big thanks to the Rafael Bodill and dark knight [Shougo].
+[Rafi]: https://github.com/rafi
 [Shougo]: https://github.com/Shougo
 [lazy-loaded]: ./config/plugins.yaml#L21
 [yaml2json]: https://github.com/koraa/large-yaml2json-json2yaml
