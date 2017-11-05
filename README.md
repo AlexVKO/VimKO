@@ -1,6 +1,6 @@
 # VKO vim configuration
 
-Most Advanced VIM Configuration for Full stack Developers, for now it's support.
+Advanced VIM Configuration for FullStack Developers, for now it's supporting.
 - Backend mostly for Ruby (Rails, Hanami), Elixir, Python, GO
 - Javascript mostly for React
 - Ops: Docker, Nginx, Ansible.
