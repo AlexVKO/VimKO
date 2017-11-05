@@ -627,3 +627,19 @@ Name           | Description
 | -------------  | :-------------: | -----:                                                              |
 | `:ImportJSFix` | Command         | Import any missing modules and remove any modules that are not used |
 | `:JsDoc`       | Command         | Generate JSDoc for the function                                     |
+
+
+----
+
+Constributions are welcome:
+```
+TODO:
+- Snippets for comments, like: https://packagecontrol.io/packages/Comment-Snippets
+- React Snippets
+- Fold by levels like Atom/Sublime
+- Map f9 to :sort
+- Ruby string interpolation automatically
+- Instal gist-vim
+- Select two words and transpose (like sublime)
+- Ctags
+```
