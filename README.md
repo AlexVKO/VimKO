@@ -27,6 +27,229 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ![Vim screenshot](http://rafi.io/static/img/project/vim-config/features.png)
 
+# Some Key-mappings
+
+## General Editing
+
+| Key           | Mode            | Action                                     |
+| ------------- | :-------------: | -----:                                     |
+| `cp`          | Normal          | Duplicate Paragraph                        |
+| `, + Space`   | Normal          | Remove all spaces at EOL                   |
+| `<leader>+a`  | Normal          | Align Paragraph                            |
+| `<leader>+d`  | Normal/Visual   | Duplicate line or selection                |
+| `W!!`         | Command         | Write as root                              |
+| `<leader>+o`  | Normal          | Open tag-bar                               |
+| `<leader>+G`  | Normal          | Toggle distraction-free writing            |
+| `gc`          | Normal/visual   | Toggle comments                            |
+| `cn/cN`       | Normal/Visual   | Change current word in a repeatable manner |
+| `:DiffOrig`   | Command         | Show the diff of the last save             |
+| `Ctrl+o`      | Insert          | Expand snippet                             |
+| `s`           | Visual          | Replace within se area                     |
+| `Ctrl+o`      | Insert          | Expand snippet                             |
+| `v`           | Visual/select   | Expand selection                           |
+| `V`           | Visual/select   | Reduce selection                           |
+| `gp`          | Normal          | Select last paste                          |
+
+## Leaders
+| Key           | Mode            | Action        |
+| ------------- | :-------------: | -----:        |
+| `Arrows`      | All             | Resize Splits |
+| `Rotate`      | All             | Rotate Splits |
+
+## Tabs
+
+| Key           | Mode            | Action                         |
+| ------------- | :-------------: | -----:                         |
+| `s+t`         | Normal          | Open new tab (:tabnew)         |
+| `s+q`         | Normal          | Closes current buffer (:close) |
+| `alt+j`       | Normal          | Next tab                       |
+| `alt+k`       | Normal          | Previous tab                   |
+
+## Windows
+
+| Key           | Mode            | Action                              |
+| ------------- | :-------------: | -----:                              |
+| `s+o`         | Normal          | Close other windows (:only)         |
+| `s+x`         | Normal          | Remove buffer, leave blank window   |
+| `s+v`         | Normal          | Horizontal split (:split)           |
+| `s+g`         | Normal          | Vertical split (:vsplit)            |
+| `<leader>+sv` | Normal          | Split with previous buffer          |
+| `<leader>+sg` | Normal          | Vertical split with previous buffer |
+| `Ctrl+<hjkl>` | Normal          | move to window                      |
+
+## Scrolling
+
+| Key           | Mode            | Action                                                    |
+| ------------- | :-------------: | -----:                                                    |
+| `z+<hjkl>`    | Normal          | scroll to position                                        |
+| `zz`          | Normal          | scroll in a way the cursors toggle between top and middle |
+
+## Search for Files (Denite, Fzf)
+
+| Key                        | Mode            | Action                            |
+| -------------              | :-------------: | -----:                            |
+| `;+f`                      | Normal          | File search                       |
+| `st`                       | Denite          | Open in a new tab                 |
+| `sg`                       | Denite          | Open in a vertical split          |
+| `sv`                       | Denite          | Open in a horizontal split        |
+
+## Search -> jump to text (EasyMotion)
+
+| Key           | Mode            | Action                            |
+| ------------- | :-------------: | -----:                            |
+| `;+/`         | Normal          | Search on lines of current file   |
+| `s+s`         | Normal          | Jump to two characters from input |
+| `s+f`         | Normal          | Jump over-windows                 |
+| `s+/`         | Normal/operator | Jump to free-search               |
+| `?`           | Normal          | go to last edit position          |
+| `?`           | Normal          | go to previous cursor position    |
+| `<leader>+gg` | Normal/Visual   | Grep word under cursor            |
+|               |                 |                                   |
+
+## Find and Replace between all files (Far)
+
+| Key                        | Mode            | Action                            |
+| -------------              | :-------------: | -----:                            |
+| `:Far <from> <to> <files>` | Command         | Open find and replace console     |
+| `t`                        | Far             | Toggle the match above the cursor |
+| `:Fardo`                   | Far             | Do the replacement                |
+| `:F <patter>`              | Command         | find all                          |
+
+## Multiple Cursor
+
+| Key           | Mode            | Action                |
+| ------------- | :-------------: | -----:                |
+| `ctrl+n`      | Normal          | Select next occurence |
+| `ctrl+p`      | Normal          | Undo selection        |
+| `ctrl+x`      | Normal          | Skip current          |
+
+## Bookmarks
+
+| Key           | Mode            | Action                          |
+| ------------- | :-------------: | -----:                          |
+| `Key`         | Mode            | Action                          |
+| `m+a`         | Normal          | Show list of all bookmarks      |
+| `m+x`         | Normal          | Remove all bookmarks            |
+| `m+m`         | Normal          | Toggle bookmark in current line |
+| `m+n`         | Normal          | Jump to next bookmark           |
+| `m+p`         | Normal          | Jump to previous bookmark       |
+| `m+i`         | Normal          | Annotate bookmark               |
+
+## Sessions
+
+| Key           | Mode            | Action                                 |
+| ------------- | :-------------: | -----:                                 |
+| `<leader>+se` | Normal          | Save current workspace as last session |
+| `<leader>+os` | Normal          | Load last session                      |
+
+## Misc
+
+| Key           | Mode            | Action                                   |
+| ------------- | :-------------: | -----:                                   |
+| `<leader>+b`  | Normal          | Toggle colorscheme background dark/light |
+
+## Spelling
+
+| Key           | Mode            | Action                  |
+| ------------- | :-------------: | -----:                  |
+| `<leader>+K`  | Normal          | Thesaurus               |
+| `<leader>+?`  | Normal          | Dictionary (macOS only) |
+
+## Foldings
+
+| Key           | Mode            | Action                                                                         |
+| ------------- | :-------------: | -----:                                                                         |
+| `za`          | Normal          | Toggle Fold current level                                                      |
+| `zr`          | Normal          | reduces folding by opening one more level of folds throughout the whole buffer |
+| `zR`          | Normal          | Open all folds                                                                 |
+| `zMza`>       | Normal          | Close the others except current                                                |
+
+## NerdTree and Sidebar
+
+| Key           | Mode            | Action                                 |
+| ------------- | :-------------: | -----:                                 |
+| `;+e`         | Normal          | Toggle file explorer                   |
+| `;+a`         | Normal          | Toggle file explorer on current file   |
+| `<leader>+y`  | Normal          | Copy file-path to clipboard(relative)  |
+| `<leader>+Y`  | Normal          | Copy file-path to clipboard(absolute)  |
+| `w`           | Inside NerdTree | Toggle window size                     |
+| `N`           | Inside NerdTree | Create new file or directory           |
+| `st`          | Inside NerdTree | Open file in new tab                   |
+| `sv`          | Inside NerdTree | Open file in a horizontal split        |
+| `sg`          | Inside NerdTree | Open file in a vertical split          |
+| `&`           | Inside NerdTree | Jump to project root                   |
+| `gf`          | Inside NerdTree | Search in selected directory for files |
+| `gr`          | Inside NerdTree | Grep in selected directory             |
+
+## Git
+
+| Key           | Mode            | Action               |
+| ------------- | :-------------: | -----:               |
+| `<leader>+gl` | Normal          | Git log (all)        |
+| `<leader>+gs` | Normal          | Git status           |
+| `<leader>+gc` | Normal          | Git changed          |
+| `<leader>+ga` | Normal          | Git add current file |
+| `<leader>+gS` | Normal          | Git status           |
+| `<leader>+gd` | Normal          | Git diff             |
+| `<leader>+gD` | Normal          | Close diff           |
+| `<leader>+gc` | Normal          | Git commit           |
+| `<leader>+gb` | Normal          | Git blame            |
+| `<leader>+gB` | Normal          | Open in browser      |
+| `<leader>+gp` | Normal          | Git push             |
+| `m+g`         | Normal          | Open Magit           |
+
+## Tabular
+
+| Key           | Mode            | Action                    |
+| ------------- | :-------------: | -----:                    |
+| `alt+shif+a`  | Normal/Visual   | Alig text by given patter |
+
+## Surround motions
+
+| Key           | Mode            | Action     |
+| ------------- | :-------------: | -----:     |
+| `,"`          | Normal          | surround " |
+| `,'`          | Normal          | surround ' |
+| `,]`          | Normal          | surround ] |
+| `,[`          | Normal          | surround [ |
+| `,{`          | Normal          | surround { |
+| `,}`          | Normal          | surround } |
+| `,(`          | Normal          | surround ( |
+| `,)`          | Normal          | surround ) |
+
+# Extra Text Objects
+| Key           | Mode            | Action            |
+| ------------- | :-------------: | -----:            |
+| `i`           | Normal          | Indentation level |
+| `_`           | Normal          | Underscore        |
+| `e`           | Normal          | Entire file       |
+| `r`           | Normal          | Ruby block        |
+
+# Languages
+## General
+| Key           | Mode            | Action                                              |
+| ------------- | :-------------: | -----:                                              |
+| NR            | Command         | - Open the selected region in a new narrowed window |
+|               |                 |                                                     |
+
+## Ruby
+
+| Key           | Mode            | Action                                  |
+| ------------- | :-------------: | -----:                                  |
+| `,#`          | Normal          | ruby string interpolation #{}           |
+| `r`           | Normal          | Ruby block                              |
+| ]m            | Normal          | To edit start of next method definition |
+| ]M            | Normal          | To go to end of next method definition  |
+| [m            | Normal          | To start of previous method definition  |
+| [M            | Normal          | To end of previous method definition    |
+
+## Javascript
+
+| Key            | Mode            | Action                                                              |
+| -------------  | :-------------: | -----:                                                              |
+| `:ImportJSFix` | Command         | Import any missing modules and remove any modules that are not used |
+| `:JsDoc`       | Command         | Generate JSDoc for the function                                     |
+
 ## Install
 
 **_1._** Let's clone this repo! Clone to `~/.config/nvim`,
@@ -404,229 +627,6 @@ Name           | Description
 [AndrewRadev/dsf.vim]: https://github.com/AndrewRadev/dsf.vim
 [osyo-manga/vim-textobj-multiblock]: https://github.com/osyo-manga/vim-textobj-multiblock
 [kana/vim-textobj-function]: https://github.com/kana/vim-textobj-function
-
-# Some Key-mappings
-
-## General Editing
-
-| Key           | Mode            | Action                                     |
-| ------------- | :-------------: | -----:                                     |
-| `cp`          | Normal          | Duplicate Paragraph                        |
-| `, + Space`   | Normal          | Remove all spaces at EOL                   |
-| `<leader>+a`  | Normal          | Align Paragraph                            |
-| `<leader>+d`  | Normal/Visual   | Duplicate line or selection                |
-| `W!!`         | Command         | Write as root                              |
-| `<leader>+o`  | Normal          | Open tag-bar                               |
-| `<leader>+G`  | Normal          | Toggle distraction-free writing            |
-| `gc`          | Normal/visual   | Toggle comments                            |
-| `cn/cN`       | Normal/Visual   | Change current word in a repeatable manner |
-| `:DiffOrig`   | Command         | Show the diff of the last save             |
-| `Ctrl+o`      | Insert          | Expand snippet                             |
-| `s`           | Visual          | Replace within se area                     |
-| `Ctrl+o`      | Insert          | Expand snippet                             |
-| `v`           | Visual/select   | Expand selection                           |
-| `V`           | Visual/select   | Reduce selection                           |
-| `gp`          | Normal          | Select last paste                          |
-
-## Leaders
-| Key           | Mode            | Action        |
-| ------------- | :-------------: | -----:        |
-| `Arrows`      | All             | Resize Splits |
-| `Rotate`      | All             | Rotate Splits |
-
-## Tabs
-
-| Key           | Mode            | Action                         |
-| ------------- | :-------------: | -----:                         |
-| `s+t`         | Normal          | Open new tab (:tabnew)         |
-| `s+q`         | Normal          | Closes current buffer (:close) |
-| `alt+j`       | Normal          | Next tab                       |
-| `alt+k`       | Normal          | Previous tab                   |
-
-## Windows
-
-| Key           | Mode            | Action                              |
-| ------------- | :-------------: | -----:                              |
-| `s+o`         | Normal          | Close other windows (:only)         |
-| `s+x`         | Normal          | Remove buffer, leave blank window   |
-| `s+v`         | Normal          | Horizontal split (:split)           |
-| `s+g`         | Normal          | Vertical split (:vsplit)            |
-| `<leader>+sv` | Normal          | Split with previous buffer          |
-| `<leader>+sg` | Normal          | Vertical split with previous buffer |
-| `Ctrl+<hjkl>` | Normal          | move to window                      |
-
-## Scrolling
-
-| Key           | Mode            | Action                                                    |
-| ------------- | :-------------: | -----:                                                    |
-| `z+<hjkl>`    | Normal          | scroll to position                                        |
-| `zz`          | Normal          | scroll in a way the cursors toggle between top and middle |
-
-## Search for Files (Denite, Fzf)
-
-| Key                        | Mode            | Action                            |
-| -------------              | :-------------: | -----:                            |
-| `;+f`                      | Normal          | File search                       |
-| `st`                       | Denite          | Open in a new tab                 |
-| `sg`                       | Denite          | Open in a vertical split          |
-| `sv`                       | Denite          | Open in a horizontal split        |
-
-## Search -> jump to text (EasyMotion)
-
-| Key           | Mode            | Action                            |
-| ------------- | :-------------: | -----:                            |
-| `;+/`         | Normal          | Search on lines of current file   |
-| `s+s`         | Normal          | Jump to two characters from input |
-| `s+f`         | Normal          | Jump over-windows                 |
-| `s+/`         | Normal/operator | Jump to free-search               |
-| `?`           | Normal          | go to last edit position          |
-| `?`           | Normal          | go to previous cursor position    |
-| `<leader>+gg` | Normal/Visual   | Grep word under cursor            |
-|               |                 |                                   |
-
-## Find and Replace between all files (Far)
-
-| Key                        | Mode            | Action                            |
-| -------------              | :-------------: | -----:                            |
-| `:Far <from> <to> <files>` | Command         | Open find and replace console     |
-| `t`                        | Far             | Toggle the match above the cursor |
-| `:Fardo`                   | Far             | Do the replacement                |
-| `:F <patter>`              | Command         | find all                          |
-
-## Multiple Cursor
-
-| Key           | Mode            | Action                |
-| ------------- | :-------------: | -----:                |
-| `ctrl+n`      | Normal          | Select next occurence |
-| `ctrl+p`      | Normal          | Undo selection        |
-| `ctrl+x`      | Normal          | Skip current          |
-
-## Bookmarks
-
-| Key           | Mode            | Action                          |
-| ------------- | :-------------: | -----:                          |
-| `Key`         | Mode            | Action                          |
-| `m+a`         | Normal          | Show list of all bookmarks      |
-| `m+x`         | Normal          | Remove all bookmarks            |
-| `m+m`         | Normal          | Toggle bookmark in current line |
-| `m+n`         | Normal          | Jump to next bookmark           |
-| `m+p`         | Normal          | Jump to previous bookmark       |
-| `m+i`         | Normal          | Annotate bookmark               |
-
-## Sessions
-
-| Key           | Mode            | Action                                 |
-| ------------- | :-------------: | -----:                                 |
-| `<leader>+se` | Normal          | Save current workspace as last session |
-| `<leader>+os` | Normal          | Load last session                      |
-
-## Misc
-
-| Key           | Mode            | Action                                   |
-| ------------- | :-------------: | -----:                                   |
-| `<leader>+b`  | Normal          | Toggle colorscheme background dark/light |
-
-## Spelling
-
-| Key           | Mode            | Action                  |
-| ------------- | :-------------: | -----:                  |
-| `<leader>+K`  | Normal          | Thesaurus               |
-| `<leader>+?`  | Normal          | Dictionary (macOS only) |
-
-## Foldings
-
-| Key           | Mode            | Action                                                                         |
-| ------------- | :-------------: | -----:                                                                         |
-| `za`          | Normal          | Toggle Fold current level                                                      |
-| `zr`          | Normal          | reduces folding by opening one more level of folds throughout the whole buffer |
-| `zR`          | Normal          | Open all folds                                                                 |
-| `zMza`>       | Normal          | Close the others except current                                                |
-
-## NerdTree and Sidebar
-
-| Key           | Mode            | Action                                 |
-| ------------- | :-------------: | -----:                                 |
-| `;+e`         | Normal          | Toggle file explorer                   |
-| `;+a`         | Normal          | Toggle file explorer on current file   |
-| `<leader>+y`  | Normal          | Copy file-path to clipboard(relative)  |
-| `<leader>+Y`  | Normal          | Copy file-path to clipboard(absolute)  |
-| `w`           | Inside NerdTree | Toggle window size                     |
-| `N`           | Inside NerdTree | Create new file or directory           |
-| `st`          | Inside NerdTree | Open file in new tab                   |
-| `sv`          | Inside NerdTree | Open file in a horizontal split        |
-| `sg`          | Inside NerdTree | Open file in a vertical split          |
-| `&`           | Inside NerdTree | Jump to project root                   |
-| `gf`          | Inside NerdTree | Search in selected directory for files |
-| `gr`          | Inside NerdTree | Grep in selected directory             |
-
-## Git
-
-| Key           | Mode            | Action               |
-| ------------- | :-------------: | -----:               |
-| `<leader>+gl` | Normal          | Git log (all)        |
-| `<leader>+gs` | Normal          | Git status           |
-| `<leader>+gc` | Normal          | Git changed          |
-| `<leader>+ga` | Normal          | Git add current file |
-| `<leader>+gS` | Normal          | Git status           |
-| `<leader>+gd` | Normal          | Git diff             |
-| `<leader>+gD` | Normal          | Close diff           |
-| `<leader>+gc` | Normal          | Git commit           |
-| `<leader>+gb` | Normal          | Git blame            |
-| `<leader>+gB` | Normal          | Open in browser      |
-| `<leader>+gp` | Normal          | Git push             |
-| `m+g`         | Normal          | Open Magit           |
-
-## Tabular
-
-| Key           | Mode            | Action                    |
-| ------------- | :-------------: | -----:                    |
-| `alt+shif+a`  | Normal/Visual   | Alig text by given patter |
-
-## Surround motions
-
-| Key           | Mode            | Action     |
-| ------------- | :-------------: | -----:     |
-| `,"`          | Normal          | surround " |
-| `,'`          | Normal          | surround ' |
-| `,]`          | Normal          | surround ] |
-| `,[`          | Normal          | surround [ |
-| `,{`          | Normal          | surround { |
-| `,}`          | Normal          | surround } |
-| `,(`          | Normal          | surround ( |
-| `,)`          | Normal          | surround ) |
-
-# Extra Text Objects
-| Key           | Mode            | Action            |
-| ------------- | :-------------: | -----:            |
-| `i`           | Normal          | Indentation level |
-| `_`           | Normal          | Underscore        |
-| `e`           | Normal          | Entire file       |
-| `r`           | Normal          | Ruby block        |
-
-# Languages
-## General
-| Key           | Mode            | Action                                              |
-| ------------- | :-------------: | -----:                                              |
-| NR            | Command         | - Open the selected region in a new narrowed window |
-|               |                 |                                                     |
-
-## Ruby
-
-| Key           | Mode            | Action                                  |
-| ------------- | :-------------: | -----:                                  |
-| `,#`          | Normal          | ruby string interpolation #{}           |
-| `r`           | Normal          | Ruby block                              |
-| ]m            | Normal          | To edit start of next method definition |
-| ]M            | Normal          | To go to end of next method definition  |
-| [m            | Normal          | To start of previous method definition  |
-| [M            | Normal          | To end of previous method definition    |
-
-## Javascript
-
-| Key            | Mode            | Action                                                              |
-| -------------  | :-------------: | -----:                                                              |
-| `:ImportJSFix` | Command         | Import any missing modules and remove any modules that are not used |
-| `:JsDoc`       | Command         | Generate JSDoc for the function                                     |
 
 
 ----
