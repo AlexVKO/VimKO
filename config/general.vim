@@ -250,6 +250,9 @@ endfunction
 let g:AutoClosePairs = { '#{': '}'}
 let g:AutoCloseProtectedRegions = ["Character"]
 
+" Center screen when scrolling search results
+nmap n nzz
+nmap N Nzz
 " }}}
 
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
