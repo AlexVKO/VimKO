@@ -250,6 +250,18 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `:ImportJSFix` | Command         | Import any missing modules and remove any modules that are not used |
 | `:JsDoc`       | Command         | Generate JSDoc for the function                                     |
 
+## HTML / JSX
+
+| Key           | Mode            | Action                                |
+| ------------- | :-------------: | -----:                                |
+| `Ctrl+y + ,`  | Command         | Expand emmet sequence                 |
+| `Ctrl+y + ,`  | Visual          | Wrap selected tag with emmet sequence |
+| `<c-y>d`      | INSERT          | Balance a Tag Inward                  |
+| `<c-y>D`      | INSERT          | Balance a Tag Outward                 |
+| `<c-y>n`      | INSERT          | Go to the Next Edit Point                 |
+| `<c-y>N`      | INSERT          | Go to the Previous Edit Point                 |
+
+
 ## Install
 
 **_1._** Let's clone this repo! Clone to `~/.config/nvim`,
