@@ -172,6 +172,8 @@ set laststatus=2        " Always show a status line
 set colorcolumn=80      " Highlight the 80th character limit
 set display=lastline
 
+set backupcopy=yes      " Workarround to work with guard
+
 " Toggle between normal and relative numbering.
 function! NumberToggle()
   if(&relativenumber == 1)
