@@ -37,6 +37,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `, + Space`   | Normal          | Remove all spaces at EOL                   |
 | `<leader>+a`  | Normal          | Align Paragraph                            |
 | `<leader>+d`  | Normal/Visual   | Duplicate line or selection                |
+| `<leader>+saw`| Normal/Visual   | Replace all occurences under cursor        |
 | `W!!`         | Command         | Write as root                              |
 | `<leader>+o`  | Normal          | Open tag-bar                               |
 | `<leader>+G`  | Normal          | Toggle distraction-free writing            |
@@ -51,10 +52,10 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `gp`          | Normal          | Select last paste                          |
 
 ## Leaders
-| Key           | Mode            | Action        |
-| ------------- | :-------------: | -----:        |
-| `Arrows`      | All             | Resize Splits |
-| `Rotate`      | All             | Rotate Splits |
+| Key           | Description |
+| ------------- | -----:      |
+| `;`           | Primary     |
+| `space`       | Secondary   |
 
 ## Tabs
 
@@ -64,9 +65,10 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `s+q`         | Normal          | Closes current buffer (:close) |
 | `alt+j`       | Normal          | Next tab                       |
 | `alt+k`       | Normal          | Previous tab                   |
+| `Arrows`      | All             | Resize Splits                  |
+| `Rotate`      | All             | Rotate Splits                  |
 
 ## Windows
-
 | Key           | Mode            | Action                              |
 | ------------- | :-------------: | -----:                              |
 | `s+o`         | Normal          | Close other windows (:only)         |
@@ -232,16 +234,29 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | NR            | Command         | - Open the selected region in a new narrowed window |
 |               |                 |                                                     |
 
-## Ruby
+## Ruby/Rails
 
-| Key           | Mode            | Action                                  |
-| ------------- | :-------------: | -----:                                  |
-| `,#`          | Normal          | ruby string interpolation #{}           |
-| `r`           | Normal          | Ruby block                              |
-| ]m            | Normal          | To edit start of next method definition |
-| ]M            | Normal          | To go to end of next method definition  |
-| [m            | Normal          | To start of previous method definition  |
-| [M            | Normal          | To end of previous method definition    |
+| Key              | Mode            | Action                                                |
+| -------------    | :-------------: | -----:                                                |
+| `,#`             | Normal          | ruby string interpolation #{}                         |
+| `r`              | Normal          | Ruby block                                            |
+| `gf`             | Normal          | goto                                                  |
+| `:A`             | Command         | Alternate file                                        |
+| `:AS`            | Command         | Alternate file in split                               |
+| `:R`             | Command         | Related file                                          |
+| `:RS`            | Command         | Related file in split                                 |
+| `]m`             | Normal          | To edit start of next method definition               |
+| `]M`             | Normal          | To go to end of next method definition                |
+| `[m`             | Normal          | To start of previous method definition                |
+| `[M`             | Normal          | To end of previous method definition                  |
+| `<learder>+rap`  | Normal          | Add params to method                                  |
+| `<learder>+rit`  | Normal          | Remove declaration of the variable and use the result |
+| `<learder>+rcpc` | Normal          | From if one line to multiline                         |
+| `<learder>+rec`  | Normal          | Extract Constant                                      |
+| `<learder>+rel`  | Normal          | Exrtact let                                           |
+| `<learder>+relv` | Normal          | To local variable                                     |
+| `<learder>+rrlv` | Normal          | Rename local variable                                 |
+| `<learder>+rriv` | Normal          | Rename instance variable                              |
 
 ## Javascript
 
