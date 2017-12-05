@@ -280,5 +280,16 @@ autocmd InsertLeave * :set relativenumber
 let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
 
+" Fix for multiple cursors with neocomplete
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
 
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

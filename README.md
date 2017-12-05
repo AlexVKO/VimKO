@@ -31,25 +31,27 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ## General Editing
 
-| Key           | Mode            | Action                                     |
-| ------------- | :-------------: | -----:                                     |
-| `cp`          | Normal          | Duplicate Paragraph                        |
-| `, + Space`   | Normal          | Remove all spaces at EOL                   |
-| `<leader>+a`  | Normal          | Align Paragraph                            |
-| `<leader>+d`  | Normal/Visual   | Duplicate line or selection                |
-| `<leader>+saw`| Normal/Visual   | Replace all occurences under cursor        |
-| `W!!`         | Command         | Write as root                              |
-| `<leader>+o`  | Normal          | Open tag-bar                               |
-| `<leader>+G`  | Normal          | Toggle distraction-free writing            |
-| `gc`          | Normal/visual   | Toggle comments                            |
-| `cn/cN`       | Normal/Visual   | Change current word in a repeatable manner |
-| `:DiffOrig`   | Command         | Show the diff of the last save             |
-| `Ctrl+o`      | Insert          | Expand snippet                             |
-| `s`           | Visual          | Replace within se area                     |
-| `Ctrl+o`      | Insert          | Expand snippet                             |
-| `v`           | Visual/select   | Expand selection                           |
-| `V`           | Visual/select   | Reduce selection                           |
-| `gp`          | Normal          | Select last paste                          |
+| Key           | Mode            | Action                                    |
+| ------------- | :-------------: | -----:                                    |
+| `cp`           | Normal        | Duplicate Paragraph                        |
+| `, + Space`    | Normal        | Remove all spaces at EOL                   |
+| `<leader>+a`   | Normal        | Align Paragraph                            |
+| `<leader>+d`   | Normal/Visual | Duplicate line or selection                |
+| `<leader>+saw` | Normal/Visual | Replace all occurences under cursor        |
+| `W!!`          | Command       | Write as root                              |
+| `<leader>+o`   | Normal        | Open tag-bar                               |
+| `<leader>+G`   | Normal        | Toggle distraction-free writing            |
+| `gc`           | Normal/visual | Toggle comments                            |
+| `cn/cN`        | Normal/Visual | Change current word in a repeatable manner |
+| `:DiffOrig`    | Command       | Show the diff of the last save             |
+| `Ctrl+o`       | Insert        | Expand snippet                             |
+| `s`            | Visual        | Replace within se area                     |
+| `Ctrl+o`       | Insert        | Expand snippet                             |
+| `v`            | Visual/select | Expand selection                           |
+| `V`            | Visual/select | Reduce selection                           |
+| `gp`           | Normal        | Select last paste                          |
+| `;+t`          | Normal        | Search for symbol under cursor             |
+| `;+o`          | Normal        | Search for functions                       |
 
 ## Leaders
 | Key           | Description |
@@ -75,6 +77,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `s+x`         | Normal          | Remove buffer, leave blank window   |
 | `s+v`         | Normal          | Horizontal split (:split)           |
 | `s+g`         | Normal          | Vertical split (:vsplit)            |
+| `s+b`         | Normal          | Toggle to last window               |
 | `<leader>+sv` | Normal          | Split with previous buffer          |
 | `<leader>+sg` | Normal          | Vertical split with previous buffer |
 | `Ctrl+<hjkl>` | Normal          | move to window                      |
