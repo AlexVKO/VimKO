@@ -68,7 +68,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `alt+j`       | Normal          | Next tab                       |
 | `alt+k`       | Normal          | Previous tab                   |
 | `Arrows`      | All             | Resize Splits                  |
-| `Rotate`      | All             | Rotate Splits                  |
+| `ctrl+x`      | All             | Rotate Splits                  |
 
 ## Windows
 | Key           | Mode            | Action                              |
@@ -119,6 +119,14 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `t`                        | Far             | Toggle the match above the cursor           |
 | `:Fardo`                   | Far             | Do the replacement                          |
 | `:F <patter>`              | Command         | find all                                    |
+
+## Ctags (Goto definition)
+
+| Key           | Mode            | Action                             |
+| ------------- | :-------------: | -----:                             |
+| `Ctrl+]`      | Normal          | Go to definition                   |
+| `Ctrl+T`      | Normal          | Jump back from definition          |
+| `alt+]`       | Normal          | Go to definition(split vertically) |
 
 ## Multiple Cursor
 
@@ -670,6 +678,4 @@ TODO:
 - Map f9 to :sort
 - Ruby string interpolation automatically
 - Instal gist-vim
-- Select two words and transpose (like sublime)
-- Ctags
 ```

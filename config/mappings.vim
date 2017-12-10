@@ -394,4 +394,9 @@ map ,` ysiw`
 "
 " Replace all words under cursor
 :nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" CTAGS maps
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
