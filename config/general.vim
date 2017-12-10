@@ -280,16 +280,18 @@ autocmd InsertLeave * :set relativenumber
 let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
 
-" Fix for multiple cursors with neocomplete
+" Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
-  if exists(':NeoCompleteLock')==2
-    exe 'NeoCompleteLock'
-  endif
+    if exists('g:deoplete#disable_auto_complete')
+	   let g:deoplete#disable_auto_complete = 1
+    endif
 endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
 function! Multiple_cursors_after()
-  if exists(':NeoCompleteUnlock')==2
-    exe 'NeoCompleteUnlock'
-  endif
+    if exists('g:deoplete#disable_auto_complete')
+	   let g:deoplete#disable_auto_complete = 0
+    endif
 endfunction
 
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
