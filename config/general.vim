@@ -294,4 +294,7 @@ function! Multiple_cursors_after()
     endif
 endfunction
 
+" AG search for Far
+let g:far#source = 'agnvim'
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
