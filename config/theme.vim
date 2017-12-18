@@ -20,7 +20,7 @@ function! s:theme_reload(name)
 endfunction
 
 " THEME NAME
-let g:theme_name = 'oceanicnext'
+let g:theme_name = 'rafi-2017'
 autocmd MyAutoCmd ColorScheme * call s:theme_reload(g:theme_name)
 
 " COLORSCHEME NAME

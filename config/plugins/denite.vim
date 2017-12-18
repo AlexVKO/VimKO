@@ -10,6 +10,7 @@ call denite#custom#option('_', {
 	\ 'short_source_names': 1,
 	\ 'vertical_preview': 1,
 	\ })
+	" \ 'auto_preview':   v:true
 
 call denite#custom#option('list', {})
 
@@ -41,7 +42,7 @@ call denite#custom#source(
 if executable('ag')
 	" The Silver Searcher
 	call denite#custom#var('file_rec', 'command',
-		\ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
+		\ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '--ignore', '.git/*', '-g', ''])
 
 	" Setup ignore patterns in your .agignore file!
 	" https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage

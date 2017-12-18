@@ -257,18 +257,12 @@ nmap n nzz
 nmap N Nzz
 " }}}
 
-" ,ow = 'overwrite word', replace a word with what's in the yank buffer
-nnoremap ,ow "_diwhp
-
 " Make 0 go to the first character rather than the beginning
 " of the line. When we're programming, we're almost always
 " interested in working with text rather than empty space. If
 " you want the traditional beginning of line, use ^
 nnoremap 0 ^
 nnoremap ^ 0
-
-" replace all words under cursor
-:nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " switch to relative numbers in normal mode
 autocmd BufLeave * :set norelativenumber
