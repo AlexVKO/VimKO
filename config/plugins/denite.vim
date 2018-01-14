@@ -42,7 +42,7 @@ call denite#custom#source(
 if executable('ag')
 	" The Silver Searcher
 	call denite#custom#var('file_rec', 'command',
-		\ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '--ignore', '.git/*', '-g', ''])
+		\ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '--ignore', '.git/*', '--ignore', 'node_modules/*', '-g', ''])
 
 	" Setup ignore patterns in your .agignore file!
 	" https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage
