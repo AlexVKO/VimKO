@@ -26,33 +26,35 @@ hi TabLineFill ctermfg=234 ctermbg=236 guifg=#1C1C1C guibg=#303030 cterm=NONE gu
 " TabLine: Not-active tab page label
 hi TabLine     ctermfg=243 ctermbg=236 guifg=#767676 guibg=#303030 cterm=NONE gui=NONE
 " TabLineSel: Active tab page label
-hi TabLineSel  ctermfg=241 ctermbg=234 guifg=#626262 guibg=#1C1C1C cterm=NONE gui=NONE
+hi TabLineSel  ctermfg=241 ctermbg=234 guifg=#FFFFFF guibg=#1C1C1C cterm=NONE gui=NONE
 " Custom
 highlight TabLineSelShade  ctermfg=235 ctermbg=234 guifg=#262626 guibg=#1C1C1C
 highlight TabLineAlt       ctermfg=252 ctermbg=238 guifg=#D0D0D0 guibg=#444444
-highlight TabLineAltShade  ctermfg=238 ctermbg=236 guifg=#444444 guibg=#303030
+highlight TabLineAltShade  ctermfg=238 ctermbg=236 guifg=#FFFFFF guibg=#303030
 
 function! Tabline() abort "{{{
 	" Active project tab
 	let s:tabline =
 		\ '%#TabLineAlt# %{badge#project()} '.
-		\ '%#TabLineAltShade#▛'.
-		\ '%#TabLineFill#  '
+		\ '%#TabLineAltShade#'.
+		\ '%#TabLineFill#'
 
 	let nr = tabpagenr()
 	for i in range(tabpagenr('$'))
 		if i + 1 == nr
 			" Active tab
 			let s:tabline .=
-				\ '%#TabLineSelShade#░%#TabLineSel#'.
-				\ '%'.(i+1).'T%{badge#label('.(i+1).', "▛", "N/A")} '.
-				\ '%#TabLineFill#▞ '
+				\ '%#TabLineSelShade#░%#TabLineSel# '.
+				\ '〉  '.
+				\ '%'.(i+1).'T%{badge#label('.(i+1).', "▛", "N/A")}    '.
+				\ '%#TabLineFill#'
 		else
 			" Normal tab
 			let s:tabline .=
 				\ '%#TabLine# '.
+				\ '〉'.
 				\ '%'.(i+1).'T%{badge#label('.(i+1).', "▛", "N/A")} '.
-				\ '▘ '
+				\ ' '
 		endif
 	endfor
 	" Empty space and session indicator
@@ -71,8 +73,8 @@ let s:stl .= "%6*%{badge#mode('⚠', 'Z')}"         " Readonly symbol
 let s:stl .= '%*%n'                               " Buffer number
 let s:stl .= "%6*%{badge#modified('+')}%0*"       " Write symbol
 let s:stl .= ' %1*%{badge#filename()}%*'          " Filename
-let s:stl .= ' %<'                                " Truncate here
-let s:stl .= '%( %{badge#branch()} %)'           " Git branch name
+let s:stl .= ' %< '                               " Truncate here
+let s:stl .= '%(   %{badge#branch()} %)'       " Git branch name
 let s:stl .= "%4*%(%{badge#trails('WS:%s')} %)"  " Whitespace
 let s:stl .= '%(%{badge#syntax()} %)%*'           " syntax check
 let s:stl .= '%='                                 " Align to right
@@ -243,7 +245,7 @@ highlight! link Flashy DiffText
 " }}}
 
 " Plugin: vim-bookmarks {{{
-let g:bookmark_sign = '⚐'
+let g:bookmark_sign = '💩'
 highlight! BookmarkSign            ctermfg=12 guifg=#4EA9D7
 highlight! BookmarkAnnotationSign  ctermfg=11 guifg=#EACF49
 " }}}
