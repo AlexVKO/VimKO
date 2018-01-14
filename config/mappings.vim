@@ -45,9 +45,16 @@ nnoremap <CR> za
 nmap <A-A> :Tabularize /
 vmap <A-A> :Tabularize /
 
+" Tabs change by number
+nnoremap <silent> <A-1> :<C-U>tabn1<CR>
+nnoremap <silent> <A-2> :<C-U>tabn2<CR>
+nnoremap <silent> <A-3> :<C-U>tabn3<CR>
+nnoremap <silent> <A-4> :<C-U>tabn4<CR>
+nnoremap <silent> <A-5> :<C-U>tabn5<CR>
+
 " Far - Search and Replace
-nmap <A-F> :Far
 vmap <A-F> :Far
+nmap <A-F> :Far
 
 " Focus the current fold by closing all others
 nnoremap <S-Return> zMza
