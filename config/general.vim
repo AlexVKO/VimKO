@@ -253,8 +253,8 @@ let g:AutoClosePairs = { '#{': '}'}
 let g:AutoCloseProtectedRegions = ["Character"]
 
 " Center screen when scrolling search results
-nmap n nzz
-nmap N Nzz
+" nmap n nzz
+" nmap N Nzz
 " }}}
 
 " Make 0 go to the first character rather than the beginning

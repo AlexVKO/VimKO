@@ -14,7 +14,7 @@ augroup MyAutoCmd " {{{
 	autocmd WinLeave,InsertEnter * set nocursorline
 
 	" Automatically set read-only for files being edited elsewhere
-	autocmd SwapExists * nested let v:swapchoice = 'o'
+	" autocmd SwapExists * nested let v:swapchoice = 'o'
 
 	" Check if file changed when its window is focus, more eager than 'autoread'
 	autocmd WinEnter,FocusGained * checktime
