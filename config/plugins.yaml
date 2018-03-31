@@ -95,6 +95,11 @@
 - { repo: Vimjas/vim-python-pep8-indent, on_ft: python }
 - { repo: vim-scripts/python_match.vim, on_ft: python }
 - { repo: tmhedberg/SimpylFold, on_ft: python }
+- { repo: bps/vim-textobj-python, on_ft: python }
+- { repo: phillipberndt/python-imports.vim, on_ft: python }
+- { repo: vim-scripts/tagport, on_ft: python }
+- { repo: heavenshell/vim-pydocstring, on_ft: python }
+- { repo: stsewd/isort.nvim, on_ft: python }
 - { repo: raimon49/requirements.txt.vim, on_ft: requirements }
 
 #### Language: LUA
@@ -323,7 +328,7 @@
 - repo: mattn/emmet-vim
   if: empty($VIM_MINIMAL)
   on_i: 1
-  on_ft: [ html, css, jsx, javascript, javascript.jsx ]
+  on_ft: [ html, css, jsx, javascript, javascript.jsx, eruby ]
   hook_source: |
     let g:use_emmet_complete_tag = 0
     let g:user_emmet_install_global = 0

@@ -412,4 +412,16 @@ nnoremap ,ow "_diwhp
 " replace all words under cursor
 :nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" pythong-jedi
+let g:jedi#goto_command = "<leader>p"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+
+" Python doc
+nmap <silent> <C-_> <Plug>(pydocstring)
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

@@ -269,6 +269,17 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 | `<learder>+rrlv` | Normal          | Rename local variable                                 |
 | `<learder>+rriv` | Normal          | Rename instance variable                              |
 
+## Python/Flask
+
+| Key           | Mode                           | Action         |
+| ------------- | :-------------:                | -----:         |
+| `af`          | Normal                         | function       |
+| `if`          | Normal                         | inner function |
+| `ac`          | Normal                         | class          |
+| `ic`          | Normal                         | inner class    |
+| `[pf / ]pf`   | move to next/previous function | class          |
+| `[pc / ]pc`   | move to next/previous class    | inner class    |
+
 ## Javascript
 
 | Key            | Mode            | Action                                                              |

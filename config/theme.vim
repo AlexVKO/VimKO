@@ -28,7 +28,7 @@ let s:cache = $VARPATH.'/theme.txt'
 if ! exists('g:colors_name')
 	set background=dark
 	execute 'colorscheme'
-		\ filereadable(s:cache) ? readfile(s:cache)[0] : 'hybrid'
+		\ 'hybrid'
 endif
 
 " vim: set ts=2 sw=2 tw=80 noet :
