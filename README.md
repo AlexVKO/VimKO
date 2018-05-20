@@ -463,6 +463,7 @@ Name           | Description
 [exu/pgsql.vim] | PostgreSQL syntax
 [othree/nginx-contrib-vim] | Fork official vim nginx
 [IN3D/vim-raml] | Syntax and language settings for RAML
+[tpope/vim-rails] | Ruby on Rails power tools
 
 ### Commands
 
