@@ -108,6 +108,7 @@ Plug 'tpope/vim-surround'
 " -----------------------------------------------------------------------------
 " Ctags
 " -----------------------------------------------------------------------------
+Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
   let g:easytags_always_enabled = 1
 
