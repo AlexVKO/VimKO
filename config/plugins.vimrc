@@ -1,7 +1,6 @@
 call plug#begin()
 
 " Themes
-Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
 
 " Syntax
@@ -11,7 +10,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 source $HOME/.config/nvim/config/plugins/fzf.vimrc
-" Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
 " Autopairs
 Plug 'jiangmiao/auto-pairs'
@@ -22,7 +20,6 @@ Plug 'vim-airline/vim-airline-themes'
 " let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
 " Highlight
-" Plug 'itchyny/vim-parenmatch'
 Plug 'itchyny/vim-cursorword'
 
 " Autocomplete

@@ -112,6 +112,8 @@ nnoremap <silent> [Windows]b :b#<CR>
 
 " Rotate buffers
 nnoremap <silent> [Windows]r <C-w>x
+
+" Zoom buffer
 nnoremap [Windows]z :Goyo<CR>
 
 " Resize
@@ -119,7 +121,6 @@ nnoremap <Up>    :resize +2<CR>
 nnoremap <Down>  :resize -2<CR>
 nnoremap <Left>  :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
-
 
 " -----------------------------------------------------------------------------
 " Tabs
@@ -147,11 +148,12 @@ nnoremap [Files]du :saveas <C-r>=expand('%')<cr>/
 " Delete current file
 nnoremap [Files]de :!rm %
 
-" Move current file
+" Move/Rename current file
 nnoremap [Files]m :!mv <C-r>=expand('%')<cr> <C-r>=expand('%:h')<cr>
 
 " Copy Relative path
 nnoremap <silent> [Files]y :let @+=join([expand("%"), line('.')], ':')<CR>:echo 'Relative path copied to clipboard.'<CR>
+
 " Copy Absolute path
 nnoremap <silent> [Files]Y :let @+=expand("%:p")<CR>:echo 'Absolute pat copied to clipboard.'<CR>
 
