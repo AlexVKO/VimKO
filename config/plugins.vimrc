@@ -125,6 +125,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin',{  'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'jreybert/vimagit'
 
 " -----------------------------------------------------------------------------
 " Ruby
