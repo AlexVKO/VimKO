@@ -8,7 +8,7 @@ func! s:setCustomColors()
   call one#highlight('ColorColumn',  '',        '2d2d30',  'none')
 
   " Ruby
-  call one#highlight('rubyFunction', '',        '',        'bold')
+  " call one#highlight('rubyFunction', '',        '',        'bold')
 endfunc
 
 autocmd ColorScheme * call s:setCustomColors()

@@ -6,6 +6,8 @@ set hidden                   " hide buffers when abandoned instead of unload
 set synmaxcol=1000           " Don't syntax highlight long lines
 set colorcolumn=80
 
+set tags=./.tags
+
 " Behavior
 set number
 set relativenumber
@@ -13,6 +15,8 @@ set nowrap
 set inccommand=nosplit
 " set list                " Show hidden characters
 set clipboard+=unnamedplus
+set foldmethod=indent
+set foldlevelstart=99
 
 " Appearance
 set noshowmode          " Don't show mode in cmd window
@@ -57,4 +61,3 @@ autocmd BufLeave * :set norelativenumber
 autocmd BufEnter * :set relativenumber
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
-

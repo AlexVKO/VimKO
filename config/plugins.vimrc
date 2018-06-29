@@ -38,12 +38,16 @@ Plug 'mhinz/vim-startify'
 
 " Highligh empty space and auto remove it
 Plug 'ntpeters/vim-better-whitespace'
+  let g:better_whitespace_enabled=0
 
 " Better motion
 Plug 'easymotion/vim-easymotion'
 
 " Bookmarks
 Plug 'MattesGroeger/vim-bookmarks'
+
+" Nice foldings
+Plug 'tmhedberg/SimpylFold'
 
 " -----------------------------------------------------------------------------
 " Theme
@@ -111,8 +115,8 @@ Plug 'tpope/vim-surround'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
   let g:easytags_always_enabled = 1
-
 Plug 'majutsushi/tagbar'
+
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
   let g:goyo_height='95%'
@@ -131,6 +135,7 @@ Plug 'jreybert/vimagit'
 " Ruby
 " -----------------------------------------------------------------------------
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+  " let g:ruby_foldable_groups = 'def %'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }

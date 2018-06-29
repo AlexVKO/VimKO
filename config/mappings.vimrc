@@ -15,8 +15,8 @@ nmap      s [Windows]
 nnoremap  [Tabs]   <Nop>
 nmap      t [Tabs]
 
-nnoremap  [Foldings]   <Nop>
-nmap      z [Foldings]
+" nnoremap  [Foldings]   <Nop>
+" nmap      z [Foldings]
 
 " -----------------------------------------------------------------------------
 " Miscellaneous
@@ -91,6 +91,12 @@ nnoremap <silent><leader>l :!!<CR>
 xnoremap < <gv
 xnoremap > >gv|
 
+" Toggle fold
+nnoremap <CR> za
+
+" Focus the current fold by closing all others
+nnoremap <S-Return> zMza
+
 " -----------------------------------------------------------------------------
 " Windows
 " -----------------------------------------------------------------------------
@@ -160,6 +166,10 @@ nnoremap <silent> [Files]Y :let @+=expand("%:p")<CR>:echo 'Absolute pat copied t
 " Sidebars
 nnoremap <silent> [Files]a :NERDTreeFind<CR>
 nnoremap <silent> [Files]e :NERDTreeToggle<CR>
+
+" Find all
+nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> all --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr>  all  --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 " -----------------------------------------------------------------------------
 " FuzzyFinder
