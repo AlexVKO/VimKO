@@ -12,6 +12,9 @@ Plug 'sheerun/vim-polyglot'
 " Tmux tabs integration
 Plug 'christoomey/vim-tmux-navigator'
 
+" Send commands to other tmux tabs from vim
+Plug 'jgdavey/tslime.vim'
+
 " Highligh cursor word
 Plug 'itchyny/vim-cursorword'
 
@@ -48,6 +51,12 @@ Plug 'MattesGroeger/vim-bookmarks'
 
 " Nice foldings
 Plug 'tmhedberg/SimpylFold'
+
+" Navigate and highlight matching words
+Plug 'andymass/vim-matchup'
+
+" Open current workd in Dash
+Plug 'rizzatti/dash.vim'
 
 " -----------------------------------------------------------------------------
 " Theme
@@ -142,6 +151,7 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 " Plug 'uplus/deoplete-solargraph', { 'for': 'ruby' }
 Plug 'janko-m/vim-test'
   let g:strip_whitespace_on_save = 1
+" Plug 'noprompt/vim-yardoc'
 
 " -----------------------------------------------------------------------------
 " Elixir

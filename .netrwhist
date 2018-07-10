@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/alexvko/.config/nvim'
 let g:netrw_dirhist_2='/home/alexvko/Workspace/ansible'
 let g:netrw_dirhist_3='/home/alexvko/Workspace/toptal/platform/spec'
 let g:netrw_dirhist_4='/home/alexvko/.config/nvim'
+let g:netrw_dirhist_5='/home/alexvko'
+let g:netrw_dirhist_6='/home/alexvko/dotfiles'

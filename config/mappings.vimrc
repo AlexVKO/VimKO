@@ -97,6 +97,21 @@ nnoremap <CR> za
 " Focus the current fold by closing all others
 nnoremap <S-Return> zMza
 
+" Tmux pane integration
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
+
+" Display diff from last save
+command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+" -----------------------------------------------------------------------------
+" Dictionary and documentations
+" -----------------------------------------------------------------------------
+
+" Open the macOS dictionary on current word
+nmap <Leader>? :!open dict://<cword><CR><CR>
+
 " -----------------------------------------------------------------------------
 " Windows
 " -----------------------------------------------------------------------------
@@ -149,7 +164,7 @@ tnoremap <C-v><Esc> <Esc>
 " -----------------------------------------------------------------------------
 
 " Duplicate current file
-nnoremap [Files]du :saveas <C-r>=expand('%')<cr>/
+nnoremap [Files]du :saveas <C-r>=expand('%')<cr><left><left><left>
 
 " Delete current file
 nnoremap [Files]de :!rm %

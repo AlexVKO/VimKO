@@ -1,6 +1,6 @@
 source $HOME/.config/nvim/config/plugins.vimrc
-source $HOME/.config/nvim/config/mappings.vimrc
 source $HOME/.config/nvim/config/theme.vimrc
+source $HOME/.config/nvim/config/mappings.vimrc
 
 set hidden                   " hide buffers when abandoned instead of unload
 set synmaxcol=1000           " Don't syntax highlight long lines
