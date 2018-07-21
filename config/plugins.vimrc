@@ -82,7 +82,13 @@ Plug 'ryanoasis/vim-devicons',{ 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 " -----------------------------------------------------------------------------
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+let g:airline_section_a = ''
+let g:airline_section_b = ''
+let g:airline_section_z = '%3p%%/%L'
+let g:airline_section_y = ''
+let g:airline_section_x = ''
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " -----------------------------------------------------------------------------
 " Autocomplete and Snippets
