@@ -29,6 +29,7 @@ Plug 'tpope/vim-commentary'
 
 " Find and Replace
 Plug 'brooth/far.vim',{  'on': ['Far',  'Farp',  'F'] }
+Plug 'jremmen/vim-ripgrep'
 
 " Allow repeat to work with plugins
 Plug 'tpope/vim-repeat'
@@ -95,7 +96,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " -----------------------------------------------------------------------------
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
-  let g:python3_host_prog = '/usr/bin/python3'
+  let g:python3_host_prog = '/usr/local/bin/python3'
   autocmd! User deoplete call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 Plug 'SirVer/ultisnips'
@@ -130,6 +131,8 @@ Plug 'tpope/vim-surround'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
   let g:easytags_always_enabled = 1
+  let g:easytags_async = 1
+  let g:easytags_dynamic_files = 1
 Plug 'majutsushi/tagbar'
 
 Plug 'junegunn/vim-peekaboo'
