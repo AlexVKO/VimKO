@@ -61,31 +61,3 @@ autocmd BufLeave * :set norelativenumber
 autocmd BufEnter * :set relativenumber
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
-
-" Send/Receive to/from local mac clipboard
-let g:clipboard = {
-      \   'name': 'SSH_from_macOS',
-      \   'copy': {
-      \      '+': 'pbcopy-remote',
-      \      '*': 'pbcopy-remote',
-      \    },
-      \   'paste': {
-      \      '+': 'pbpaste-remote',
-      \      '*': 'pbpaste-remote',
-      \   },
-      \   'cache_enabled': 0,
-      \ }
-
-" function! PropagatePasteBufferToOSX()
-"   let @n=getreg("*")
-"   call system('pbcopy-remote', @n)
-"   echo "done"
-" endfunction
-
-" function! PopulatePasteBufferFromOSX()
-"   let @+ = system('pbpaste-remote')
-"   echo "done"
-" endfunction
-
-" nnoremap <leader>p :call PopulatePasteBufferFromOSX()<cr>
-" nnoremap <leader>y :call PropagatePasteBufferToOSX()<cr>
