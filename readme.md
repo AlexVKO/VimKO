@@ -48,7 +48,7 @@ Only tested with Neovim.
 | `Q` | Normal | Record  |
 | `M` | Normal | Execute |
 
-## Windows
+## Windows `s`
 | key                | Mode   | Action                  |
 | -                  | -      | -                       |
 | `<Window>v`        | Normal | Split tab horizontaly   |
@@ -60,14 +60,14 @@ Only tested with Neovim.
 | `<Window>z`        | Normal | Zoom toggle             |
 | `Arrows`           | Normal | Resize                  |
 
-## Tabs
+## Tabs `t`
 | key       | Mode   | Action       |
 | -         | -      | -            |
 | `<Tabs>t` | Normal | Open new tab |
 | `<Tabs>l` | Normal | Next tab     |
 | `<Tabs>h` | Normal | Prev tab     |
 
-## Files
+## Files `,`
 | key         | Mode   | Action                                |
 | -           | -      | -                                     |
 | `<Files>du` | Normal | Duplicate current file                |
@@ -84,7 +84,7 @@ Only tested with Neovim.
 | `w`        | NerdTree | Toggle window size                   |
 | `N`        | NerdTree | Create new file or directy           |
 
-## FuzzyFinder
+## FuzzyFinder `;`
 | key              | Mode   | Action                |
 | -                | -      | -                     |
 | `<FuzzyFinder>f` | Normal | Files                 |
@@ -118,7 +118,7 @@ Only tested with Neovim.
 | `<ctrl>p` | Normal | Undo Selection        |
 | `<ctrl>x` | Normal | Skip current          |
 
-## Bookmarks
+## Bookmarks `m`
 | key            | Mode   | Action                           |
 | -              | -      | -                                |
 | `<Bookmarks>m` | Normal | Toggle bookmarks in current line |
@@ -127,7 +127,7 @@ Only tested with Neovim.
 | `<Bookmarks>a` | Normal | show list of all bookmarks       |
 | `<Bookmarks>x` | Normal | remove all bookmarks             |
 
-## Foldings
+## Foldings `z`
 | key             | Mode   | Action                                            |
 | -               | -      | -                                                 |
 | `<Foldings>a`   | Normal | toggle fold current level                         |
@@ -171,14 +171,14 @@ Only tested with Neovim.
 | `]M`             | Normal | To go to end of next method definition                |
 | `[m`             | Normal | To start of previous method definition                |
 | `[M`             | Normal | To end of previous method definition                  |
-| `<Learder>rap`   | Normal | Add params to method                                  |
-| `<Learder>rit`   | Normal | Remove declaration of the variable and use the result |
-| `<Learder>rcpc`  | Normal | From if one line to multiline                         |
-| `<Learder>rec`   | Normal | Extract Constant                                      |
-| `<Learder>rel`   | Normal | Extract let                                           |
-| `<Learder>relv`  | Normal | To local variable                                     |
-| `<Learder>rrlv`  | Normal | Rename local variable                                 |
-| `<Learder>rriv`  | Normal | Rename instance variable
+| `<Leader>rap`   | Normal | Add params to method                                  |
+| `<Leader>rit`   | Normal | Remove declaration of the variable and use the result |
+| `<Leader>rcpc`  | Normal | From if one line to multiline                         |
+| `<Leader>rec`   | Normal | Extract Constant                                      |
+| `<Leader>rel`   | Normal | Extract let                                           |
+| `<Leader>relv`  | Normal | To local variable                                     |
+| `<Leader>rrlv`  | Normal | Rename local variable                                 |
+| `<Leader>rriv`  | Normal | Rename instance variable
 
 ### Ruby On Rails
 | key   | Mode    | Action                  |
