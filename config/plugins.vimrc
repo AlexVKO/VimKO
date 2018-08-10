@@ -161,6 +161,7 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'janko-m/vim-test'
   let g:strip_whitespace_on_save = 1
 " Plug 'noprompt/vim-yardoc'
+Plug 'tpope/vim-cucumber'
 
 " -----------------------------------------------------------------------------
 " Elixir
