@@ -6,7 +6,7 @@ set hidden                   " hide buffers when abandoned instead of unload
 set synmaxcol=1000           " Don't syntax highlight long lines
 set colorcolumn=80
 
-set tags=./.tags
+" set tags=./.tags
 
 " Behavior
 set number

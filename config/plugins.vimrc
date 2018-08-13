@@ -132,7 +132,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
   let g:easytags_always_enabled = 1
   let g:easytags_async = 1
-  let g:easytags_dynamic_files = 1
+  " let g:easytags_dynamic_files = 1
 Plug 'majutsushi/tagbar'
 
 Plug 'junegunn/vim-peekaboo'
