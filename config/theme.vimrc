@@ -11,7 +11,7 @@ func! s:setCustomColors()
   " call one#highlight('rubyFunction', '',        '',        'bold')
 endfunc
 
-autocmd ColorScheme * call s:setCustomColors()
+" autocmd ColorScheme * call s:setCustomColors()
 
 set termguicolors
 let g:airline_theme='minimalist'

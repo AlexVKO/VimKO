@@ -70,6 +70,7 @@ Plug 'rakr/vim-one'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 source $HOME/.config/nvim/config/plugins/fzf.vimrc
+let g:fzf_layout = { 'down': '~40%' }
 
 " -----------------------------------------------------------------------------
 " Sidebar
@@ -130,8 +131,8 @@ Plug 'tpope/vim-surround'
 " -----------------------------------------------------------------------------
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
-  let g:easytags_always_enabled = 1
-  let g:easytags_async = 1
+  " let g:easytags_always_enabled = 1
+  " let g:easytags_async = 1
   " let g:easytags_dynamic_files = 1
 Plug 'majutsushi/tagbar'
 
