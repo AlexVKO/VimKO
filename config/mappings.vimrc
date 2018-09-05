@@ -79,6 +79,9 @@ cmap W!! w !sudo tee % >/dev/null
 nnoremap <Leader>d :t.<cr>
 vnoremap <Leader>d :co-1<cr>
 
+" Line copy without move the cursor
+nnoremap <Leader>c :t.<left><left>
+
 " Macro
 nnoremap Q q
 nnoremap M @q
