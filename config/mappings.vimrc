@@ -219,6 +219,13 @@ function! JSTextObjectFunction()
 endfunction
 vnoremap af :<C-U>silent! :call JSTextObjectFunction()<CR>
 
+
+" -----------------------------------------------------------------------------
+" Ruby
+" -----------------------------------------------------------------------------
+" Remove lines with a specify patter
+nnoremap <leader>rp :g//d<left><left>
+
 " " fugitive git bindings
 " nnoremap <space>ga :Git add %:p<CR><CR>
 " nnoremap <space>gs :Gstatus<CR>
