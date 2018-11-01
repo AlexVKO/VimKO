@@ -130,7 +130,7 @@ Plug 'tpope/vim-surround'
 " Ctags
 " -----------------------------------------------------------------------------
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-easytags'
   " let g:easytags_always_enabled = 1
   " let g:easytags_async = 1
   " let g:easytags_dynamic_files = 1
@@ -155,7 +155,7 @@ Plug 'jreybert/vimagit'
 " -----------------------------------------------------------------------------
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   " let g:ruby_foldable_groups = 'def %'
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rails'
 Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 " Plug 'uplus/deoplete-solargraph', { 'for': 'ruby' }
@@ -168,6 +168,11 @@ Plug 'tpope/vim-cucumber'
 " Elixir
 " -----------------------------------------------------------------------------
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+
+" -----------------------------------------------------------------------------
+" Javascript
+" -----------------------------------------------------------------------------
+Plug 'Galooshi/vim-import-js'
 
 " -----------------------------------------------------------------------------
 " Python

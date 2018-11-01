@@ -12,6 +12,7 @@ func! s:setCustomColors()
 endfunc
 
 " autocmd ColorScheme * call s:setCustomColors()
+"
 
 set termguicolors
 let g:airline_theme='minimalist'
@@ -19,3 +20,4 @@ colorscheme one
 let g:one_allow_italics = 1
 set background=dark
 
+highlight Normal guibg=none
