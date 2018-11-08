@@ -13,7 +13,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Send commands to other tmux tabs from vim
-Plug 'jgdavey/tslime.vim'
+Plug 'benmills/vimux'
+  let g:VimuxOrientation = "h"
+  let g:VimuxHeight = "40"
+  let g:VimuxPromptString = "> "
 
 " Highligh cursor word
 Plug 'itchyny/vim-cursorword'
@@ -107,6 +110,7 @@ Plug 'honza/vim-snippets'
 Plug 'wellle/tmux-complete.vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'ervandew/supertab'
+Plug 'zxqfl/tabnine-vim'
 
 " -----------------------------------------------------------------------------
 " Text Objects

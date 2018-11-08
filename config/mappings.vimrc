@@ -15,6 +15,9 @@ nmap      s [Windows]
 nnoremap  [Tabs]   <Nop>
 nmap      t [Tabs]
 
+nnoremap  [Tmux]   <Nop>
+nmap      ! [Tmux]
+
 " nnoremap  [Foldings]   <Nop>
 " nmap      z [Foldings]
 
@@ -39,9 +42,6 @@ nnoremap <Leader>w :write<CR>
 
 " Substitute all occurences in current file
 nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
-
-" Enter Command mode
-nnoremap ! :!
 
 " Substitute inside selection
 xnoremap s :s//g<Left><Left>
@@ -99,11 +99,6 @@ nnoremap <CR> za
 
 " Focus the current fold by closing all others
 nnoremap <S-Return> zMza
-
-" Tmux pane integration
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-nmap <C-c>r <Plug>SetTmuxVars
 
 " Display diff from last save
 command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
@@ -213,6 +208,35 @@ nmap <Leader>tt :Tabularize /
 vmap <Leader>tt :Tabularize /
 
 " -----------------------------------------------------------------------------
+" Tmux pane integration
+" -----------------------------------------------------------------------------
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+" Run the current file with rspec
+map <Leader>r :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . expand("%"))<CR>
+map <Leader>R :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . join([expand("%"), line('.')], ':'))<CR>
+
+command! Bundle :call VimuxRunCommand('bundle install')<CR>
+
+" Prompt for a command to run
+map [Tmux]! :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map [Tmux]l :VimuxRunLastCommand<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map [Tmux]q :VimuxCloseRunner<CR>
+
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+vmap <leader>! "vy :call VimuxSlime()<CR>
+
+" Select current paragraph and send it to tmux
+nmap <leader>! vip<leader>ts<CR>
+
+" -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
 function! JSTextObjectFunction()
@@ -221,7 +245,6 @@ function! JSTextObjectFunction()
     normal! vf{%
 endfunction
 vnoremap af :<C-U>silent! :call JSTextObjectFunction()<CR>
-
 
 " -----------------------------------------------------------------------------
 " Ruby
