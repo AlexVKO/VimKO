@@ -110,7 +110,6 @@ Plug 'honza/vim-snippets'
 Plug 'wellle/tmux-complete.vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'ervandew/supertab'
-Plug 'zxqfl/tabnine-vim'
 
 " -----------------------------------------------------------------------------
 " Text Objects

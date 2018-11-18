@@ -15,11 +15,11 @@ nmap      s [Windows]
 nnoremap  [Tabs]   <Nop>
 nmap      t [Tabs]
 
+nnoremap  [Foldings]   <Nop>
+nmap      z [Foldings]
+
 nnoremap  [Tmux]   <Nop>
 nmap      ! [Tmux]
-
-" nnoremap  [Foldings]   <Nop>
-" nmap      z [Foldings]
 
 " -----------------------------------------------------------------------------
 " Miscellaneous
@@ -142,6 +142,19 @@ nnoremap <Left>  :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 
 " -----------------------------------------------------------------------------
+" Foldings
+" -----------------------------------------------------------------------------
+
+" Move to
+nnoremap <silent> [Foldings]t :tabnew<CR>
+nnoremap <silent> [Foldings]1 :let &l:foldlevel = 0<cr>
+nnoremap <silent> [Foldings]2 :let &l:foldlevel = 1<cr>
+nnoremap <silent> [Foldings]3 :let &l:foldlevel = 2<cr>
+nnoremap <silent> [Foldings]4 :let &l:foldlevel = 3<cr>
+nnoremap <silent> [Foldings]5 :let &l:foldlevel = 4<cr>
+nnoremap <silent> [Foldings]k :let &l:foldlevel = 20<cr>
+
+" -----------------------------------------------------------------------------
 " Tabs
 " -----------------------------------------------------------------------------
 
@@ -149,6 +162,8 @@ nnoremap <Right> :vertical resize -2<CR>
 nnoremap <silent> [Tabs]t :tabnew<CR>
 nnoremap <silent> [Tabs]l :tabnext<CR>
 nnoremap <silent> [Tabs]h :tabprev<CR>
+
+
 
 " -----------------------------------------------------------------------------
 " Terminal
