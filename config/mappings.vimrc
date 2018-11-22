@@ -21,9 +21,15 @@
   nnoremap  [Git]   <Nop>
   nmap      g [Git]
 
+  nnoremap  [Ruby]   <Nop>
+  nmap      R [Ruby]
+
 " -----------------------------------------------------------------------------
 " Miscellaneous
 " -----------------------------------------------------------------------------
+  " Remove lines with a specify patter
+  nnoremap <leader>rp :g//d<left><left>
+
   " Reload command
   command! Reload :so ~/.config/nvim/init.vim
 
@@ -263,5 +269,10 @@
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
-  " Remove lines with a specify patter
-  nnoremap <leader>rp :g//d<left><left>
+  nnoremap [Ruby]ap  :RAddParameter<cr>
+  nnoremap [Ruby]cc  :RConvertPostConditional<cr>
+  nnoremap [Ruby]ele :RExtractLet<cr>
+  vnoremap [Ruby]eco :RExtractConstant<cr>
+  vnoremap [Ruby]elo :RExtractLocalVariable<cr>
+  nnoremap [Ruby]rv  :RInlineTemp<cr>
+  vnoremap [Ruby]em  :RExtractMethod<cr>

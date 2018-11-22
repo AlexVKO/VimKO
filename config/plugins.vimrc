@@ -8,6 +8,9 @@ call plug#begin()
 
   Plug 'sheerun/vim-polyglot'
 
+  " Linters
+  Plug 'w0rp/ale'
+
   " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
 
