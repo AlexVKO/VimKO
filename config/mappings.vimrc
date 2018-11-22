@@ -1,285 +1,267 @@
 " -----------------------------------------------------------------------------
 " Leaders
 " -----------------------------------------------------------------------------
-let mapleader="\<space>"
+  let mapleader="\<space>"
 
-nnoremap  [FuzzyFinder]   <Nop>
-nmap      ; [FuzzyFinder]
+  nnoremap  [FuzzyFinder]   <Nop>
+  nmap      ; [FuzzyFinder]
 
-nnoremap  [Files]   <Nop>
-nmap      , [Files]
+  nnoremap  [Files]   <Nop>
+  nmap      , [Files]
 
-nnoremap  [Windows]   <Nop>
-nmap      s [Windows]
+  nnoremap  [Windows]   <Nop>
+  nmap      s [Windows]
 
-nnoremap  [Tabs]   <Nop>
-nmap      t [Tabs]
+  nnoremap  [Tabs]   <Nop>
+  nmap      t [Tabs]
 
-nnoremap  [Foldings]   <Nop>
-nmap      z [Foldings]
+  nnoremap  [Tmux]   <Nop>
+  nmap      ! [Tmux]
 
-nnoremap  [Tmux]   <Nop>
-nmap      ! [Tmux]
+  nnoremap  [Git]   <Nop>
+  nmap      g [Git]
 
 " -----------------------------------------------------------------------------
 " Miscellaneous
 " -----------------------------------------------------------------------------
+  " Reload command
+  command! Reload :so ~/.config/nvim/init.vim
 
-" Reload command
-command! Reload :so ~/.config/nvim/init.vim
+  " Checkbox
+  map <silent> <leader>x :call ToogleCheckbox()<cr>
 
-" Indent paragraph
-nnoremap <leader>a =ip
+  " Indent paragraph
+  nnoremap <leader>a =ip
 
-" Remove empty spaces
-nnoremap <leader>, :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+  " Remove empty spaces
+  nnoremap <leader>, :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
-" Overwrite word unders cursor
-nnoremap <leader>ow <Esc>viwp
+  " Overwrite word unders cursor
+  nnoremap <leader>ow <Esc>viwp
 
-" Fast write
-nnoremap <Leader>w :write<CR>
+  " Fast write
+  nnoremap <Leader>w :write<CR>
 
-" Substitute all occurences in current file
-nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
+  " Substitute all occurences in current file
+  nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-" Substitute inside selection
-xnoremap s :s//g<Left><Left>
+  " Substitute inside selection
+  xnoremap s :s//g<Left><Left>
 
-" Select pasted text
-nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
+  " Select pasted text
+  nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
-" Yank until end of line
-nnoremap Y y$
+  " Yank until end of line
+  nnoremap Y y$
 
-" Quite with q
-nnoremap <silent> q :<C-u>:quit<CR>
+  " Quite with q
+  nnoremap <silent> q :<C-u>:quit<CR>
 
-" Toggle Tagbar
-nmap <leader>; :TagbarToggle<CR>
+  " Toggle Tagbar
+  nmap <leader>; :TagbarToggle<CR>
 
-" Open easy motion between panels
-nmap <silent> / <Plug>(easymotion-overwin-f2)
+  " Open easy motion between panels
+  nmap <silent> / <Plug>(easymotion-overwin-f2)
 
-" Paste without yank
-vnoremap p "_dP
+  " Paste without yank
+  vnoremap p "_dP
 
-" Change current word in a repeatable manner
-nnoremap cn *``cgn
-nnoremap cN *``cgN
+  " Change current word in a repeatable manner
+  nnoremap cn *``cgn
+  nnoremap cN *``cgN
 
-" Change selected word in a repeatable manner
-vnoremap <expr> cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
-vnoremap <expr> cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
+  " Change selected word in a repeatable manner
+  vnoremap <expr> cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
+  vnoremap <expr> cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
-" Save with sudo
-cmap W!! w !sudo tee % >/dev/null
+  " Save with sudo
+  cmap W!! w !sudo tee % >/dev/null
 
-" Smart Duplication
-nnoremap <Leader>d :t.<cr>
-vnoremap <Leader>d :co-1<cr>
+  " Smart Duplication
+  nnoremap <Leader>d :t.<cr>
+  vnoremap <Leader>d :co-1<cr>
 
-" Line copy without move the cursor
-nnoremap <Leader>c :t.<left><left>
+  " Line copy without move the cursor
+  nnoremap <Leader>c :t.<left><left>
 
-" Macro
-nnoremap Q q
-nnoremap M @q
-vnoremap M :norm @q<CR>
+  " Macro
+  nnoremap Q q
+  nnoremap M @q
+  vnoremap M :norm @q<CR>
 
-" Run the last shell command
-nnoremap <silent><leader>l :!!<CR>
+  " Select blocks after indenting
+  xnoremap < <gv
+  xnoremap > >gv|
 
-" Select blocks after indenting
-xnoremap < <gv
-xnoremap > >gv|
+  " Toggle fold
+  nnoremap <CR> za
 
-" Toggle fold
-nnoremap <CR> za
+  " Focus the current fold by closing all others
+  nnoremap <S-Return> zMza
 
-" Focus the current fold by closing all others
-nnoremap <S-Return> zMza
+  " Display diff from last save
+  command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
-" Display diff from last save
-command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+" -----------------------------------------------------------------------------
+" Git
+" -----------------------------------------------------------------------------
+  nnoremap [Git]s :Gstatus<CR>
+  nnoremap [Git]af :Git add %:p<CR><CR>
+  nnoremap [Git]ac :call VimuxRunCommand('git add . && git commit')<CR>
+  nnoremap [Git]d :Gdiff<CR>
+  nnoremap gg :1<CR>
 
 " -----------------------------------------------------------------------------
 " Dictionary and documentations
 " -----------------------------------------------------------------------------
-
-" Open the macOS dictionary on current word
-nmap <Leader>? :!open dict://<cword><CR><CR>
+  " Open the macOS dictionary on current word
+  nmap <Leader>? :!open dict://<cword><CR><CR>
 
 " -----------------------------------------------------------------------------
 " Windows
 " -----------------------------------------------------------------------------
+  " Split verticaly
+  nnoremap <silent> [Windows]v :<C-u>split<CR>
 
-" Split verticaly
-nnoremap <silent> [Windows]v :<C-u>split<CR>
+  " Split horizontaly
+  nnoremap <silent> [Windows]g :<C-u>vsplit<CR>
 
-" Split horizontaly
-nnoremap <silent> [Windows]g :<C-u>vsplit<CR>
+  " Close window
+  nnoremap <silent> [Windows]c :close<CR>
 
-" Close window
-nnoremap <silent> [Windows]c :close<CR>
+  " Close all but the current
+  nnoremap <silent> [Windows]co :<C-u>only<CR>
 
-" Close all but the current
-nnoremap <silent> [Windows]co :<C-u>only<CR>
+  " Back to previoius buffer
+  nnoremap <silent> [Windows]b :b#<CR>
 
-" Back to previoius buffer
-nnoremap <silent> [Windows]b :b#<CR>
+  " Rotate buffers
+  nnoremap <silent> [Windows]r <C-w>x
 
-" Rotate buffers
-nnoremap <silent> [Windows]r <C-w>x
+  " Zoom buffer
+  nnoremap [Windows]z :Goyo<CR>
 
-" Zoom buffer
-nnoremap [Windows]z :Goyo<CR>
-
-" Resize
-nnoremap <Up>    :resize +2<CR>
-nnoremap <Down>  :resize -2<CR>
-nnoremap <Left>  :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
+  " Resize
+  nnoremap <Up>    :resize +2<CR>
+  nnoremap <Down>  :resize -2<CR>
+  nnoremap <Left>  :vertical resize +2<CR>
+  nnoremap <Right> :vertical resize -2<CR>
 
 " -----------------------------------------------------------------------------
 " Foldings
 " -----------------------------------------------------------------------------
+  " Fold the entire file by indentation level
+  nnoremap <silent> <leader>1 :let &l:foldlevel = 0<cr>
+  nnoremap <silent> <leader>2 :let &l:foldlevel = 1<cr>
+  nnoremap <silent> <leader>3 :let &l:foldlevel = 2<cr>
+  nnoremap <silent> <leader>4 :let &l:foldlevel = 3<cr>
+  nnoremap <silent> <leader>5 :let &l:foldlevel = 4<cr>
+  nnoremap <silent> <leader>0 :let &l:foldlevel = 20<cr>
 
-" Move to
-nnoremap <silent> [Foldings]t :tabnew<CR>
-nnoremap <silent> [Foldings]1 :let &l:foldlevel = 0<cr>
-nnoremap <silent> [Foldings]2 :let &l:foldlevel = 1<cr>
-nnoremap <silent> [Foldings]3 :let &l:foldlevel = 2<cr>
-nnoremap <silent> [Foldings]4 :let &l:foldlevel = 3<cr>
-nnoremap <silent> [Foldings]5 :let &l:foldlevel = 4<cr>
-nnoremap <silent> [Foldings]k :let &l:foldlevel = 20<cr>
+  " -----------------------------------------------------------------------------
+  " Tabs
+  " -----------------------------------------------------------------------------
 
-" -----------------------------------------------------------------------------
-" Tabs
-" -----------------------------------------------------------------------------
-
-" Move to
-nnoremap <silent> [Tabs]t :tabnew<CR>
-nnoremap <silent> [Tabs]l :tabnext<CR>
-nnoremap <silent> [Tabs]h :tabprev<CR>
-
-
-
-" -----------------------------------------------------------------------------
-" Terminal
-" -----------------------------------------------------------------------------
-tnoremap <Esc> <C-\><C-n>
-tnoremap <M-[> <Esc>
-tnoremap <C-v><Esc> <Esc>
+  " Move to
+  nnoremap <silent> [Tabs]t :tabnew<CR>
+  nnoremap <silent> [Tabs]l :tabnext<CR>
+  nnoremap <silent> [Tabs]h :tabprev<CR>
 
 " -----------------------------------------------------------------------------
 " Files
 " -----------------------------------------------------------------------------
+  " Duplicate current file
+  nnoremap [Files]du :saveas <C-r>=expand('%')<cr><left><left><left>
 
-" Duplicate current file
-nnoremap [Files]du :saveas <C-r>=expand('%')<cr><left><left><left>
+  " Delete current file
+  nnoremap [Files]de :!rm %
 
-" Delete current file
-nnoremap [Files]de :!rm %
+  " Move/Rename current file
+  nnoremap [Files]m :!mv <C-r>=expand('%')<cr> <C-r>=expand('%:h')<cr>
 
-" Move/Rename current file
-nnoremap [Files]m :!mv <C-r>=expand('%')<cr> <C-r>=expand('%:h')<cr>
+  " Copy Relative path
+  nnoremap <silent> [Files]y :let @+=join([expand("%"), line('.')], ':')<CR>:echo 'Relative path copied to clipboard.'<CR>
 
-" Copy Relative path
-nnoremap <silent> [Files]y :let @+=join([expand("%"), line('.')], ':')<CR>:echo 'Relative path copied to clipboard.'<CR>
+  " Copy Absolute path
+  nnoremap <silent> [Files]Y :let @+=expand("%:p")<CR>:echo 'Absolute pat copied to clipboard.'<CR>
 
-" Copy Absolute path
-nnoremap <silent> [Files]Y :let @+=expand("%:p")<CR>:echo 'Absolute pat copied to clipboard.'<CR>
+  " Sidebars
+  nnoremap <silent> [Files]a :NERDTreeFind<CR>
+  nnoremap <silent> [Files]e :NERDTreeToggle<CR>
 
-" Sidebars
-nnoremap <silent> [Files]a :NERDTreeFind<CR>
-nnoremap <silent> [Files]e :NERDTreeToggle<CR>
-
-" Find all
-nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> all --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr>  all  --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+  " Find all
+  nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> all --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+  nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr>  all  --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 " -----------------------------------------------------------------------------
 " FuzzyFinder
 " -----------------------------------------------------------------------------
-nnoremap <silent> [FuzzyFinder]f :Files<cr>
-nnoremap <silent> [FuzzyFinder]w :Windows<cr>
-nnoremap <silent> [FuzzyFinder]g :Find<cr>
-nnoremap <silent> [FuzzyFinder]t :Tags <cr>
-nnoremap <silent> [FuzzyFinder]T :BTags <cr>
-nnoremap <silent> [FuzzyFinder]c :BCommits <cr>
-nnoremap <silent> [FuzzyFinder]b :Buffers <cr>
-nnoremap <silent> [FuzzyFinder]/ :BLines <cr>
-nnoremap <silent> [FuzzyFinder]m :Marks <cr>
+  nnoremap <silent> [FuzzyFinder]f :Files<cr>
+  nnoremap <silent> [FuzzyFinder]w :Windows<cr>
+  nnoremap <silent> [FuzzyFinder]g :Find<cr>
+  nnoremap <silent> [FuzzyFinder]t :Tags <cr>
+  nnoremap <silent> [FuzzyFinder]T :BTags <cr>
+  nnoremap <silent> [FuzzyFinder]c :BCommits <cr>
+  nnoremap <silent> [FuzzyFinder]b :Buffers <cr>
+  nnoremap <silent> [FuzzyFinder]/ :BLines <cr>
+  nnoremap <silent> [FuzzyFinder]m :Marks <cr>
 
 " -----------------------------------------------------------------------------
 " Tabularize
 " -----------------------------------------------------------------------------
-nmap <Leader>t= :Tabularize /=    <CR>
-vmap <Leader>t= :Tabularize /=    <CR>
-nmap <Leader>t: :Tabularize /:\zs <CR>
-vmap <Leader>t: :Tabularize /:\zs <CR>
-nmap <Leader>tt :Tabularize /
-vmap <Leader>tt :Tabularize /
+  nmap <Leader>t= :Tabularize /=    <CR>
+  vmap <Leader>t= :Tabularize /=    <CR>
+  nmap <Leader>t: :Tabularize /:\zs <CR>
+  vmap <Leader>t: :Tabularize /:\zs <CR>
+  nmap <Leader>tt :Tabularize /
+  vmap <Leader>tt :Tabularize /
 
 " -----------------------------------------------------------------------------
 " Tmux pane integration
 " -----------------------------------------------------------------------------
-function! VimuxSlime()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
-endfunction
+  function! VimuxSlime()
+    call VimuxSendText(@v)
+    call VimuxSendKeys("Enter")
+  endfunction
 
-" Run the current file with rspec
-map <Leader>r :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . expand("%"))<CR>
-map <Leader>R :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . join([expand("%"), line('.')], ':'))<CR>
+  " Run the current file with rspec
+  map <Leader>r :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . expand("%"))<CR>
+  map <Leader>R :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . join([expand("%"), line('.')], ':'))<CR>
 
-command! Bundle :call VimuxRunCommand('bundle install')<CR>
+  nnoremap [Tmux]b :call VimuxRunCommand('bundle install')<CR>
+  nnoremap [Tmux]m :call VimuxRunCommand('t pr list')<CR>
+  nnoremap [Tmux]t :call VimuxRunCommand('t pr list team')<CR>
 
-" Prompt for a command to run
-map [Tmux]! :VimuxPromptCommand<CR>
+  " Prompt for a command to run
+  map [Tmux]! :VimuxPromptCommand<CR>
 
-" Run last command executed by VimuxRunCommand
-map [Tmux]l :VimuxRunLastCommand<CR>
+  " Run the last shell command
+  nnoremap <silent><leader>l :!!<CR>
 
-" Close vim tmux runner opened by VimuxRunCommand
-map [Tmux]q :VimuxCloseRunner<CR>
+  " Run last command executed by VimuxRunCommand
+  map [Tmux]l :VimuxRunLastCommand<CR>
 
-" If text is selected, save it in the v buffer and send that buffer it to tmux
-vmap <leader>! "vy :call VimuxSlime()<CR>
+  " Close vim tmux runner opened by VimuxRunCommand
+  map [Tmux]q :VimuxCloseRunner<CR>
 
-" Select current paragraph and send it to tmux
-nmap <leader>! vip<leader>ts<CR>
+  " If text is selected, save it in the v buffer and send that buffer it to tmux
+  vmap <leader>! "vy :call VimuxSlime()<CR>
+
+  " Select current paragraph and send it to tmux
+  nmap <leader>! vip<leader>ts<CR>
 
 " -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
-function! JSTextObjectFunction()
-    normal! ]}%
-    execute "normal ?function\<CR>"
-    normal! vf{%
-endfunction
-vnoremap af :<C-U>silent! :call JSTextObjectFunction()<CR>
+  function! JSTextObjectFunction()
+      normal! ]}%
+      execute "normal ?function\<CR>"
+      normal! vf{%
+  endfunction
+  vnoremap af :<C-U>silent! :call JSTextObjectFunction()<CR>
 
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
-" Remove lines with a specify patter
-nnoremap <leader>rp :g//d<left><left>
-
-" " fugitive git bindings
-" nnoremap <space>ga :Git add %:p<CR><CR>
-" nnoremap <space>gs :Gstatus<CR>
-" nnoremap <space>gc :Gcommit -v -q<CR>
-" nnoremap <space>gt :Gcommit -v -q %:p<CR>
-" nnoremap <space>gd :Gdiff<CR>
-" nnoremap <space>ge :Gedit<CR>
-" nnoremap <space>gr :Gread<CR>
-" nnoremap <space>gw :Gwrite<CR><CR>
-" nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-" nnoremap <space>gp :Ggrep<Space>
-" nnoremap <space>gm :Gmove<Space>
-" nnoremap <space>gb :Git branch<Space>
-" nnoremap <space>go :Git checkout<Space>
-" nnoremap <space>gps :Dispatch! git push<CR>
-" nnoremap <space>gpl :Dispatch! git pull<CR>
+  " Remove lines with a specify patter
+  nnoremap <leader>rp :g//d<left><left>

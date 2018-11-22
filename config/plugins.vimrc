@@ -3,197 +3,196 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " General
 " -----------------------------------------------------------------------------
-" Insert and delete brakets, parens, quotes.
-Plug 'jiangmiao/auto-pairs'
+  " Insert and delete brakets, parens, quotes.
+  Plug 'jiangmiao/auto-pairs'
 
-" Languages packs
-Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
 
-" Tmux tabs integration
-Plug 'christoomey/vim-tmux-navigator'
+  " Tmux tabs integration
+  Plug 'christoomey/vim-tmux-navigator'
 
-" Send commands to other tmux tabs from vim
-Plug 'benmills/vimux'
-  let g:VimuxOrientation = "h"
-  let g:VimuxHeight = "40"
-  let g:VimuxPromptString = "> "
+  " Send commands to other tmux tabs from vim
+  Plug 'benmills/vimux'
+    let g:VimuxOrientation = "h"
+    let g:VimuxHeight = "40"
+    let g:VimuxPromptString = "> "
 
-" Highligh cursor word
-Plug 'itchyny/vim-cursorword'
+  " Highligh cursor word
+  Plug 'itchyny/vim-cursorword'
 
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+  " Multiple cursors
+  Plug 'terryma/vim-multiple-cursors'
 
-" Alig code
-Plug 'godlygeek/tabular',{  'on': 'Tabularize'}
+  " Alig code
+  Plug 'godlygeek/tabular',{  'on': 'Tabularize'}
 
-" Comments
-Plug 'tpope/vim-commentary'
+  " Comments
+  Plug 'tpope/vim-commentary'
 
-" Find and Replace
-Plug 'brooth/far.vim',{  'on': ['Far',  'Farp',  'F'] }
-Plug 'jremmen/vim-ripgrep'
+  " Find and Replace
+  Plug 'brooth/far.vim',{  'on': ['Far',  'Farp',  'F'] }
+  Plug 'jremmen/vim-ripgrep'
 
-" Allow repeat to work with plugins
-Plug 'tpope/vim-repeat'
+  " Allow repeat to work with plugins
+  Plug 'tpope/vim-repeat'
 
-" Visual indentation
-Plug 'Yggdroot/indentLine'
+  " Visual indentation
+  Plug 'Yggdroot/indentLine'
 
-" Nice starup
-Plug 'mhinz/vim-startify'
+  " Nice starup
+  Plug 'mhinz/vim-startify'
 
-" Highligh empty space and auto remove it
-Plug 'ntpeters/vim-better-whitespace'
-  let g:better_whitespace_enabled=0
+  " Highligh empty space and auto remove it
+  Plug 'ntpeters/vim-better-whitespace'
+    let g:better_whitespace_enabled=1
 
-" Better motion
-Plug 'easymotion/vim-easymotion'
+  " Better motion
+  Plug 'easymotion/vim-easymotion'
 
-" Bookmarks
-Plug 'MattesGroeger/vim-bookmarks'
+  " Bookmarks
+  Plug 'MattesGroeger/vim-bookmarks'
 
-" Nice foldings
-Plug 'tmhedberg/SimpylFold'
+  " Nice foldings
+  Plug 'tmhedberg/SimpylFold'
 
-" Navigate and highlight matching words
-Plug 'andymass/vim-matchup'
+  " Navigate and highlight matching words
+  Plug 'andymass/vim-matchup'
 
-" Open current workd in Dash
-Plug 'rizzatti/dash.vim'
+  " Open current workd in Dash
+  Plug 'rizzatti/dash.vim'
 
 " -----------------------------------------------------------------------------
 " Theme
 " -----------------------------------------------------------------------------
-Plug 'rakr/vim-one'
+  Plug 'rakr/vim-one'
 
 " -----------------------------------------------------------------------------
 " Fuzzy finder
 " -----------------------------------------------------------------------------
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-source $HOME/.config/nvim/config/plugins/fzf.vimrc
-let g:fzf_layout = { 'down': '~40%' }
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  source $HOME/.config/nvim/config/plugins/fzf.vimrc
+  let g:fzf_layout = { 'down': '~40%' }
 
 " -----------------------------------------------------------------------------
 " Sidebar
 " -----------------------------------------------------------------------------
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'ryanoasis/vim-devicons',{ 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-  autocmd! User nerdtree exe 'source' '$HOME/.config/nvim/config/plugins/nerdtree.vim'
+    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+    Plug 'ryanoasis/vim-devicons',{ 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+      autocmd! User nerdtree exe 'source' '$HOME/.config/nvim/config/plugins/nerdtree.vim'
 
 " -----------------------------------------------------------------------------
 " Airline
 " -----------------------------------------------------------------------------
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_section_a = ''
-let g:airline_section_b = ''
-let g:airline_section_z = '%3p%%/%L'
-let g:airline_section_y = ''
-let g:airline_section_x = ''
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    let g:airline_section_a = ''
+    let g:airline_section_b = ''
+    let g:airline_section_z = '%3p%%/%L'
+    let g:airline_section_y = ''
+    let g:airline_section_x = ''
+    let g:airline#extensions#tagbar#enabled = 0
+    let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " -----------------------------------------------------------------------------
 " Autocomplete and Snippets
 " -----------------------------------------------------------------------------
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#enable_at_startup = 1
-  let g:python3_host_prog = '/usr/local/bin/python3'
-  autocmd! User deoplete call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+      let g:deoplete#enable_at_startup = 1
+      let g:python3_host_prog = '/usr/local/bin/python3'
+      autocmd! User deoplete call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 
-Plug 'SirVer/ultisnips'
-  let g:UltiSnipsEditSplit="vertical"
+    Plug 'SirVer/ultisnips'
+      let g:UltiSnipsEditSplit="vertical"
 
-Plug 'honza/vim-snippets'
-Plug 'wellle/tmux-complete.vim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'ervandew/supertab'
+    Plug 'honza/vim-snippets'
+    Plug 'wellle/tmux-complete.vim'
+    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+    Plug 'ervandew/supertab'
 
 " -----------------------------------------------------------------------------
 " Text Objects
 " -----------------------------------------------------------------------------
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
-Plug 'lucapette/vim-textobj-underscore'
-Plug 'rhysd/vim-textobj-ruby'
-Plug 'kana/vim-textobj-indent'
-Plug 'thinca/vim-textobj-function-javascript'
-Plug 'inside/vim-textobj-jsxattr'
-Plug 'whatyouhide/vim-textobj-erb'
-" Plug 'kana/vim-textobj-function'
+  Plug 'kana/vim-textobj-user'
+  Plug 'kana/vim-textobj-entire'
+  Plug 'lucapette/vim-textobj-underscore'
+  Plug 'rhysd/vim-textobj-ruby'
+  Plug 'kana/vim-textobj-indent'
+  Plug 'thinca/vim-textobj-function-javascript'
+  Plug 'inside/vim-textobj-jsxattr'
+  Plug 'whatyouhide/vim-textobj-erb'
+  " Plug 'kana/vim-textobj-function'
 
-Plug 'tpope/vim-surround'
-  let g:surround_35  = "#{\r}"    " #
-  let g:surround_45 = "<% \r %>"  " -
-  let g:surround_61 = "<%= \r %>" " =
+  Plug 'tpope/vim-surround'
+    let g:surround_35  = "#{\r}"    " #
+    let g:surround_45 = "<% \r %>"  " -
+    let g:surround_61 = "<%= \r %>" " =
 
 " -----------------------------------------------------------------------------
 " Ctags
 " -----------------------------------------------------------------------------
-Plug 'xolox/vim-misc'
-" Plug 'xolox/vim-easytags'
-  " let g:easytags_always_enabled = 1
-  " let g:easytags_async = 1
-  " let g:easytags_dynamic_files = 1
-Plug 'majutsushi/tagbar'
+  Plug 'xolox/vim-misc'
+  " Plug 'xolox/vim-easytags'
+    " let g:easytags_always_enabled = 1
+    " let g:easytags_async = 1
+    " let g:easytags_dynamic_files = 1
+  Plug 'majutsushi/tagbar'
 
-Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/goyo.vim'
-  let g:goyo_height='95%'
-  let g:goyo_width='120'
-  autocmd! User GoyoLeave nested exec ':so ~/.config/nvim/init.vim'
+  Plug 'junegunn/vim-peekaboo'
+  Plug 'junegunn/goyo.vim'
+    let g:goyo_height='95%'
+    let g:goyo_width='120'
+    autocmd! User GoyoLeave nested exec ':so ~/.config/nvim/init.vim'
 
 " -----------------------------------------------------------------------------
 " Git
 " -----------------------------------------------------------------------------
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'Xuyuanp/nerdtree-git-plugin',{  'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'jreybert/vimagit'
+  Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'Xuyuanp/nerdtree-git-plugin',{  'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+  Plug 'jreybert/vimagit'
 
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-  " let g:ruby_foldable_groups = 'def %'
-Plug 'tpope/vim-rails'
-Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-" Plug 'uplus/deoplete-solargraph', { 'for': 'ruby' }
-Plug 'janko-m/vim-test'
-  let g:strip_whitespace_on_save = 1
-" Plug 'noprompt/vim-yardoc'
-Plug 'tpope/vim-cucumber'
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+    " let g:ruby_foldable_groups = 'def %'
+  Plug 'tpope/vim-rails'
+  Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
+  Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+  " Plug 'uplus/deoplete-solargraph', { 'for': 'ruby' }
+  Plug 'janko-m/vim-test'
+    let g:strip_whitespace_on_save = 1
+  " Plug 'noprompt/vim-yardoc'
+  Plug 'tpope/vim-cucumber'
 
 " -----------------------------------------------------------------------------
 " Elixir
 " -----------------------------------------------------------------------------
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+  Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 
 " -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
-Plug 'Galooshi/vim-import-js'
+  Plug 'Galooshi/vim-import-js'
 
 " -----------------------------------------------------------------------------
 " Python
 " -----------------------------------------------------------------------------
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+  Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
 " -----------------------------------------------------------------------------
 " HTML
 " -----------------------------------------------------------------------------
-Plug 'mattn/emmet-vim'
+  Plug 'mattn/emmet-vim'
 
 " -----------------------------------------------------------------------------
 " Ansible
 " -----------------------------------------------------------------------------
-Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
+  Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 
 " -----------------------------------------------------------------------------
 " Docker
 " -----------------------------------------------------------------------------
-Plug 'ekalinin/Dockerfile.vim'
-call plug#end()
+  Plug 'ekalinin/Dockerfile.vim'
+  call plug#end()

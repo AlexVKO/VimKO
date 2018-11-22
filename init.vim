@@ -39,6 +39,7 @@ set smarttab      " Tab insert blanks according to 'shiftwidth'
 set autoindent    " Use same indenting on new lines
 set smartindent   " Smart autoindenting on new lines
 set shiftround    " Round indent to multiple of 'shiftwidth'
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 
 " Searching {{{
 set ignorecase      " Search ignoring case
@@ -61,3 +62,34 @@ autocmd BufLeave * :set norelativenumber
 autocmd BufEnter * :set relativenumber
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
+
+" Checkbox toogler
+fu! ToogleCheckbox()
+	let line = getline('.')
+
+  if(match(line, '\[.*\]') != -1)
+    let states = [' ', 'x', 'n/a']
+
+    if(match(line, '\[\]') != -1)
+      let line = substitute(line, '\[\]', '[ ]', '')
+    end
+
+    for state in states
+      if(match(line, '\[' . state . '\]') != -1)
+        if state == 'n/a'
+          let next_state = states[0]
+        else
+          let next_state = states[index(states, state) + 1]
+        endif
+        let line = substitute(line, '\[' . state . '\]', '[' . next_state . ']', '')
+        break
+      endif
+    endfor
+  else
+    if g:insert_checkbox != ''
+      let line = substitute(line, g:insert_checkbox, g:insert_checkbox_prefix . '[' . g:checkbox_states[0] . ']' . g:insert_checkbox_suffix, '')
+    endif
+  endif
+
+	call setline('.', line)
+endf
