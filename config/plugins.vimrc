@@ -47,7 +47,8 @@ call plug#begin()
 
   " Highligh empty space and auto remove it
   Plug 'ntpeters/vim-better-whitespace'
-    let g:better_whitespace_enabled=1
+    let g:better_whitespace_enabled=0
+    let g:strip_whitespace_on_save = 1
 
   " Better motion
   Plug 'easymotion/vim-easymotion'
@@ -159,15 +160,14 @@ call plug#begin()
 " Ruby
 " -----------------------------------------------------------------------------
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-    " let g:ruby_foldable_groups = 'def %'
   Plug 'tpope/vim-rails'
   Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
   Plug 'tpope/vim-endwise', { 'for': 'ruby' }
   " Plug 'uplus/deoplete-solargraph', { 'for': 'ruby' }
-  Plug 'janko-m/vim-test'
-    let g:strip_whitespace_on_save = 1
   " Plug 'noprompt/vim-yardoc'
   Plug 'tpope/vim-cucumber'
+  Plug 'AndrewRadev/splitjoin.vim'
+    " let g:blockle_mapping = '<leader>b'
 
 " -----------------------------------------------------------------------------
 " Elixir

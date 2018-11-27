@@ -114,7 +114,7 @@
   nnoremap [Git]s :Gstatus<CR>
   nnoremap [Git]af :Git add %:p<CR><CR>
   nnoremap [Git]ac :call VimuxRunCommand('git add . && git commit')<CR>
-  nnoremap [Git]d :Gdiff<CR>
+  nnoremap [Git]ac :call VimuxRunCommand('git diff')<CR>
   nnoremap gg :1<CR>
 
 " -----------------------------------------------------------------------------
@@ -230,13 +230,24 @@
     call VimuxSendKeys("Enter")
   endfunction
 
-  " Run the current file with rspec
-  map <Leader>r :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . expand("%"))<CR>
-  map <Leader>R :call VimuxRunCommand("clear") <CR> :call VimuxRunCommand("bin/spring rspec " . join([expand("%"), line('.')], ':'))<CR>
+  " Run tests for the currente file
+  nnoremap [Tmux]t :call RunTestsOnLeftPane(expand('%'))<CR> :echo g:VimuxLastCommand<CR>
+  nnoremap [Tmux]T :call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
+
+  function! RunTestsOnLeftPane(file_name)
+    if(match(a:file_name, '_spec.rb') != -1)
+      VimuxRunCommand("clear; SUPPRESS_BACKTRACE=true bin/spring rspec " . a:file_name . " --fail-fast")
+    elseif(match(a:file_name, '.feature') != -1)
+      VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast")
+    else
+      echo 'Test command not implemented for this file type.'
+    endif
+  endfunction
 
   nnoremap [Tmux]b :call VimuxRunCommand('bundle install')<CR>
-  nnoremap [Tmux]m :call VimuxRunCommand('t pr list')<CR>
-  nnoremap [Tmux]t :call VimuxRunCommand('t pr list team')<CR>
+  nnoremap [Tmux]p :call VimuxRunCommand('t pr list')<left><left>
+  nnoremap [Tmux]c :call VimuxRunCommand('bin/cop')<CR>
+  nnoremap [Tmux]e :call VimuxRunCommand('exit')<CR>
 
   " Prompt for a command to run
   map [Tmux]! :VimuxPromptCommand<CR>
@@ -245,7 +256,7 @@
   nnoremap <silent><leader>l :!!<CR>
 
   " Run last command executed by VimuxRunCommand
-  map [Tmux]l :VimuxRunLastCommand<CR>
+  map [Tmux]l :VimuxRunLastCommand<CR> :echo g:VimuxLastCommand<CR>
 
   " Close vim tmux runner opened by VimuxRunCommand
   map [Tmux]q :VimuxCloseRunner<CR>

@@ -86,9 +86,7 @@ fu! ToogleCheckbox()
       endif
     endfor
   else
-    if g:insert_checkbox != ''
-      let line = substitute(line, g:insert_checkbox, g:insert_checkbox_prefix . '[' . g:checkbox_states[0] . ']' . g:insert_checkbox_suffix, '')
-    endif
+    let line = substitute(line, '\<', '' . '[ ]' . ' ', '')
   endif
 
 	call setline('.', line)
