@@ -8,8 +8,14 @@ call plug#begin()
 
   Plug 'sheerun/vim-polyglot'
 
+  " Highligh the cursor word
+  Plug 't9md/vim-quickhl'
+
   " Linters
   Plug 'w0rp/ale'
+
+  " Expand region
+  Plug 'terryma/vim-expand-region'
 
   " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
