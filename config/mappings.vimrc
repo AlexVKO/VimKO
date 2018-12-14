@@ -20,10 +20,6 @@
 
   nnoremap  [Git]   <Nop>
   nmap      g [Git]
-
-  nnoremap  [Ruby]   <Nop>
-  nmap      R [Ruby]
-
 " -----------------------------------------------------------------------------
 " Miscellaneous
 " -----------------------------------------------------------------------------
@@ -280,10 +276,10 @@
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
-  nnoremap [Ruby]ap  :RAddParameter<cr>
-  nnoremap [Ruby]cc  :RConvertPostConditional<cr>
-  nnoremap [Ruby]ele :RExtractLet<cr>
-  vnoremap [Ruby]eco :RExtractConstant<cr>
-  vnoremap [Ruby]elo :RExtractLocalVariable<cr>
-  nnoremap [Ruby]rv  :RInlineTemp<cr>
-  vnoremap [Ruby]em  :RExtractMethod<cr>
+  nnoremap <leader>Rap  :RAddParameter<cr>
+  nnoremap <leader>Rcc  :RConvertPostConditional<cr>
+  nnoremap <leader>Rele :RExtractLet<cr>
+  vnoremap <leader>Reco :RExtractConstant<cr>
+  vnoremap <leader>Relo :RExtractLocalVariable<cr>
+  nnoremap <leader>Rrv  :RInlineTemp<cr>
+  vnoremap <leader>Rem  :RExtractMethod<cr>
