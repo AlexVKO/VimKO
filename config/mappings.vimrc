@@ -15,8 +15,8 @@
   nnoremap  [Tabs]   <Nop>
   nmap      t [Tabs]
 
-  nnoremap  [Tmux]   <Nop>
-  nmap      ! [Tmux]
+  nnoremap  [Terminal]   <Nop>
+  nmap      ! [Terminal]
 
   nnoremap  [Git]   <Nop>
   nmap      g [Git]
@@ -29,8 +29,18 @@
   " Reload command
   command! Reload :so ~/.config/nvim/init.vim
 
+  " Highlight cursor word
+  nmap <Leader>h <Plug>(quickhl-manual-this)
+  xmap <Leader>h <Plug>(quickhl-manual-this)
+  nmap <Leader>H <Plug>(quickhl-manual-reset)
+  xmap <Leader>H <Plug>(quickhl-manual-reset)
+
   " Checkbox
   map <silent> <leader>x :call ToogleCheckbox()<cr>
+
+  " Expand region
+  xmap v <Plug>(expand_region_expand)
+  xmap V <Plug>(expand_region_shrink)
 
   " Indent paragraph
   nnoremap <leader>a =ip
@@ -84,7 +94,8 @@
   vnoremap <Leader>d :co-1<cr>
 
   " Line copy without move the cursor
-  nnoremap <Leader>c :t.<left><left>
+  nnoremap <Leader>ck :-t.<left><left>
+  nnoremap <Leader>cj :+t.<left><left>
 
   " Macro
   nnoremap Q q
@@ -104,10 +115,13 @@
   " Display diff from last save
   command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
+  " Replace tabs to specs of the current file
+  command! Retab :set expandtab | retab
 " -----------------------------------------------------------------------------
 " Git
 " -----------------------------------------------------------------------------
   nnoremap [Git]s :Gstatus<CR>
+  nnoremap [Git]o :! open https://github.com/toptal/platform/blob/master/<C-r>=expand('%')<cr>\#L<C-r>=line('.')<cr><cr><cr>
   nnoremap [Git]af :Git add %:p<CR><CR>
   nnoremap [Git]ac :call VimuxRunCommand('git add . && git commit')<CR>
   nnoremap [Git]ac :call VimuxRunCommand('git diff')<CR>
@@ -140,6 +154,12 @@
   " Rotate buffers
   nnoremap <silent> [Windows]r <C-w>x
 
+  " Detache the current pane to a new full window
+  nnoremap <silent> [Windows]n <C-w>T | :tablast
+
+  " Swap panes position
+  nnoremap <silent> [Windows]s <C-w>R
+
   " Zoom buffer
   nnoremap [Windows]z :Goyo<CR>
 
@@ -164,7 +184,12 @@
   " Tabs
   " -----------------------------------------------------------------------------
 
-  " Move to
+  " Move to left/right
+  nnoremap <silent> [Tabs]H :tabmove -1<cr>
+  nnoremap <silent> [Tabs]L :tabmove +1<cr>
+
+  nnoremap <silent> [Tabs]n :tabmove +1<cr>
+
   nnoremap <silent> [Tabs]t :tabnew<CR>
   nnoremap <silent> [Tabs]l :tabnext<CR>
   nnoremap <silent> [Tabs]h :tabprev<CR>
@@ -179,7 +204,7 @@
   nnoremap [Files]de :!rm %
 
   " Move/Rename current file
-  nnoremap [Files]m :!mv <C-r>=expand('%')<cr> <C-r>=expand('%:h')<cr>
+  nnoremap [Files]m :!mv <C-r>=expand('%')<cr> <C-r>=expand('%')<cr>
 
   " Copy Relative path
   nnoremap <silent> [Files]y :let @+=join([expand("%"), line('.')], ':')<CR>:echo 'Relative path copied to clipboard.'<CR>
@@ -199,14 +224,15 @@
 " FuzzyFinder
 " -----------------------------------------------------------------------------
   nnoremap <silent> [FuzzyFinder]f :Files<cr>
-  nnoremap <silent> [FuzzyFinder]w :Windows<cr>
+  nnoremap <silent> [FuzzyFinder]mo :Files <cr> app/models/
+  nnoremap <silent> [FuzzyFinder]c :Files <cr> app/controllers/
+  nnoremap <silent> [FuzzyFinder]b :Files <cr> apq/actions/ba/
   nnoremap <silent> [FuzzyFinder]g :Find<cr>
   nnoremap <silent> [FuzzyFinder]t :Tags <cr>
   nnoremap <silent> [FuzzyFinder]T :BTags <cr>
-  nnoremap <silent> [FuzzyFinder]c :BCommits <cr>
-  nnoremap <silent> [FuzzyFinder]b :Buffers <cr>
+  nnoremap <silent> [FuzzyFinder]gc :BCommits <cr>
   nnoremap <silent> [FuzzyFinder]/ :BLines <cr>
-  nnoremap <silent> [FuzzyFinder]m :Marks <cr>
+  nnoremap <silent> [FuzzyFinder]me :BLines <cr> def\<space>
 
 " -----------------------------------------------------------------------------
 " Tabularize
@@ -219,43 +245,29 @@
   vmap <Leader>tt :Tabularize /
 
 " -----------------------------------------------------------------------------
-" Tmux pane integration
+" Terminal/Tmux pane integration
 " -----------------------------------------------------------------------------
-  function! VimuxSlime()
-    call VimuxSendText(@v)
-    call VimuxSendKeys("Enter")
-  endfunction
-
-  " Run tests for the currente file
-  nnoremap [Tmux]t :call RunTestsOnLeftPane(expand('%'))<CR> :echo g:VimuxLastCommand<CR>
-  nnoremap [Tmux]T :call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
-
-  function! RunTestsOnLeftPane(file_name)
-    if(match(a:file_name, '_spec.rb') != -1)
-      VimuxRunCommand("clear; SUPPRESS_BACKTRACE=true bin/spring rspec " . a:file_name . " --fail-fast")
-    elseif(match(a:file_name, '.feature') != -1)
-      VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast")
-    else
-      echo 'Test command not implemented for this file type.'
-    endif
-  endfunction
-
-  nnoremap [Tmux]b :call VimuxRunCommand('bundle install')<CR>
-  nnoremap [Tmux]p :call VimuxRunCommand('t pr list')<left><left>
-  nnoremap [Tmux]c :call VimuxRunCommand('bin/cop')<CR>
-  nnoremap [Tmux]e :call VimuxRunCommand('exit')<CR>
+  nnoremap [Terminal]b :below new \| resize 10 \| terminal bundle install<CR>
+  nnoremap [Terminal]c :call VimuxRunCommand('clear ; bin/cop')<CR>
+  nnoremap [Terminal]e :call VimuxRunCommand('exit')<CR>
+  nnoremap [Terminal]i :below new \| resize 10 \| terminal topcli info<CR>
+  nnoremap [Terminal]pm :below new \| resize 10 \| terminal topcli pr list<CR>
+  nnoremap [Terminal]pt :below new \| resize 10 \| terminal topcli pr list team<CR>
+  nnoremap [Terminal]s :below new \| resize 10 \| terminal bin/setup
+  nnoremap [Terminal]t :call RunTestsOnLeftPane(expand('%'))<CR> :echo g:VimuxLastCommand<CR>
+  nnoremap [Terminal]T :call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
 
   " Prompt for a command to run
-  map [Tmux]! :VimuxPromptCommand<CR>
+  map [Terminal]! :VimuxPromptCommand<CR>
 
   " Run the last shell command
   nnoremap <silent><leader>l :!!<CR>
 
   " Run last command executed by VimuxRunCommand
-  map [Tmux]l :VimuxRunLastCommand<CR> :echo g:VimuxLastCommand<CR>
+  map [Terminal]l :VimuxRunLastCommand<CR> :echo g:VimuxLastCommand<CR>
 
   " Close vim tmux runner opened by VimuxRunCommand
-  map [Tmux]q :VimuxCloseRunner<CR>
+  map [Terminal]q :VimuxCloseRunner<CR>
 
   " If text is selected, save it in the v buffer and send that buffer it to tmux
   vmap <leader>! "vy :call VimuxSlime()<CR>
@@ -263,6 +275,21 @@
   " Select current paragraph and send it to tmux
   nmap <leader>! vip<leader>ts<CR>
 
+  function! VimuxSlime()
+    call VimuxSendText(@v)
+    call VimuxSendKeys("Enter")
+  endfunction
+
+
+  function! RunTestsOnLeftPane(file_name)
+    if(match(a:file_name, '_spec.rb') != -1)
+      VimuxRunCommand("clear; SUPPRESS_BACKTRACE=true bin/spring rspec " . a:file_name . " --fail-fast --profile")
+    elseif(match(a:file_name, '.feature') != -1)
+      VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
+    else
+      echo 'Test command not implemented for this file type.'
+    endif
+  endfunction
 " -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
