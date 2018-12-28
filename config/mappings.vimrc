@@ -93,6 +93,9 @@
   nnoremap <Leader>d :t.<cr>
   vnoremap <Leader>d :co-1<cr>
 
+  " Line comment without move the cursor
+  " TODO
+
   " Line copy without move the cursor
   nnoremap <Leader>ck :-t.<left><left>
   nnoremap <Leader>cj :+t.<left><left>
@@ -121,11 +124,19 @@
 " Git
 " -----------------------------------------------------------------------------
   nnoremap [Git]s :Gstatus<CR>
-  nnoremap [Git]o :! open https://github.com/toptal/platform/blob/master/<C-r>=expand('%')<cr>\#L<C-r>=line('.')<cr><cr><cr>
+  nnoremap [Git]o :call OpenCurrentFileOnGithub()<cr>
   nnoremap [Git]af :Git add %:p<CR><CR>
   nnoremap [Git]ac :call VimuxRunCommand('git add . && git commit')<CR>
   nnoremap [Git]ac :call VimuxRunCommand('git diff')<CR>
   nnoremap gg :1<CR>
+
+  function! OpenCurrentFileOnGithub()
+    let branch_url = system('git remote get-url --all origin | grep github | head -1')
+    let branch_path = substitute(split(branch_url, ':')[1], '.git', '', 'g')
+
+    let repo_url = "https://github.com/" .  substitute(branch_path, '\n\+$', '', '') . "/blob/master/" . expand('%') . '\#L' . line('.')
+    exec "! open " . repo_url
+  endfunction
 
 " -----------------------------------------------------------------------------
 " Dictionary and documentations
