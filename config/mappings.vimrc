@@ -24,6 +24,7 @@
 " Miscellaneous
 " -----------------------------------------------------------------------------
   " Remove lines with a specify patter
+  " TODO make this work with fzf
   nnoremap <leader>rp :g//d<left><left>
 
   " Reload command
@@ -299,6 +300,8 @@
       VimuxRunCommand("clear; SUPPRESS_BACKTRACE=true bin/spring rspec " . a:file_name . " --fail-fast --profile")
     elseif(match(a:file_name, '.feature') != -1)
       VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
+    elseif(match(a:file_name, 'tests/flows/.*_process.rb') != -1)
+      VimuxRunCommand("clear; bundle exec flows test " . a:file_name)
     else
       echo 'Test command not implemented for this file type.'
     endif
