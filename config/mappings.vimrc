@@ -36,6 +36,16 @@
   nmap <Leader>H <Plug>(quickhl-manual-reset)
   xmap <Leader>H <Plug>(quickhl-manual-reset)
 
+  " Highlight selected lines
+  function! HighlightRegion()
+    hi Green guibg=#3c4554
+    let l_start = line("'<")
+    let l_end = line("'>")
+    execute 'syntax region Green start=/\%3'.l_start.'/ end=/\%'.l_end.'l/'
+  endfunction
+
+  vnoremap <leader>y :<C-U>call HighlightRegion()<CR>
+
   " Checkbox
   map <silent> <leader>x :call ToogleCheckbox()<cr>
 
@@ -57,6 +67,9 @@
 
   " Substitute all occurences in current file
   nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+  " Select all occurences of the word and display a counter
+  nnoremap * :%s/\<<C-r><C-w>\>//n<cr>
 
   " Substitute inside selection
   xnoremap s :s//g<Left><Left>
@@ -97,6 +110,19 @@
   " Line comment without move the cursor
   " TODO
 
+  " Line cut/past without move the cursor
+  nnoremap <Leader>xk :call CutAndPasteByLineNumber('-')<left><left>
+  nnoremap <Leader>xj :call CutAndPasteByLineNumber('+')<left><left>
+
+  function! CutAndPasteByLineNumber(relative_line_number)
+    let cursor_position = getpos('.')
+
+    exec a:relative_line_number . 'd'
+    call setpos(".", cursor_position)
+    normal P
+    call setpos(".", cursor_position)
+  endfunction
+
   " Line copy without move the cursor
   nnoremap <Leader>ck :-t.<left><left>
   nnoremap <Leader>cj :+t.<left><left>
@@ -121,6 +147,21 @@
 
   " Replace tabs to specs of the current file
   command! Retab :set expandtab | retab
+
+  " Toggle Syntax on markdown files
+  nnoremap <Leader>ts :call ToggleMarkdownSyntax()<cr>
+
+  function! ToggleMarkdownSyntax()
+    if &syntax == 'markdown'
+      exe "set syntax=text"
+    elseif &syntax == 'text'
+      exe "set syntax=markdown"
+    else
+      echo 'Not supported'
+    end
+  endfunction
+
+
 " -----------------------------------------------------------------------------
 " Git
 " -----------------------------------------------------------------------------
@@ -262,13 +303,13 @@
 " Terminal/Tmux pane integration
 " -----------------------------------------------------------------------------
   nnoremap [Terminal]b :below new \| resize 10 \| terminal bundle install<CR>
-  nnoremap [Terminal]c :call VimuxRunCommand('clear ; bin/cop')<CR>
+  nnoremap [Terminal]c :call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))<CR>
   nnoremap [Terminal]e :call VimuxRunCommand('exit')<CR>
   nnoremap [Terminal]i :below new \| resize 10 \| terminal topcli info<CR>
   nnoremap [Terminal]pm :below new \| resize 10 \| terminal topcli pr list<CR>
   nnoremap [Terminal]pt :below new \| resize 10 \| terminal topcli pr list team<CR>
   nnoremap [Terminal]s :below new \| resize 10 \| terminal bin/setup
-  nnoremap [Terminal]t :call RunTestsOnLeftPane(expand('%'))<CR> :echo g:VimuxLastCommand<CR>
+  nnoremap [Terminal]t :call RunTestsOnLeftPane(expand('%')) <CR> :echo g:VimuxLastCommand<CR>
   nnoremap [Terminal]T :call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
 
   " Prompt for a command to run
@@ -300,6 +341,8 @@
       VimuxRunCommand("clear; SUPPRESS_BACKTRACE=true bin/spring rspec " . a:file_name . " --fail-fast --profile")
     elseif(match(a:file_name, '.feature') != -1)
       VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
+    elseif(match(a:file_name, 'test/.*_test.rb') != -1)
+      VimuxRunCommand("clear; be rake test TEST=" . a:file_name)
     elseif(match(a:file_name, 'tests/flows/.*_process.rb') != -1)
       VimuxRunCommand("clear; bundle exec flows test " . a:file_name)
     else

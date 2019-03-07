@@ -63,6 +63,12 @@ autocmd BufEnter * :set relativenumber
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
+" Groovy syntax highlighting for Jenkinsfiles
+au BufNewFile,BufRead Jenkinsfile set filetype=groovy
+
+" Treat words with dash as a word
+set iskeyword+=-
+
 " Checkbox toogler
 fu! ToogleCheckbox()
 	let line = getline('.')

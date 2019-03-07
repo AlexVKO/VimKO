@@ -1,4 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/alexvko'
 let g:netrw_dirhist_2='/Users/alexvko/.zsh'
+let g:netrw_dirhist_3='/Users/alexvko/.oh-my-zsh'
+let g:netrw_dirhist_4='/Users/alexvko/.oh-my-zsh/themes'
+let g:netrw_dirhist_5='/Users/alexvko/.oh-my-zsh'
+let g:netrw_dirhist_6='/Users/alexvko/.oh-my-zsh/themes'
+let g:netrw_dirhist_7='/Users/alexvko/.config/gcloud'
+let g:netrw_dirhist_8='/Users/alexvko/workspace/toptal/platform/gems/rspec_distrib'

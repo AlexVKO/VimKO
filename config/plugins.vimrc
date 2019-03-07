@@ -8,6 +8,9 @@ call plug#begin()
 
   Plug 'sheerun/vim-polyglot'
 
+  " Grammar Checker
+  Plug 'rhysd/vim-grammarous'
+
   " Highligh the cursor word
   Plug 't9md/vim-quickhl'
 
