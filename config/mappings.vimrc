@@ -20,6 +20,7 @@
 
   nnoremap  [Git]   <Nop>
   nmap      g [Git]
+
 " -----------------------------------------------------------------------------
 " Miscellaneous
 " -----------------------------------------------------------------------------
@@ -29,6 +30,9 @@
 
   " Reload command
   command! Reload :so ~/.config/nvim/init.vim
+
+  " go to normal mode
+  inoremap kj <Esc>
 
   " Highlight cursor word
   nmap <Leader>h <Plug>(quickhl-manual-this)
@@ -137,10 +141,10 @@
   xnoremap > >gv|
 
   " Toggle fold
-  nnoremap <CR> za
+  nnoremap <return> za
 
   " Focus the current fold by closing all others
-  nnoremap <S-Return> zMza
+  nnoremap <leader>z zMza
 
   " Display diff from last save
   command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
@@ -161,7 +165,6 @@
     end
   endfunction
 
-
 " -----------------------------------------------------------------------------
 " Git
 " -----------------------------------------------------------------------------
@@ -169,7 +172,7 @@
   nnoremap [Git]o :call OpenCurrentFileOnGithub()<cr>
   nnoremap [Git]af :Git add %:p<CR><CR>
   nnoremap [Git]ac :call VimuxRunCommand('git add . && git commit')<CR>
-  nnoremap [Git]ac :call VimuxRunCommand('git diff')<CR>
+  " nnoremap [Git]ac :call VimuxRunCommand('git diff')<CR>
   nnoremap gg :1<CR>
 
   function! OpenCurrentFileOnGithub()
@@ -180,11 +183,6 @@
     exec "! open " . repo_url
   endfunction
 
-" -----------------------------------------------------------------------------
-" Dictionary and documentations
-" -----------------------------------------------------------------------------
-  " Open the macOS dictionary on current word
-  nmap <Leader>? :!open dict://<cword><CR><CR>
 
 " -----------------------------------------------------------------------------
 " Windows
@@ -233,10 +231,9 @@
   nnoremap <silent> <leader>5 :let &l:foldlevel = 4<cr>
   nnoremap <silent> <leader>0 :let &l:foldlevel = 20<cr>
 
-  " -----------------------------------------------------------------------------
-  " Tabs
-  " -----------------------------------------------------------------------------
-
+" -----------------------------------------------------------------------------
+" Tabs
+" -----------------------------------------------------------------------------
   " Move to left/right
   nnoremap <silent> [Tabs]H :tabmove -1<cr>
   nnoremap <silent> [Tabs]L :tabmove +1<cr>
@@ -279,13 +276,43 @@
   nnoremap <silent> [FuzzyFinder]f :Files<cr>
   nnoremap <silent> [FuzzyFinder]mo :Files <cr> app/models/
   nnoremap <silent> [FuzzyFinder]c :Files <cr> app/controllers/
-  nnoremap <silent> [FuzzyFinder]b :Files <cr> apq/actions/ba/
   nnoremap <silent> [FuzzyFinder]g :Find<cr>
   nnoremap <silent> [FuzzyFinder]t :Tags <cr>
   nnoremap <silent> [FuzzyFinder]T :BTags <cr>
   nnoremap <silent> [FuzzyFinder]gc :BCommits <cr>
   nnoremap <silent> [FuzzyFinder]/ :BLines <cr>
-  nnoremap <silent> [FuzzyFinder]me :BLines <cr> def\<space>
+  " nnoremap <silent> [FuzzyFinder]me :BLines <cr> def\<space>
+
+" -----------------------------------------------------------------------------
+" Dictionary and documentations
+" -----------------------------------------------------------------------------
+  " Open the macOS dictionary on current word
+  " nmap <Leader>? :!open dict://<cword><CR><CR>
+  nmap <Leader>? :!open dict://<q-args>
+
+  :nmap <silent> <leader>k <Plug>DashSearch
+
+  " Use K for show documentation in preview window
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if &filetype == 'vim'
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
+
+" -----------------------------------------------------------------------------
+" COC and Gotos
+" -----------------------------------------------------------------------------
+  " Remap keys for gotos
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+  nnoremap <silent> [FuzzyFinder]me :CocList outline<cr>
 
 " -----------------------------------------------------------------------------
 " Tabularize

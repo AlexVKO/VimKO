@@ -8,6 +8,9 @@ call plug#begin()
 
   Plug 'sheerun/vim-polyglot'
 
+  " Edit selected code in new buffer
+  Plug 'chrisbra/NrrwRgn'
+
   " Grammar Checker
   Plug 'rhysd/vim-grammarous'
 
@@ -110,10 +113,7 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Autocomplete and Snippets
 " -----------------------------------------------------------------------------
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-      let g:deoplete#enable_at_startup = 1
-      let g:python3_host_prog = '/usr/local/bin/python3'
-      autocmd! User deoplete call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+    Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
     Plug 'SirVer/ultisnips'
       let g:UltiSnipsEditSplit="vertical"
@@ -145,10 +145,10 @@ call plug#begin()
 " Ctags
 " -----------------------------------------------------------------------------
   Plug 'xolox/vim-misc'
-  " Plug 'xolox/vim-easytags'
-    " let g:easytags_always_enabled = 1
-    " let g:easytags_async = 1
-    " let g:easytags_dynamic_files = 1
+  Plug 'xolox/vim-easytags'
+    let g:easytags_always_enabled = 1
+    let g:easytags_async = 1
+    let g:easytags_dynamic_files = 1
   Plug 'majutsushi/tagbar'
 
   Plug 'junegunn/vim-peekaboo'

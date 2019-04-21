@@ -8,6 +8,9 @@ set colorcolumn=80
 
 " set tags=./.tags
 
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
 " Behavior
 set number
 set relativenumber

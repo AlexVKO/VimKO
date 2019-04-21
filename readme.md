@@ -21,30 +21,40 @@ Only tested with Neovim.
 | `m`       | Bookmarks    |
 
 ## Miscellaneous
-| key           | Mode          | Action                                       |
-| -             | -             | -                                            |
-| `Reload`      | Command       | Reload vimrc                                 |
-| `<Leader>a`   | Normal        | Align paragraph                              |
-| `<Leader>,`   | Normal        | Remove all spaces EOL                        |
-| `<Leader>ow`  | Normal        | Overwrite word                               |
-| `<Leader>saw` | Normal/visual | Replace all occurences under cursor          |
-| `<Leader>w`   | Normal        | Save current file                            |
-| `<Leader>d`   | Normal/Visual | Duplicate line/selected                      |
-| `!`           | Normal        | Start an external Command with a single bang |
-| `s`           | visual        | Replace within selected area                 |
-| `gp`          | Normal        | Select last paste                            |
-| `Y`           | Normal        | Copy until the end of line                   |
-| `q`           | Normal        | Quit                                         |
-| `g;`          | visual        | Jump to last edited location                 |
-| `g,`          | visual        | Jump to next edited location                 |
-| `<Ctrl>r`     | insert        | Open resgister content                       |
-| `gc<motion>`  | Normal/visual | Toggle comments                              |
-| `/`           | Normal        | Easy motion                                  |
-| `W!!`         | Command       | Save with sudo                               |
-| `<Leader>;`   | Normal        | Toggle tag bar                               |
-| `<Leader>l`   | Normal        | Toggle tag bar                               |
+| key              | Mode          | Action                                              |
+| -                | -             | -                                                   |
+| `Reload`         | Command       | Reload vimrc                                        |
+| `<Leader>a`      | Normal        | Align paragraph                                     |
+| `<Leader>,`      | Normal        | Remove all spaces EOL                               |
+| `<Leader>ow`     | Normal        | Overwrite word under cursor                         |
+| `<Leader>saw`    | Normal/visual | Replace all occurences under cursor                 |
+| `<Leader>w`      | Normal        | Save current file                                   |
+| `<Leader>d`      | Normal/Visual | Duplicate line/selected                             |
+| `<Leader>rp`     | Normal        | Remove all lines with the given patter              |
+| `!`              | Normal        | Start an external Command with a single bang        |
+| `jk`             | Insert        | Go to normal mode                                   |
+| `<Leader>h`      | All           | Toogle permanent Highlight for word under cursor    |
+| `<Leader>y`      | Visual        | Toogle permanent Highlight for selected region      |
+| `<Leader>x`      | Visual        | Toggle markdown checkbox ([] -> [x] -> [n/a] -> []) |
+| `<Leader>v`      | Visual        | Expand selected region                              |
+| `<Leader>,`      | Visual        | Remove emtpy speces                                 |
+| `s`              | visual        | Replace within selected area                        |
+| `gp`             | Normal        | Select last paste                                   |
+| `Y`              | Normal        | Copy until the end of line                          |
+| `q`              | Normal        | Quit                                                |
+| `<ctrl>o`        | visual        | Jump to last edited location                        |
+| `<ctrl>i`        | visual        | Jump to next edited location                        |
+| `<Ctrl>r`        | insert        | Open resgister content                              |
+| `gc<motion>`     | Normal/visual | Toggle comments                                     |
+| `/`              | Normal        | Easy motion between panels                          |
+| `W!!`            | Command       | Save with sudo                                      |
+| `<Leader>;`      | Normal        | Toggle tag bar                                      |
+| `<Leader>x(j/k)` | Normal        | Cut line by number to the current cursor position   |
+| `<Leader>c(j/k)` | Normal        | Copy line by number to the current cursor position  |
 
 ## Macro
+| key | Mode   | Action  |
+| -   | -      | -       |
 | `Q` | Normal | Record  |
 | `M` | Normal | Execute |
 
@@ -105,11 +115,22 @@ Only tested with Neovim.
 | `:Fardo`                   | Far     | Do the replacement                |
 | `:F <pattern>`             | Command | find all                          |
 
+## Dash
+| key         | Mode   | Action                                       |
+| -           | -      | -                                            |
+| `<leader>k` | Normal | Open current word in Dash.app(documentation) |
+
 ## Ctags
-| key       | Mode   | Action           |
-| -         | -      | -                |
-| `<ctrl>]` | Normal | Go to definition |
-| `UpdateTags` | Command | UpdateTags |
+| key          | Mode    | Action           |
+| -            | -       | -                |
+| `<ctrl>]`    | Normal  | Go to definition |
+| `UpdateTags` | Command | UpdateTags       |
+
+## COC
+| key               | Mode                                   | Action           |
+| -                 | -                                      | -                |
+| `gd`              | Normal                                 | Go to definition |
+| `<FuzzyFinder>sy` | Search for symbols inside current file |                  |
 
 ## Multiple Cursor
 | key       | Mode   | Action                |
@@ -188,6 +209,8 @@ Only tested with Neovim.
 | `:AS` | Command | Alternate file in split |
 | `:R`  | Command | Related file            |
 | `:RS` | Command | Related file in split   |
+| `<FuzzyFinder>mo` | Normal | Search for models                 |
+| `<FuzzyFinder>c` | Normal | Search for controller |
 
 ## Elixir
 | key            | Mode    | Action                                                              |
@@ -243,6 +266,5 @@ $ git clone git@github.com:AlexVKO/VimKO.git nvim
 
 And then inside neovim run :PlugInstall
 ```
-
 Inspired by:
   - https://github.com/rafi/vim-config

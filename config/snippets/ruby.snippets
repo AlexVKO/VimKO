@@ -1,6 +1,14 @@
 snippet notifysentry
 	Raven.capture_message("${1}", message: "${2}")
 
+snippet ea
+	ea { |${1:e}| ${0} }
+
+snippet eado
+	ea do |${1:e}|
+	  ${0}
+	end
+
 snippet find
 	find { |${1:e}| ${0} }
 
