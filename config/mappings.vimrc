@@ -157,6 +157,7 @@
 
   function! ToggleMarkdownSyntax()
     if &syntax == 'markdown'
+    if &syntax == 'markdown' || &syntax == 'liquid'
       exe "set syntax=text"
     elseif &syntax == 'text'
       exe "set syntax=markdown"
@@ -275,6 +276,7 @@
 " -----------------------------------------------------------------------------
   nnoremap <silent> [FuzzyFinder]f :Files<cr>
   nnoremap <silent> [FuzzyFinder]mo :Files <cr> app/models/
+  nnoremap <silent> [FuzzyFinder]rs :Files <cr> spec/_spec.rb<left><left><left><left><left><left><left><left>
   nnoremap <silent> [FuzzyFinder]c :Files <cr> app/controllers/
   nnoremap <silent> [FuzzyFinder]g :Find<cr>
   nnoremap <silent> [FuzzyFinder]t :Tags <cr>
@@ -365,7 +367,6 @@
 
   function! RunTestsOnLeftPane(file_name)
     if(match(a:file_name, '_spec.rb') != -1)
-      " VimuxRunCommand("clear; rspec " . a:file_name . " --fail-fast --profile")
       VimuxRunCommand("clear; bundle exec rspec " . a:file_name . " --fail-fast")
     elseif(match(a:file_name, '.feature') != -1)
       VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
