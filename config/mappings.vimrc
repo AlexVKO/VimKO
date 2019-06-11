@@ -333,9 +333,9 @@
   nnoremap [Terminal]c :call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))<CR>
   nnoremap [Terminal]e :call VimuxRunCommand('exit')<CR>
   nnoremap [Terminal]i :below new \| resize 10 \| terminal topcli info<CR>
-  nnoremap [Terminal]pm :below new \| resize 10 \| terminal topcli pr list<CR>
-  nnoremap [Terminal]pt :below new \| resize 10 \| terminal topcli pr list team<CR>
-  nnoremap [Terminal]s :below new \| resize 10 \| terminal bin/setup
+  " nnoremap [Terminal]pm :below new \| resize 10 \| terminal topcli pr list<CR>
+  " nnoremap [Terminal]pt :below new \| resize 10 \| terminal topcli pr list team<CR>
+  " nnoremap [Terminal]s :below new \| resize 10 \| terminal bin/setup
   nnoremap [Terminal]t :call RunTestsOnLeftPane(expand('%')) <CR> :echo g:VimuxLastCommand<CR>
   nnoremap [Terminal]T :call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
 
