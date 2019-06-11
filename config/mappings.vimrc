@@ -386,6 +386,8 @@
   endfunction
   vnoremap af :<C-U>silent! :call JSTextObjectFunction()<CR>
 
+  nnoremap <leader>fj :%!python -m json.tool<cr>
+
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
