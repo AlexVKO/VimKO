@@ -365,7 +365,8 @@
 
   function! RunTestsOnLeftPane(file_name)
     if(match(a:file_name, '_spec.rb') != -1)
-      VimuxRunCommand("clear; SUPPRESS_BACKTRACE=true bin/spring rspec " . a:file_name . " --fail-fast --profile")
+      " VimuxRunCommand("clear; rspec " . a:file_name . " --fail-fast --profile")
+      VimuxRunCommand("clear; bundle exec rspec " . a:file_name . " --fail-fast")
     elseif(match(a:file_name, '.feature') != -1)
       VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
     elseif(match(a:file_name, 'test/.*_test.rb') != -1)
