@@ -60,7 +60,7 @@ call plug#begin()
   " Highligh empty space and auto remove it
   Plug 'ntpeters/vim-better-whitespace'
     let g:better_whitespace_enabled=0
-    let g:strip_whitespace_on_save = 1
+    let g:strip_whitespace_on_save=0
 
   " Better motion
   Plug 'easymotion/vim-easymotion'

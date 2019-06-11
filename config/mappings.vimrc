@@ -31,8 +31,8 @@
   " Reload command
   command! Reload :so ~/.config/nvim/init.vim
 
-  " go to normal mode
-  inoremap kj <Esc>
+  " go to normal mode and save
+  inoremap kj <Esc> :w<CR>
 
   " Highlight cursor word
   nmap <Leader>h <Plug>(quickhl-manual-this)
@@ -156,7 +156,6 @@
   nnoremap <Leader>ts :call ToggleMarkdownSyntax()<cr>
 
   function! ToggleMarkdownSyntax()
-    if &syntax == 'markdown'
     if &syntax == 'markdown' || &syntax == 'liquid'
       exe "set syntax=text"
     elseif &syntax == 'text'
