@@ -317,10 +317,10 @@
 " -----------------------------------------------------------------------------
 " Tabularize
 " -----------------------------------------------------------------------------
-  nmap <Leader>t= :Tabularize /=    <CR>
-  vmap <Leader>t= :Tabularize /=    <CR>
   nmap <Leader>t, :Tabularize /,\zs <CR>
   vmap <Leader>t, :Tabularize /,\zs <CR>
+  nmap <Leader>t= :Tabularize /=\zs <CR>
+  vmap <Leader>t= :Tabularize /=\zs <CR>
   nmap <Leader>t: :Tabularize /:\zs <CR>
   vmap <Leader>t: :Tabularize /:\zs <CR>
   nmap <Leader>tt :Tabularize /
@@ -332,7 +332,7 @@
   nnoremap [Terminal]b :below new \| resize 10 \| terminal bundle install<CR>
   nnoremap [Terminal]c :call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))<CR>
   nnoremap [Terminal]e :call VimuxRunCommand('exit')<CR>
-  nnoremap [Terminal]i :below new \| resize 10 \| terminal topcli info<CR>
+  " nnoremap [Terminal]i :below new \| resize 10 \| terminal topcli info<CR>
   " nnoremap [Terminal]pm :below new \| resize 10 \| terminal topcli pr list<CR>
   " nnoremap [Terminal]pt :below new \| resize 10 \| terminal topcli pr list team<CR>
   " nnoremap [Terminal]s :below new \| resize 10 \| terminal bin/setup
