@@ -32,7 +32,8 @@
   command! Reload :so ~/.config/nvim/init.vim
 
   " go to normal mode and save
-  inoremap kj <Esc> :w<CR>
+  inoremap ;w <Esc> :w<CR> :call RunTestsOnLeftPane(expand('%')) <CR>
+  nnoremap ;w :w<CR>
 
   " Highlight cursor word
   nmap <Leader>h <Plug>(quickhl-manual-this)
@@ -57,29 +58,33 @@
   xmap v <Plug>(expand_region_expand)
   xmap V <Plug>(expand_region_shrink)
 
+  " Indent file
+  nnoremap <leader>e =ae<C-o>
+
   " Indent paragraph
   nnoremap <leader>a =ip
 
   " Remove empty spaces
-  nnoremap <leader>, :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+  nnoremap <leader>, :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR><C-o>
 
   " Overwrite word unders cursor
   nnoremap <leader>ow <Esc>viwp
-
-  " Fast write
-  nnoremap <Leader>w :write<CR>
 
   " Substitute all occurences in current file
   nnoremap <Leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
 
   " Select all occurences of the word and display a counter
-  nnoremap * :%s/\<<C-r><C-w>\>//n<cr>
+  nnoremap * :%s/\<<C-r><C-w>\>//n<cr>0N
 
   " Substitute inside selection
   xnoremap s :s//g<Left><Left>
 
   " Select pasted text
   nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
+
+  " Workaround to fix the Next occurence direction
+  nnoremap N n
+  nnoremap n N
 
   " Yank until end of line
   nnoremap Y y$
@@ -268,7 +273,8 @@
 
   " Find all
   nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> all --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-  nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr>  all  --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+  " nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr>  all  --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+  nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr> 
 
 " -----------------------------------------------------------------------------
 " FuzzyFinder
@@ -333,12 +339,12 @@
   nnoremap [Terminal]b :below new \| resize 10 \| terminal bundle install<CR>
   nnoremap [Terminal]c :call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))<CR>
   nnoremap [Terminal]e :call VimuxRunCommand('exit')<CR>
-  " nnoremap [Terminal]i :below new \| resize 10 \| terminal topcli info<CR>
+  " nnoremap [Terminal]s :below new \| resize 10 \| bundle exec rspec . expand('%') . ' --fail-fast'<CR>
   " nnoremap [Terminal]pm :below new \| resize 10 \| terminal topcli pr list<CR>
   " nnoremap [Terminal]pt :below new \| resize 10 \| terminal topcli pr list team<CR>
   " nnoremap [Terminal]s :below new \| resize 10 \| terminal bin/setup
-  nnoremap [Terminal]t :call RunTestsOnLeftPane(expand('%')) <CR> :echo g:VimuxLastCommand<CR>
-  nnoremap [Terminal]T :call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
+  nnoremap [Terminal]t :call RunTestsOnLeftPane(expand('%:p')) <CR> :echo g:VimuxLastCommand<CR>
+  nnoremap [Terminal]T :call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
 
   " Prompt for a command to run
   map [Terminal]! :VimuxPromptCommand<CR>
@@ -373,8 +379,6 @@
       VimuxRunCommand("clear; be rake test TEST=" . a:file_name)
     elseif(match(a:file_name, 'tests/flows/.*_process.rb') != -1)
       VimuxRunCommand("clear; bundle exec flows test " . a:file_name)
-    else
-      echo 'Test command not implemented for this file type.'
     endif
   endfunction
 " -----------------------------------------------------------------------------
