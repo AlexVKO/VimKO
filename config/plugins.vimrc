@@ -6,6 +6,9 @@ call plug#begin()
   " Insert and delete brakets, parens, quotes.
   Plug 'jiangmiao/auto-pairs'
 
+  " Slack on VIM
+  Plug 'yaasita/edit-slack.vim'
+
   Plug 'sheerun/vim-polyglot'
 
   " Edit selected code in new buffer
@@ -113,15 +116,16 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Autocomplete and Snippets
 " -----------------------------------------------------------------------------
-    Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
-    Plug 'SirVer/ultisnips'
-      let g:UltiSnipsEditSplit="vertical"
+  Plug 'SirVer/ultisnips'
+    let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsExpandTrigger="<C-l>"
 
-    Plug 'honza/vim-snippets'
-    Plug 'wellle/tmux-complete.vim'
-    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-    Plug 'ervandew/supertab'
+  Plug 'honza/vim-snippets'
+  Plug 'wellle/tmux-complete.vim'
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'ervandew/supertab'
 
 " -----------------------------------------------------------------------------
 " Text Objects
@@ -192,6 +196,12 @@ call plug#begin()
 " Javascript
 " -----------------------------------------------------------------------------
   Plug 'Galooshi/vim-import-js'
+
+  " ES2015 code snippets 
+  Plug 'epilande/vim-es2015-snippets'
+
+  " React code snippets
+  Plug 'epilande/vim-react-snippets'
 
 " -----------------------------------------------------------------------------
 " Python

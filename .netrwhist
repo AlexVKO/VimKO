@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Users/alexvko/learnspace/mongodb/configuring.md'
-let g:netrw_dirhist_2='/Users/alexvko/workspace/nestready/backend'
-let g:netrw_dirhist_3='/Users/alexvko/workspace/nestready'
-let g:netrw_dirhist_4='/Users/alexvko/workspace'
-let g:netrw_dirhist_5='/Users/alexvko/workspace/nestready/ejendom'
-let g:netrw_dirhist_6='/Users/alexvko/workspace/nestready/etl/spec'
-let g:netrw_dirhist_7='/Users/alexvko/workspace/api'
-let g:netrw_dirhist_8='/Users/alexvko/workspace/nestready/api'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Users/alexvko/workspace/nestready/api'
