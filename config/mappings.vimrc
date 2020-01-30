@@ -35,6 +35,10 @@
   inoremap ;w <Esc> :w<CR> :call RunTestsOnLeftPane(expand('%')) <CR>
   nnoremap ;w :w<CR>
 
+  " esc in insert mode
+  " imap jk <Esc>
+  " imap kj <Esc>
+
   " Highlight cursor word
   nmap <Leader>h <Plug>(quickhl-manual-this)
   xmap <Leader>h <Plug>(quickhl-manual-this)
@@ -255,6 +259,12 @@
   " Duplicate current file
   nnoremap [Files]du :saveas <C-r>=expand('%')<cr><left><left><left>
 
+  " Run rubocop
+  nnoremap <silent> [Files]ru :! bundle exec rubocop -a <C-r>=expand('%')<cr>  >/dev/null<cr> <cr>
+
+  " reload the file
+  nnoremap [Files]ch :checktime
+
   " Delete current file
   nnoremap [Files]de :!rm %
 
@@ -287,7 +297,9 @@
   nnoremap <silent> [FuzzyFinder]t :Tags <cr>
   nnoremap <silent> [FuzzyFinder]T :BTags <cr>
   nnoremap <silent> [FuzzyFinder]gc :BCommits <cr>
-  nnoremap <silent> [FuzzyFinder]/ :BLines <cr>
+
+  nmap [FuzzyFinder]/ <Plug>(AerojumpBolt)
+  " nnoremap <silent> [FuzzyFinder]/ :BLines <cr>
   " nnoremap <silent> [FuzzyFinder]me :BLines <cr> def\<space>
 
 " -----------------------------------------------------------------------------
@@ -364,15 +376,16 @@
   " Select current paragraph and send it to tmux
   nmap <leader>! vip<leader>ts<CR>
 
+  tnoremap jj <C-\><C-n>
+
   function! VimuxSlime()
     call VimuxSendText(@v)
     call VimuxSendKeys("Enter")
   endfunction
 
-
   function! RunTestsOnLeftPane(file_name)
     if(match(a:file_name, '_spec.rb') != -1)
-      VimuxRunCommand("clear; bundle exec rspec " . a:file_name . " --fail-fast")
+      VimuxRunCommand("clear; bundle exec rspec " . a:file_name . " --fail-fast -fd")
     elseif(match(a:file_name, '.feature') != -1)
       VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
     elseif(match(a:file_name, 'test/.*_test.rb') != -1)
@@ -392,6 +405,8 @@
   vnoremap af :<C-U>silent! :call JSTextObjectFunction()<CR>
 
   nnoremap <leader>fj :%!python -m json.tool<cr>
+
+  nnoremap <leader>jsd <Plug>(jsdoc)
 
 " -----------------------------------------------------------------------------
 " Ruby
