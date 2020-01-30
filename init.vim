@@ -2,9 +2,10 @@ source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/theme.vimrc
 source $HOME/.config/nvim/config/mappings.vimrc
 
+set encoding=UTF-8
 set hidden                   " hide buffers when abandoned instead of unload
 set synmaxcol=1000           " Don't syntax highlight long lines
-set colorcolumn=80
+set colorcolumn=80,120
 
 " set tags=./.tags
 
@@ -16,9 +17,9 @@ set number
 set relativenumber
 set nowrap
 set inccommand=nosplit
-set list                " Show hidden characters
+set nolist                " Show hidden characters
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
-set clipboard+=unnamedplus
+set clipboard=unnamed
 set foldmethod=indent
 set foldlevelstart=99
 
