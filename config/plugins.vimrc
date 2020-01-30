@@ -6,6 +6,9 @@ call plug#begin()
   " Insert and delete brakets, parens, quotes.
   Plug 'jiangmiao/auto-pairs'
 
+  " Fuzzy finder for lines in the current file
+  Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+
   " Slack on VIM
   Plug 'yaasita/edit-slack.vim'
 
@@ -19,9 +22,6 @@ call plug#begin()
 
   " Highligh the cursor word
   Plug 't9md/vim-quickhl'
-
-  " Linters
-  Plug 'w0rp/ale'
 
   " Expand region
   Plug 'terryma/vim-expand-region'
@@ -123,8 +123,8 @@ call plug#begin()
     let g:UltiSnipsExpandTrigger="<C-l>"
 
   Plug 'honza/vim-snippets'
-  Plug 'wellle/tmux-complete.vim'
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  " Plug 'wellle/tmux-complete.vim'
+  " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
   Plug 'ervandew/supertab'
 
 " -----------------------------------------------------------------------------
@@ -150,8 +150,8 @@ call plug#begin()
 " -----------------------------------------------------------------------------
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-easytags'
-    let g:easytags_always_enabled = 1
-    let g:easytags_async = 1
+    let g:easytags_always_enabled = 0
+    let g:easytags_async = 0
     let g:easytags_dynamic_files = 1
   Plug 'majutsushi/tagbar'
 
@@ -202,6 +202,8 @@ call plug#begin()
 
   " React code snippets
   Plug 'epilande/vim-react-snippets'
+
+  Plug 'heavenshell/vim-jsdoc'
 
 " -----------------------------------------------------------------------------
 " Python

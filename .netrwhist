@@ -1,3 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/Users/alexvko/workspace/nestready/api'
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/alexvko/workspace/nestready/api'
+let g:netrw_dirhist_3='/Users/alexvko/workspace'
+let g:netrw_dirhist_2='/Users/alexvko/.config/nvim'
+let g:netrw_dirhist_1='/Users/alexvko/workspace/nestready/api/engines/nest_engage_engine/spec'
