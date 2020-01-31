@@ -49,6 +49,7 @@ call plug#begin()
 
   " Find and Replace
   Plug 'brooth/far.vim',{  'on': ['Far',  'Farp',  'F'] }
+    let g:far#source = 'rg'
   Plug 'jremmen/vim-ripgrep'
 
   " Allow repeat to work with plugins
@@ -150,8 +151,8 @@ call plug#begin()
 " -----------------------------------------------------------------------------
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-easytags'
-    let g:easytags_always_enabled = 0
-    let g:easytags_async = 0
+    let g:easytags_always_enabled = 1
+    let g:easytags_async = 1
     let g:easytags_dynamic_files = 1
   Plug 'majutsushi/tagbar'
 

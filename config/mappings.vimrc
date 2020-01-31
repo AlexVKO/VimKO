@@ -282,9 +282,8 @@
   nnoremap <silent> [Files]e :NERDTreeToggle<CR>
 
   " Find all
-  nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> all --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-  " nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr>  all  --source=rg<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-  nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr> 
+  nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> **/*.*<left><left><left><left><left><left><left>
+  nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr> **/*.*<left><left><left><left><left><left><left>
 
 " -----------------------------------------------------------------------------
 " FuzzyFinder
