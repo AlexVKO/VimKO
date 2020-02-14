@@ -18,7 +18,7 @@ set relativenumber
 set nowrap
 set inccommand=nosplit
 set nolist                " Show hidden characters
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
+" set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
 set clipboard=unnamed
 set foldmethod=indent
 set foldlevelstart=99
@@ -29,6 +29,7 @@ set showtabline=2       " Always show the tabs line
 set scrolloff=2         " Keep at least 2 lines above/below
 set sidescrolloff=5     " Keep at least 5 lines left/right
 set display=lastline
+set cursorline
 
 " Javascript
 " Pretifier configuration

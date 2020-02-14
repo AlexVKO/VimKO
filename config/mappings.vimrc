@@ -21,6 +21,9 @@
   nnoremap  [Git]   <Nop>
   nmap      g [Git]
 
+  nnoremap  [Ruby]   <Nop>
+  nmap      R [Ruby]
+  vmap      R [Ruby]
 " -----------------------------------------------------------------------------
 " Miscellaneous
 " -----------------------------------------------------------------------------
@@ -57,6 +60,7 @@
 
   " Checkbox
   map <silent> <leader>x :call ToogleCheckbox()<cr>
+  nmap <leader>tcc :set cursorcolumn!<CR>
 
   " Expand region
   xmap v <Plug>(expand_region_expand)
@@ -153,7 +157,7 @@
   nnoremap <return> za
 
   " Focus the current fold by closing all others
-  nnoremap <leader>z zMza
+  nnoremap <leader>z zMl
 
   " Display diff from last save
   command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
@@ -226,8 +230,8 @@
   " Resize
   nnoremap <Up>    :resize +2<CR>
   nnoremap <Down>  :resize -2<CR>
-  nnoremap <Left>  :vertical resize +2<CR>
-  nnoremap <Right> :vertical resize -2<CR>
+  nnoremap <Left>  :vertical resize +10<CR>
+  nnoremap <Right> :vertical resize -10<CR>
 
 " -----------------------------------------------------------------------------
 " Foldings
@@ -263,7 +267,7 @@
   nnoremap <silent> [Files]ru :! bundle exec rubocop -a <C-r>=expand('%')<cr>  >/dev/null<cr> <cr>
 
   " reload the file
-  nnoremap [Files]ch :checktime
+  nnoremap [Files]ch :checktime<cr>
 
   " Delete current file
   nnoremap [Files]de :!rm %
@@ -282,8 +286,8 @@
   nnoremap <silent> [Files]e :NERDTreeToggle<CR>
 
   " Find all
-  nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> **/*.*<left><left><left><left><left><left><left>
-  nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr> **/*.*<left><left><left><left><left><left><left>
+  nnoremap [Files]g :F <c-r>=expand("<cword>")<cr> **/*.* -S <left><left><left><left><left><left><left>
+  nnoremap [Files]r :Far <c-r>=expand("<cword>")<cr> **/*.* -S<left><left><left><left><left><left><left>
 
 " -----------------------------------------------------------------------------
 " FuzzyFinder
@@ -410,10 +414,14 @@
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
-  nnoremap <leader>Rap  :RAddParameter<cr>
-  nnoremap <leader>Rcc  :RConvertPostConditional<cr>
-  nnoremap <leader>Rele :RExtractLet<cr>
-  vnoremap <leader>Reco :RExtractConstant<cr>
-  vnoremap <leader>Relo :RExtractLocalVariable<cr>
-  nnoremap <leader>Rrv  :RInlineTemp<cr>
-  vnoremap <leader>Rem  :RExtractMethod<cr>
+  nnoremap [Ruby]ap  :RAddParameter<cr>
+  nnoremap [Ruby]ti  :RConvertPostConditional<cr>
+  nnoremap [Ruby]ele :RExtractLet<cr>
+  vnoremap [Ruby]eco :RExtractConstant<cr>
+  vnoremap [Ruby]em  :RExtractMethod<cr>
+
+  vnoremap <silent> [Ruby]p :<C-u>RubyEvalPrint<CR>
+  vnoremap <silent> [Ruby]i :<C-u>RubyEvalInsert<CR>
+
+  nnoremap <silent> [Ruby]p :<C-u>RubyEvalPrint<CR>
+  nnoremap <silent> [Ruby]i :<C-u>RubyEvalInsert<CR>

@@ -1,115 +1,191 @@
-snippet props
-	this.props.${1}
-
-snippet st
-	this.state.${1}
-
-snippet sst
-	this.setState({
-		${1}: ${2}
-	});
-
 snippet render
 	render() {
 		return (
 			${1:<div />}
 		);
 	}
-
-snippet component
-	import React, { Component } from 'react'
-	import PropTypes from 'prop-types'
-
-	import './style.css'
-
-	export default class ${1:ClassName} extends Component {
-		static propTypes = {
-			${2}
-		}
-
-		render() {
-			return (
-				${3:<div />}
-			)
-		}
-	}
-
-snippet cdm
-	componentDidMount() {
-		${1}
-	}
-
-snippet cdup
-	componentDidUpdate(prevProps, prevState) {
-		${1}
-	}
-
-snippet cwm
-	componentWillMount() {
-		${1}
-	}
-
-snippet cwr
-	componentWillReceiveProps(nextProps) {
-		${1}
-	}
-
-snippet cwun
-	componentWillUnmount() {
-		${1}
-	}
-
-snippet cwu
-	componentWillUpdate(nextProps, nextState) {
-		${1}
-	}
+endsnippet
 
 snippet log
-	console.log('${1:here}')
+console.log('${1:here}')
+endsnippet
 
-snippet =()
-  ${1} => ${2}
+snippet ()
+${1} => ${2}
+endsnippet
 
-snippet ={}
+snippet {}
 	(${1}) => {
 		${2}
-  }
+}
+endsnippet
 
 snippet import
 	import ${1:foo} from '${2:bar}'
+endsnippet
 
-snippet map
-	map(${1:(c, i)} => ${$2})
+snippet "int " "interator" riA
+${1:asdf}(${2:(c, i)} => ${$3})
+endsnippet
 
-snippet filter
-	filter(${1:(c, i)} => ${$2})
+snippet "let " "let" riA
+let ${1} = ${2};
+endsnippet
 
-snippet forEach
-	forEach(${1:(c, i)} => ${$2})
+snippet "const " "let" riA
+const ${1} = ${2};
+endsnippet
 
-snippet reduce
-	reduce(${1:(c, i)} => ${$2})
+snippet "fund " "let" riA
+/**
+	* ${3}
+	*
+	* @returns {${2}}
+	*/
+${1:functionName}() {
+	${4}
+}
+endsnippet
 
-snippet find
-	find((${1:item}) => ${1:item})
+snippet "then" "then" riA
+then( ({json, status}) => {
 
-snippet let
-	let ${1} = ${2}
+})
+endsnippet
 
-snippet const
-	const ${1} = ${2}
+# React
+snippet rfc "React Functional Component" b
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './${2:$1}.css';
 
-snippet fun
-	/**
-	 * ${3}
-	 *
-	 * @returns {${2}}
-	 */
-	${1:functionName}() {
+function ${1:`!v expand('%:t:r')`}({ $3 }) {
+	return (
+		<${5:div} className={styles.base}>
+			$0
+		</$5>
+	);
+}
 
-	}
+$1.defaultProps = {$4};
 
-snippet then
-	then( ({json, status}) => {
+$1.propTypes = {`!p
+props = t[3]
+if props:
+  snip >> 1
+  for prop in props.split(', '):
+    snip += prop + ': PropTypes.any,'
+`
+};
 
-	})
+export default $1;
+endsnippet
+
+snippet rsc "React Styled Component" b
+import styled from 'styled-components';
+
+const ${1:`!v expand('%:t:r')`} = styled.${2:div}\`
+	$3
+\`;
+
+export default $1;
+endsnippet
+
+snippet pt "PropTypes Definition" b
+${1:`!v expand('%:t:r')`.}propTypes = {
+	${2:className}: ${3:PropTypes.string},
+};
+endsnippet
+
+# Prop types
+snippet  pt.a "PropTypes Array" w
+PropTypes.array${1:,}
+endsnippet
+
+snippet   pt.b "PropTypes Boolean" w
+PropTypes.bool${1:,}
+endsnippet
+
+snippet pt.f "PropTypes Function" w
+PropTypes.func${1:,}
+endsnippet
+
+snippet pt.n "PropTypes Number" w
+PropTypes.number${1:,}
+endsnippet
+
+snippet pt.o "PropTypes Object" w
+PropTypes.object${1:,}
+endsnippet
+
+snippet pt.s "PropType String" w
+PropTypes.string${1:,}
+endsnippet
+
+snippet pt.no "PropTypes Node" w
+PropTypes.node${1:,}
+endsnippet
+
+snippet pt.e "PropTypes Element" w
+PropTypes.element${1:,}
+endsnippet
+
+snippet pt.io "PropTypes instanceOf" w
+PropTypes.instanceOf(${2:PropTypes.string})${1:,}
+endsnippet
+
+snippet pt.one "PropTypes oneOf" w
+PropTypes.oneOf(['$2'$3])${1:,}
+endsnippet
+
+snippet pt.onet "PropTypes oneOfType" w
+PropTypes.oneOfType([
+	$2
+])${1:,}
+endsnippet
+
+snippet pt.ao "PropTypes arrayOf" w
+PropTypes.arrayOf(${2:PropTypes.string})${1:,}
+endsnippet
+
+snippet pt.oo "PropTypes objectOf" w
+PropTypes.objectOf(${2:PropTypes.string})${1:,}
+endsnippet
+
+snippet pt.sh "PropTyes Shape" w
+PropTypes.shape({
+	$2
+})${1:,}
+endsnippet
+
+snippet ir "isRequired" w
+isRequired,
+endsnippet
+
+# Hooks
+snippet us.s "useState" w
+const [$1, set${1/\w+\s*/\u$0/g}] = useState(${3:''})${0:;}
+endsnippet
+
+snippet us.e "useEffect" w
+useEffect(() => {
+  $1
+})${0:;}
+endsnippet
+
+snippet us.d "useDispatch" w
+const dispatch = useDispatch();
+endsnippet
+
+snippet us.er "useEffect with return" w
+useEffect(() => {
+  $1
+	return () => {
+    $2
+	};
+})${0:;}
+endsnippet
+
+snippet us.c "useContext" w
+const $1 = useContext($2)${0:;}
+endsnippet

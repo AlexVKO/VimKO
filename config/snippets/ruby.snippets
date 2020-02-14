@@ -1,203 +1,150 @@
 snippet notifysentry
-	Raven.capture_message("${1}", message: "${2}")
+Raven.capture_message("${1}", message: "${2}")
+endsnippet
 
-snippet ea
-	ea { |${1:e}| ${0} }
+snippet each
+ea { |${1:e}| ${0} }
+endsnippet
 
-snippet eado
-	ea do |${1:e}|
-	  ${0}
-	end
+snippet eachdo
+ea do |${1:e}|
+${0}
+end
+endsnippet
 
 snippet find
-	find { |${1:e}| ${0} }
+find { |${1:e}| ${0} }
+endsnippet
 
 snippet finddo
-	find do |${1:e}|
-	  ${0}
-	end
+find do |${1:e}|
+${0}
+end
+endsnippet
 
 snippet findall
-	find_all { |${1:e}| ${0} }
+find_all { |${1:e}| ${0} }
+endsnippet
 
 snippet findalldo
-	find_all do |${1:e}|
-	  ${0}
-	end
+find_all do |${1:e}|
+${0}
+end
+endsnippet
 
 snippet all?
-	all? { |${1:e}| ${0} }
+all? { |${1:e}| ${0} }
+endsnippet
 
 snippet any?
-	any? { |${1:e}| ${0} }
+any? { |${1:e}| ${0} }
+endsnippet
 
-snippet ->
-	-> { ${0} }
+snippet >
+-> { ${0} }
+endsnippet
 
-snippet ->a
-	->(${1:args}) { ${0} }
+snippet >a
+->(${1:args}) { ${0} }
+endsnippet
 
 snippet reject
-	reject { |${1:e}| ${0} }
+reject { |${1:e}| ${0} }
+endsnippet
 
 snippet rejectdo
-	reject do |${1:e}|
-	  ${0}
-	end
-# Testing
+reject do |${1:e}|
+${0}
+end
+endsnippet
 
+# Testing
 snippet desc
-	describe '${1:description}' do
-	  ${2}
-	end
+describe '${1:description}' do
+${2}
+end
+endsnippet
 
 snippet cont
-	context '${1:description}' do
-	  ${2}
-	end
+context '${1:description}' do
+${2}
+end
+endsnippet
 
 snippet it
-	it { ${1} }
+it { ${1} }
+endsnippet
 
 snippet itdo
-	it '${1:description}' do
-	  ${2}
-	end
+it '${1:description}' do
+${2}
+end
+endsnippet
 
 snippet xit
-	xit '${1:description}' do
-	  ${2}
-	end
+xit '${1:description}' do
+${2}
+end
+endsnippet
 
-snippet rspecfordropshippers
-	let(:current_dropshipper)      { create(:dropshipper_with_store)             }
-	let(:current_store_credential) { current_dropshipper.store_credentials.first }
-	let(:current_store)            { current_store_credential.store              }
-	let(:integrated_store)         { create :integrated_store, store: current_store}
-
-	before do
-	  authenticate_store_credential!(current_store_credential)
-	end
-
-snippet extoget
-	describe 'GET ${1:method}' do
-	  before do
-	    get :${1:method}
-	  end
-
-	  ${2}
-
-	  it { expect(response).to have_http_status(200) }
-	end
-
-snippet extoput
-	describe 'PUT ${1:method}' do
-	  before do
-	    put :${1:method}, params: ${2:{}}
-	  end
-
-	  ${3}
-
-	  it { expect(response).to have_http_status(200) }
-	end
-
-snippet extopost
-	describe 'POST ${1:method}' do
-	  before do
-		  post :${1:method}, params: ${2:{}}
-	  end
-
-	  ${3}
-
-	  it { expect(response).to have_http_status(201) }
-	end
-
-snippet extodelete
-	describe 'DELETE ${1:method}' do
-	  before do
-	    delete :${1:method}, params: ${2:{}}
-	  end
-
-	  ${3}
-
-	  it { expect(response).to have_http_status(204) }
-	end
 
 snippet bef
-	before do
-	  ${1}
-	end
+before do
+	${1}
+end
+endsnippet
 
 snippet let
-	let(:${1}) { ${2} }
+let(:${1}) { ${2} }
+endsnippet
 
 snippet allow
-	allow(${1:object}).to receive(${2:message}) { ${3:return value} }
+allow(${1:object}).to receive(${2:message}) { ${3:return value} }
+endsnippet
 
 snippet exteq
-	it '${1}' do
-	  expect(${1}).to eq(${2})
-	end
+it '${1}' do
+	expect(${1}).to eq(${2})
+end
+endsnippet
 
 snippet extb
-	it '${1}' do
-	  expect(${2}).to be_${3:present}
-	end
+it '${1}' do
+	expect(${2}).to be_${3:present}
+end
+endsnippet
 
 snippet exti
-	it '${1}' do
-	  expect(${2}).to include ${3}
-	end
+it '${1}' do
+	expect(${2}).to include ${3}
+end
+endsnippet
 
 snippet extcft
-	it '${1}' do
-	  expect{ ${2} }.to change(${3} ).from(${4}).to(${5})
-	end
+it '${1}' do
+	expect{ ${2} }.to change(${3} ).from(${4}).to(${5})
+end
+endsnippet
 
 snippet extcby
-	it '${1}' do
-	  expect{ ${2} }.to change( ${3} ).by(${4})
-	end
+it '${1}' do
+	expect{ ${2} }.to change( ${3} ).by(${4})
+end
+endsnippet
 
 snippet extce
-	it '${1}' do
-	  expect(${2}).to contain_exactly(${3})
-	end
-
-snippet extoall
-	it '${1}' do
-	  expect(${2}).to all(${3:be_odd})
-	end
-
-snippet extre
-	it '${1}' do
-	  expect { raise ${2} }.to raise_error ${3:error}
-	end
-
-snippet exstatus
-	it '${1}' do
-	  expect(response).to have_http_status(${2:200})
-	end
-
-# Shoulda
-snippet shouldav
-	is_expected.to validate_${1:presence}_of :${2}
-
-snippet shouldabt
-	is_expected.to belong_to :${1}
-
-snippet shouldahm
-	is_expected.to have_many :${1}
-
-snippet shouldaanaf
-	is_expected.to accept_nested_attributes_for :${1}
+it '${1}' do
+	expect(${2}).to contain_exactly(${3})
+end
+endsnippet
 
 snippet allow_any_instance_of
-	allow_any_instance_of(
-		${1}
-	).to receive(
-		:
-	).and_return(
-
-	)
+allow_any_instance_of(
+	${1}
+).to receive(
+	:${2}
+).and_return(
+	${3}
+)
+endsnippet
 

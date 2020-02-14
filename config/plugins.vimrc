@@ -29,6 +29,7 @@ call plug#begin()
   " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
 
+
   " Send commands to other tmux tabs from vim
   Plug 'benmills/vimux'
     let g:VimuxOrientation = "h"
@@ -57,6 +58,7 @@ call plug#begin()
 
   " Visual indentation
   Plug 'Yggdroot/indentLine'
+    let g:indentLine_enabled = 0
 
   " Nice starup
   Plug 'mhinz/vim-startify'
@@ -118,10 +120,14 @@ call plug#begin()
 " Autocomplete and Snippets
 " -----------------------------------------------------------------------------
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+    let g:coc_global_extensions = ['coc-solargraph']
 
   Plug 'SirVer/ultisnips'
     let g:UltiSnipsEditSplit="vertical"
     let g:UltiSnipsExpandTrigger="<C-l>"
+    let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/config/snippets']
+    let g:UltiSnipsJumpForwardTrigger="<c-n>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
   Plug 'honza/vim-snippets'
   " Plug 'wellle/tmux-complete.vim'
@@ -183,6 +189,7 @@ call plug#begin()
   Plug 'AndrewRadev/splitjoin.vim'
     " let g:blockle_mapping = '<leader>b'
 
+  Plug 't9md/vim-ruby_eval'
 " -----------------------------------------------------------------------------
 " Elixir
 " -----------------------------------------------------------------------------
@@ -196,6 +203,11 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
+
+  " Doesn't work well with jsx :(
+  " Plug 'frazrepo/vim-rainbow'
+  "   let g:rainbow_active = 0
+
   Plug 'Galooshi/vim-import-js'
 
   " ES2015 code snippets 
@@ -205,6 +217,9 @@ call plug#begin()
   Plug 'epilande/vim-react-snippets'
 
   Plug 'heavenshell/vim-jsdoc'
+  Plug 'yuezk/vim-js'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'chemzqm/vim-jsx-improve'
 
 " -----------------------------------------------------------------------------
 " Python
