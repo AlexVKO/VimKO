@@ -391,6 +391,8 @@
       VimuxRunCommand("clear; bundle exec rspec " . a:file_name . " --fail-fast -fd")
     elseif(match(a:file_name, '.feature') != -1)
       VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
+    elseif(match(a:file_name, 'test/.*_test.exs') != -1)
+      VimuxRunCommand("clear; mix test " . a:file_name)
     elseif(match(a:file_name, 'test/.*_test.rb') != -1)
       VimuxRunCommand("clear; be rake test TEST=" . a:file_name)
     elseif(match(a:file_name, 'tests/flows/.*_process.rb') != -1)
@@ -410,6 +412,12 @@
   nnoremap <leader>fj :%!python -m json.tool<cr>
 
   nnoremap <leader>jsd <Plug>(jsdoc)
+
+" -----------------------------------------------------------------------------
+" Elixir
+" -----------------------------------------------------------------------------
+iabbrev <buffer> pp \|>
+setlocal spell
 
 " -----------------------------------------------------------------------------
 " Ruby

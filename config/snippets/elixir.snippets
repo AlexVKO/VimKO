@@ -1,0 +1,149 @@
+snippet def "defines a new function with a multiline block" !b
+def ${1:name}(${2:params}) do
+  $0
+end
+endsnippet
+
+snippet defl "defines a new function" !b
+def ${1:name}(${2:params}), do: $0
+endsnippet
+
+snippet defp "defines a private method with a multiline block" !b
+defp ${1:name}(${2:params}) do
+  $0
+end
+endsnippet
+
+snippet defpl "defines a new private function" !b
+defp ${1:name}(${2:params}), do: $0
+endsnippet
+
+snippet defc "defines a behavior callback" !b
+defcallback ${1:name}(${0:params})
+endsnippet
+
+snippet defm "defines a macro" !b
+defmacro ${1:name}(${2:params}) do
+  $0
+end
+endsnippet
+
+snippet qt "define a quote block" !b
+quote do
+  $0
+end
+endsnippet
+
+snippet qtl "defines a quote block inline" !b
+quote do: $0
+endsnippet
+
+snippet mod "defines a new module" !b
+defmodule ${1:name} do
+  $0
+end
+endsnippet
+
+snippet ht "inserts a [head | tail]" !i
+[${1:head}|${0:tail}]
+endsnippet
+
+snippet test "add a test case" !b
+test "${1:description}" do
+  $0
+end
+endsnippet
+
+snippet if "add an if block" !b
+if ${1:condition} do
+  $0
+end
+endsnippet
+
+snippet ife "add an if-else block" !b
+if ${1:condition} do
+  $2
+else
+  $0
+end
+endsnippet
+
+snippet insp "inspect an expression result" !b
+IO.puts """
+#############################
+#{inspect $0}
+#############################
+"""
+endsnippet
+
+snippet ap "inspect an expression result with apex" !b
+IO.puts """
+#############################
+#{Apex.ap $0}
+#############################
+"""
+endsnippet
+
+snippet fn "insert an anonymous function" !i
+fn(${1:args}) -> ${0} end
+endsnippet
+
+snippet & "insert an anonymous function short syntax" !i
+&($1)$0
+endsnippet
+
+snippet doc "insert a function documentation block" !b
+@doc """
+${0}
+"""
+endsnippet
+
+snippet mdoc "insert a module documentation block" !b
+@moduledoc """
+${0}
+"""
+endsnippet
+
+snippet # "insert a string interpolation" !i
+#{${1}}$0
+endsnippet
+
+snippet | "insert a pipe operator" !i
+|> 
+endsnippet
+
+snippet |i "insert a pipe to IO.inspect" !i
+|> IO.inspect
+endsnippet
+
+snippet using "insert using macro" !b
+defmacro __using__(opts) do
+  $0
+end
+endsnippet
+
+snippet before_compile "insert before_compile macro" !b
+defmacro __before_compile__(env) do
+  $0
+end
+endsnippet
+
+snippet { "Insert a tuple" !i
+{$1}$0
+endsnippet
+
+snippet % "Insert a map with symbols as keys" !i
+%{${1:key}: ${2:value}}$0
+endsnippet
+
+snippet %b "Insert a map with binaries as keys" !i
+%{"${1:key}" => ${2:value}}$0
+endsnippet
+
+snippet ok "Insert ok tuple" !i
+{:ok, ${1:value}}$0
+endsnippet
+
+snippet err "Insert error tuple" !i
+{:error, ${1:value}}$0
+endsnippet

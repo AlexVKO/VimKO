@@ -17,8 +17,8 @@ set number
 set relativenumber
 set nowrap
 set inccommand=nosplit
-set nolist                " Show hidden characters
-" set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
+set list                " Show hidden characters
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
 set clipboard=unnamed
 set foldmethod=indent
 set foldlevelstart=99
