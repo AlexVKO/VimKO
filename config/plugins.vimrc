@@ -6,6 +6,10 @@ call plug#begin()
   " Insert and delete brakets, parens, quotes.
   Plug 'jiangmiao/auto-pairs'
 
+  " granular project configuration using projections
+  Plug 'tpope/vim-projectionist'
+  source $HOME/.config/nvim/config/plugins/projectionist.vimrc
+
   " Fuzzy finder for lines in the current file
   Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 

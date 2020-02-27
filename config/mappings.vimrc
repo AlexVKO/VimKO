@@ -120,6 +120,14 @@
   " Save with sudo
   cmap W!! w !sudo tee % >/dev/null
 
+  cmap AC :call CreateAlternateFile()<CR>
+
+  function! CreateAlternateFile()
+    let alternate_file = projectionist#query_file('alternate')[0]
+    exec "saveas  " . alternate_file
+    exec "call projectionist#apply_template()"
+  endfunction
+
   " Smart Duplication
   nnoremap <Leader>d :t.<cr>
   vnoremap <Leader>d :co-1<cr>
