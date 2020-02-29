@@ -100,6 +100,8 @@ call plug#begin()
   source $HOME/.config/nvim/config/plugins/fzf.vimrc
   let g:fzf_layout = { 'down': '~40%' }
 
+  Plug 'alexvko/fzf-to-functions.vim'
+
 " -----------------------------------------------------------------------------
 " Sidebar
 " -----------------------------------------------------------------------------

@@ -6,6 +6,7 @@ set encoding=UTF-8
 set hidden                   " hide buffers when abandoned instead of unload
 set synmaxcol=1000           " Don't syntax highlight long lines
 set colorcolumn=80,120
+set spelllang=en
 
 " set tags=./.tags
 

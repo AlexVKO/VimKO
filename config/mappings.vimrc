@@ -24,6 +24,10 @@
   nnoremap  [Ruby]   <Nop>
   nmap      R [Ruby]
   vmap      R [Ruby]
+
+  nnoremap  [Elixir]   <Nop>
+  nmap      E [Elixir]
+  vmap      E [Elixir]
 " -----------------------------------------------------------------------------
 " Miscellaneous
 " -----------------------------------------------------------------------------
@@ -41,6 +45,8 @@
   " esc in insert mode
   " imap jk <Esc>
   " imap kj <Esc>
+
+  nnoremap <silent> <leader>m :FzfMethods <cr>
 
   " Highlight cursor word
   nmap <Leader>h <Plug>(quickhl-manual-this)
@@ -426,7 +432,6 @@
 " -----------------------------------------------------------------------------
 iabbrev <buffer> pp \|>
 setlocal spell
-
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
@@ -441,3 +446,5 @@ setlocal spell
 
   nnoremap <silent> [Ruby]p :<C-u>RubyEvalPrint<CR>
   nnoremap <silent> [Ruby]i :<C-u>RubyEvalInsert<CR>
+
+

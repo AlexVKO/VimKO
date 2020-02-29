@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/Users/alexvko/.config/nvim/plugged/NrrwRgn'
 let g:netrw_dirhist_6='/Users/alexvko'
 let g:netrw_dirhist_5='/Users/alexvko/dotfiles'
 let g:netrw_dirhist_4='/Users/alexvko/workspace/nestready/api'
