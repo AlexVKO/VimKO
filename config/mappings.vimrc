@@ -49,9 +49,9 @@
   nnoremap <silent> <leader>m :FzfMethods <cr>
 
   " Highlight cursor word
-  nmap <Leader>h <Plug>(quickhl-manual-this)
+  nnoremap <Leader>h <Plug>(quickhl-manual-this)
   xmap <Leader>h <Plug>(quickhl-manual-this)
-  nmap <Leader>H <Plug>(quickhl-manual-reset)
+  nnoremap <Leader>H <Plug>(quickhl-manual-reset)
   xmap <Leader>H <Plug>(quickhl-manual-reset)
 
   " Highlight selected lines
@@ -65,12 +65,8 @@
   vnoremap <leader>y :<C-U>call HighlightRegion()<CR>
 
   " Checkbox
-  map <silent> <leader>x :call ToogleCheckbox()<cr>
-  nmap <leader>tcc :set cursorcolumn!<CR>
-
-  " Expand region
-  xmap v <Plug>(expand_region_expand)
-  xmap V <Plug>(expand_region_shrink)
+  nnoremap <silent> <leader>x :call ToogleCheckbox()<cr>
+  nnoremap <leader>tcc :set cursorcolumn!<CR>
 
   " Indent file
   nnoremap <leader>e =ae<C-o>
@@ -107,7 +103,7 @@
   nnoremap <silent> q :<C-u>:quit<CR>
 
   " Toggle Tagbar
-  nmap <leader>; :TagbarToggle<CR>
+  nnoremap <leader>; :TagbarToggle<CR>
 
   " Open easy motion between panels
   nmap <silent> / <Plug>(easymotion-overwin-f2)
@@ -315,7 +311,7 @@
   nnoremap <silent> [FuzzyFinder]T :BTags <cr>
   nnoremap <silent> [FuzzyFinder]gc :BCommits <cr>
 
-  nmap [FuzzyFinder]/ <Plug>(AerojumpBolt)
+  nnoremap [FuzzyFinder]/ <Plug>(AerojumpBolt)
   " nnoremap <silent> [FuzzyFinder]/ :BLines <cr>
   " nnoremap <silent> [FuzzyFinder]me :BLines <cr> def\<space>
 
@@ -323,10 +319,10 @@
 " Dictionary and documentations
 " -----------------------------------------------------------------------------
   " Open the macOS dictionary on current word
-  " nmap <Leader>? :!open dict://<cword><CR><CR>
-  nmap <Leader>? :!open dict://<q-args>
+  " nnoremap <Leader>? :!open dict://<cword><CR><CR>
+  nnoremap <Leader>? :!open dict://<q-args>
 
-  :nmap <silent> <leader>k <Plug>DashSearch
+  :nnoremap <silent> <leader>k <Plug>DashSearch
 
   " Use K for show documentation in preview window
   nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -343,24 +339,24 @@
 " COC and Gotos
 " -----------------------------------------------------------------------------
   " Remap keys for gotos
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
+  nnoremap <silent> gd <Plug>(coc-definition)
+  nnoremap <silent> gy <Plug>(coc-type-definition)
+  nnoremap <silent> gi <Plug>(coc-implementation)
+  nnoremap <silent> gr <Plug>(coc-references)
 
   nnoremap <silent> [FuzzyFinder]me :CocList outline<cr>
 
 " -----------------------------------------------------------------------------
 " Tabularize
 " -----------------------------------------------------------------------------
-  nmap <Leader>t, :Tabularize /,\zs <CR>
-  vmap <Leader>t, :Tabularize /,\zs <CR>
-  nmap <Leader>t= :Tabularize /=\zs <CR>
-  vmap <Leader>t= :Tabularize /=\zs <CR>
-  nmap <Leader>t: :Tabularize /:\zs <CR>
-  vmap <Leader>t: :Tabularize /:\zs <CR>
-  nmap <Leader>tt :Tabularize /
-  vmap <Leader>tt :Tabularize /
+  nnoremap <Leader>t, :Tabularize /,\zs <CR>
+  vnoremap <Leader>t, :Tabularize /,\zs <CR>
+  nnoremap <Leader>t= :Tabularize /=\zs <CR>
+  vnoremap <Leader>t= :Tabularize /=\zs <CR>
+  nnoremap <Leader>t: :Tabularize /:\zs <CR>
+  vnoremap <Leader>t: :Tabularize /:\zs <CR>
+  nnoremap <Leader>tt :Tabularize /
+  vnoremap <Leader>tt :Tabularize /
 
 " -----------------------------------------------------------------------------
 " Terminal/Tmux pane integration
@@ -376,22 +372,22 @@
   nnoremap [Terminal]T :call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
 
   " Prompt for a command to run
-  map [Terminal]! :VimuxPromptCommand<CR>
+  nnoremap [Terminal]! :VimuxPromptCommand<CR>
 
   " Run the last shell command
   nnoremap <silent><leader>l :!!<CR>
 
   " Run last command executed by VimuxRunCommand
-  map [Terminal]l :VimuxRunLastCommand<CR> :echo g:VimuxLastCommand<CR>
+  nnoremap [Terminal]l :VimuxRunLastCommand<CR> :echo g:VimuxLastCommand<CR>
 
   " Close vim tmux runner opened by VimuxRunCommand
-  map [Terminal]q :VimuxCloseRunner<CR>
+  nnoremap [Terminal]q :VimuxCloseRunner<CR>
 
   " If text is selected, save it in the v buffer and send that buffer it to tmux
-  vmap <leader>! "vy :call VimuxSlime()<CR>
+  vnoremap <leader>! "vy :call VimuxSlime()<CR>
 
   " Select current paragraph and send it to tmux
-  nmap <leader>! vip<leader>ts<CR>
+  nnoremap <leader>! vip<leader>ts<CR>
 
   tnoremap jj <C-\><C-n>
 
@@ -413,6 +409,7 @@
       VimuxRunCommand("clear; bundle exec flows test " . a:file_name)
     endif
   endfunction
+
 " -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
@@ -430,8 +427,8 @@
 " -----------------------------------------------------------------------------
 " Elixir
 " -----------------------------------------------------------------------------
-iabbrev <buffer> pp \|>
-setlocal spell
+  iabbrev pp \|>
+
 " -----------------------------------------------------------------------------
 " Ruby
 " -----------------------------------------------------------------------------
