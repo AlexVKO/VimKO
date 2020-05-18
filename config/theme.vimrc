@@ -15,7 +15,7 @@ endfunc
 "
 
 set termguicolors
-let g:airline_theme='minimalist'
+let g:airline_theme='alexvko'
 colorscheme one
 let g:one_allow_italics = 1
 set background=dark

@@ -1,4 +1,8 @@
 {
+  "codeLens.enable": false,
+  "suggest.enablePreview": true,
+  "suggest.timeout": 1000,
+  "suggest.noselect": false,
 	"languageserver": {
 		"golang": {
 			"command": "gopls",
