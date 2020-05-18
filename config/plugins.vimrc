@@ -13,13 +13,27 @@ call plug#begin()
   " Fuzzy finder for lines in the current file
   Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 
+  " TODO: create new pluggin:
+  " - switches case between snake_case and CamelCase
+  " - Gets the last typed text and converts to the target case
+
   " Slack on VIM
   Plug 'yaasita/edit-slack.vim'
 
   Plug 'sheerun/vim-polyglot'
 
+  " Plug 'liuchengxu/vim-which-key'
+  Plug 'leoatchina/vim-which-key'
+  " autocmd  FileType which_key set laststatus=0
+  "       \| autocmd BufLeave <buffer> set laststatus=1
+
+  " Mapping manager
+  Plug 'AlexVKO/vim-mapping-manager', { 'do' : ':UpdateRemotePlugins' }
+
   " Edit selected code in new buffer
   Plug 'chrisbra/NrrwRgn'
+
+  Plug 'tpope/vim-unimpaired'
 
   " Grammar Checker
   Plug 'rhysd/vim-grammarous'
@@ -32,7 +46,6 @@ call plug#begin()
 
   " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
-
 
   " Send commands to other tmux tabs from vim
   Plug 'benmills/vimux'
@@ -113,13 +126,14 @@ call plug#begin()
 " Airline
 " -----------------------------------------------------------------------------
     Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'alexvko/vim-airline-themes'
+
     let g:airline_section_a = ''
     let g:airline_section_b = ''
-    let g:airline_section_z = '%3p%%/%L'
+    " let g:airline_section_z = '%3p%%/%L'
     let g:airline_section_y = ''
     let g:airline_section_x = ''
-    let g:airline#extensions#tagbar#enabled = 0
+    " let g:airline#extensions#tagbar#enabled = 1
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " -----------------------------------------------------------------------------
@@ -161,12 +175,12 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Ctags
 " -----------------------------------------------------------------------------
-  Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-easytags'
-    let g:easytags_always_enabled = 1
-    let g:easytags_async = 1
-    let g:easytags_dynamic_files = 1
-  Plug 'majutsushi/tagbar'
+  " Plug 'xolox/vim-misc'
+  " Plug 'xolox/vim-easytags'
+  "   let g:easytags_always_enabled = 0
+  "   let g:easytags_async = 0
+  "   let g:easytags_dynamic_files = 1
+  " Plug 'majutsushi/tagbar'
 
   Plug 'junegunn/vim-peekaboo'
   Plug 'junegunn/goyo.vim'
@@ -202,7 +216,7 @@ call plug#begin()
   Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
   Plug 'elixir-editors/vim-elixir'
   Plug 'mhinz/vim-mix-format'
-    let g:mix_format_on_save = 1
+    let g:mix_format_on_save = 0
 
 " -----------------------------------------------------------------------------
 " Go
@@ -219,7 +233,7 @@ call plug#begin()
 
   Plug 'Galooshi/vim-import-js'
 
-  " ES2015 code snippets 
+  " ES2015 code snippets
   Plug 'epilande/vim-es2015-snippets'
 
   " React code snippets
@@ -249,4 +263,5 @@ call plug#begin()
 " Docker
 " -----------------------------------------------------------------------------
   Plug 'ekalinin/Dockerfile.vim'
+
   call plug#end()

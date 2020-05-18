@@ -1,6 +1,7 @@
 source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/theme.vimrc
-source $HOME/.config/nvim/config/mappings.vimrc
+" source $HOME/.config/nvim/config/mappings.vimrc
+source $HOME/.config/nvim/managed_mappings.vimrc
 
 set encoding=UTF-8
 set hidden                   " hide buffers when abandoned instead of unload
@@ -8,10 +9,20 @@ set synmaxcol=1000           " Don't syntax highlight long lines
 set colorcolumn=80,120
 set spelllang=en
 
-" set tags=./.tags
+" Give more space for displaying messages.
+set cmdheight=2
+
+set tags=./.tags
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=100
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
 " Behavior
 set number
@@ -19,7 +30,7 @@ set relativenumber
 set nowrap
 set inccommand=nosplit
 set list                " Show hidden characters
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
+set listchars=tab:→\ ,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
 set clipboard=unnamed
 set foldmethod=indent
 set foldlevelstart=99
@@ -76,6 +87,14 @@ au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 " Treat words with dash as a word
 set iskeyword+=-
 
+" Coc
+augroup mygroup
+  autocmd!
+
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
 " Checkbox toogler
 fu! ToogleCheckbox()
 	let line = getline('.')
@@ -104,3 +123,42 @@ fu! ToogleCheckbox()
 
 	call setline('.', line)
 endf
+
+set timeoutlen=500
+
+function! RunTestsOnLeftPane(file_name)
+  if(match(a:file_name, '_spec.rb') != -1)
+    VimuxRunCommand("clear; bundle exec rspec " . a:file_name . " --fail-fast -fd")
+  elseif(match(a:file_name, '.feature') != -1)
+    VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
+  elseif(match(a:file_name, 'test/.*_test.exs') != -1)
+    VimuxRunCommand("clear; mix test " . a:file_name)
+  elseif(match(a:file_name, 'test/.*_test.rb') != -1)
+    VimuxRunCommand("clear; be rake test TEST=" . a:file_name)
+  elseif(match(a:file_name, 'tests/flows/.*_process.rb') != -1)
+    VimuxRunCommand("clear; bundle exec flows test " . a:file_name)
+  endif
+endfunction
+
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+function! OpenCurrentFileOnGithub()
+  let branch_url = system('git remote get-url --all origin | grep github | head -1')
+  let branch_path = substitute(split(branch_url, ':')[1], '.git', '', 'g')
+
+  let repo_url = "https://github.com/" .  substitute(branch_path, '\n\+$', '', '') . "/blob/master/" . expand('%') . '\#L' . line('.')
+  exec "! open " . repo_url
+endfunction
+
+function! CutAndPasteByLineNumber(relative_line_number)
+  let cursor_position = getpos('.')
+
+  exec a:relative_line_number . 'd'
+  call setpos(".", cursor_position)
+  normal P
+  call setpos(".", cursor_position)
+endfunction
+
