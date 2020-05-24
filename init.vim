@@ -1,6 +1,5 @@
 source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/theme.vimrc
-" source $HOME/.config/nvim/config/mappings.vimrc
 source $HOME/.config/nvim/managed_mappings.vimrc
 
 set encoding=UTF-8
@@ -8,6 +7,8 @@ set hidden                   " hide buffers when abandoned instead of unload
 set synmaxcol=1000           " Don't syntax highlight long lines
 set colorcolumn=80,120
 set spelllang=en
+set mmp=5000
+set scrolloff=3
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -97,7 +98,7 @@ augroup end
 
 " Checkbox toogler
 fu! ToogleCheckbox()
-	let line = getline('.')
+  let line = getline('.')
 
   if(match(line, '\[.*\]') != -1)
     let states = [' ', 'x', 'n/a']
@@ -121,7 +122,7 @@ fu! ToogleCheckbox()
     let line = substitute(line, '\<', '' . '[ ]' . ' ', '')
   endif
 
-	call setline('.', line)
+  call setline('.', line)
 endf
 
 set timeoutlen=500
@@ -161,4 +162,3 @@ function! CutAndPasteByLineNumber(relative_line_number)
   normal P
   call setpos(".", cursor_position)
 endfunction
-

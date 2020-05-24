@@ -1,4 +1,24 @@
+"automated installation of vimplug if not installed
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+endif
+
 call plug#begin()
+
+" -----------------------------------------------------------------------------
+" Quick Jumps
+" -----------------------------------------------------------------------------
+  " Lightning fast left-right movement in Vim
+  Plug 'unblevable/quick-scope'
+
+  " Better motion
+  Plug 'justinmk/vim-sneak'
+  let g:sneak#label = 1
+
+  " Fuzzy finder for lines in the current file
+  Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " -----------------------------------------------------------------------------
 " General
@@ -6,32 +26,31 @@ call plug#begin()
   " Insert and delete brakets, parens, quotes.
   Plug 'jiangmiao/auto-pairs'
 
+  " Rainbow Parentheses
+  Plug 'luochen1990/rainbow'
+    let g:rainbow_active = 0
+
+  " Smooth scrolling
+  Plug 'yuttie/comfortable-motion.vim'
+
+  Plug 'drzel/vim-line-no-indicator'
+
   " granular project configuration using projections
   Plug 'tpope/vim-projectionist'
-  source $HOME/.config/nvim/config/plugins/projectionist.vimrc
+    source $HOME/.config/nvim/config/plugins/projectionist.vimrc
 
-  " Fuzzy finder for lines in the current file
-  Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
-
-  " TODO: create new pluggin:
-  " - switches case between snake_case and CamelCase
-  " - Gets the last typed text and converts to the target case
-
-  " Slack on VIM
-  Plug 'yaasita/edit-slack.vim'
-
+  " A solid language pack for Vim.
   Plug 'sheerun/vim-polyglot'
 
-  " Plug 'liuchengxu/vim-which-key'
+  " Vim plugin that shows keybindings in popup
   Plug 'leoatchina/vim-which-key'
-  " autocmd  FileType which_key set laststatus=0
-  "       \| autocmd BufLeave <buffer> set laststatus=1
 
   " Mapping manager
   Plug 'AlexVKO/vim-mapping-manager', { 'do' : ':UpdateRemotePlugins' }
 
   " Edit selected code in new buffer
   Plug 'chrisbra/NrrwRgn'
+    let g:nrrw_rgn_write_on_sync = 1
 
   Plug 'tpope/vim-unimpaired'
 
@@ -41,11 +60,11 @@ call plug#begin()
   " Highligh the cursor word
   Plug 't9md/vim-quickhl'
 
-  " Expand region
-  Plug 'terryma/vim-expand-region'
-
   " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
+
+  Plug 'wellle/context.vim'
+    let g:context_enabled = 0
 
   " Send commands to other tmux tabs from vim
   Plug 'benmills/vimux'
@@ -66,9 +85,11 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
 
   " Find and Replace
-  Plug 'brooth/far.vim',{  'on': ['Far',  'Farp',  'F'] }
-    let g:far#source = 'rg'
   Plug 'jremmen/vim-ripgrep'
+
+  Plug 'machakann/vim-highlightedyank'
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'rhysd/committia.vim'
 
   " Allow repeat to work with plugins
   Plug 'tpope/vim-repeat'
@@ -85,20 +106,21 @@ call plug#begin()
     let g:better_whitespace_enabled=0
     let g:strip_whitespace_on_save=0
 
-  " Better motion
-  Plug 'easymotion/vim-easymotion'
-
   " Bookmarks
   Plug 'MattesGroeger/vim-bookmarks'
 
   " Nice foldings
   Plug 'tmhedberg/SimpylFold'
 
+  " Open current workd in Dash
+  Plug 'rizzatti/dash.vim'
+
   " Navigate and highlight matching words
   Plug 'andymass/vim-matchup'
 
-  " Open current workd in Dash
-  Plug 'rizzatti/dash.vim'
+  " Smooth scroll
+  " Waiting for tab's support
+  " Plug 'sslivkoff/vim-scroll-barnacle'
 
 " -----------------------------------------------------------------------------
 " Theme
@@ -131,8 +153,8 @@ call plug#begin()
     let g:airline_section_a = ''
     let g:airline_section_b = ''
     " let g:airline_section_z = '%3p%%/%L'
-    let g:airline_section_y = ''
-    let g:airline_section_x = ''
+    let g:airline_section_y = '%#__accent_bold#%{LineNoIndicator()}%#__restore__#'
+    " let g:airline_section_x = ''
     " let g:airline#extensions#tagbar#enabled = 1
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
@@ -150,8 +172,6 @@ call plug#begin()
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
   Plug 'honza/vim-snippets'
-  " Plug 'wellle/tmux-complete.vim'
-  " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
   Plug 'ervandew/supertab'
 
 " -----------------------------------------------------------------------------
@@ -175,13 +195,6 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Ctags
 " -----------------------------------------------------------------------------
-  " Plug 'xolox/vim-misc'
-  " Plug 'xolox/vim-easytags'
-  "   let g:easytags_always_enabled = 0
-  "   let g:easytags_async = 0
-  "   let g:easytags_dynamic_files = 1
-  " Plug 'majutsushi/tagbar'
-
   Plug 'junegunn/vim-peekaboo'
   Plug 'junegunn/goyo.vim'
     let g:goyo_height='95%'
@@ -226,11 +239,6 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
-
-  " Doesn't work well with jsx :(
-  " Plug 'frazrepo/vim-rainbow'
-  "   let g:rainbow_active = 0
-
   Plug 'Galooshi/vim-import-js'
 
   " ES2015 code snippets
@@ -247,7 +255,7 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Python
 " -----------------------------------------------------------------------------
-  " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+  Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
 " -----------------------------------------------------------------------------
 " HTML
@@ -264,4 +272,14 @@ call plug#begin()
 " -----------------------------------------------------------------------------
   Plug 'ekalinin/Dockerfile.vim'
 
-  call plug#end()
+" -----------------------------------------------------------------------------
+" PSQL
+" -----------------------------------------------------------------------------
+  Plug 'lifepillar/pgsql.vim'
+
+call plug#end()
+
+  " TODO: create new pluggin:
+  " - switches case between snake_case and CamelCase
+  " - Gets the last typed text and converts to the target case
+  " - Autocomplete only classses(or models, controllers)

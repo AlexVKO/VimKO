@@ -1,5 +1,16 @@
+# Create docs with the commands that I use the most
+# - C-X X-] autocomplete tags
+# - c-u delete line
+# - C-X
+
 leader ' ' do
   normal 'r', ':g//d<left><left>', desc: 'Remove lines with a specify pattern', execute: false
+
+  normal 'J', desc: 'Parameterize current line' do |nvim|
+    line = nvim.current.line
+    line.gsub!(/[^0-9A-Za-z]/, '').strip.gsub(/ +/, '-')
+    nvim.current.line = line
+  end
 
   normal 'x', ':call ToogleCheckbox()', desc: 'Toggle Checkbox (empty/[ ]/[x])'
 
@@ -8,8 +19,8 @@ leader ' ' do
   normal 'H', "<Plug>(quickhl-manual-reset)", desc: 'Highlight reset', recursively: true
   visual 'H', "<Plug>(quickhl-manual-reset)", desc: 'Highlight reset', recursively: true
 
-  normal 'e', '=ae<C-O>', desc: 'Indente file'
-  normal 'a', '=ip<C-O>', desc: 'Indente paragraph'
+  normal 'e', "=ae``", desc: 'Indente file'
+  normal 'a', "=ap``", desc: 'Indente paragraph'#, keep_cursor_position: true
 
   normal ',', ':<C-u>silent! keeppatterns %substitute/\s\+$//e', desc: 'Remove empty spaces'
   normal 'o', '<esc>viwp', desc: 'Overwrite word'
@@ -19,17 +30,22 @@ leader ' ' do
   normal 'd', ':t.', desc: 'Smart Duplication'
   visual 'd', ':co-1', desc: 'Smart Duplication'
 
-  normal 'xk', ":call CutAndPasteByLineNumber('-')<left><left>", desc: "Line cut/past a line BELLOW"
-  normal 'xj', ":call CutAndPasteByLineNumber('+')<left><left>", desc: "Line cut/past a line ABOVE"
+  normal 'xk', ":call CutAndPasteByLineNumber('-')<left><left>", desc: "Line cut/past a line BELLOW", execute: false
+  normal 'xj', ":call CutAndPasteByLineNumber('+')<left><left>", desc: "Line cut/past a line ABOVE", execute: false
 
-  normal 'ck', ':-t.<left><left>', desc: 'Copy a line BELLOW'
-  normal 'cj', ':+t.<left><left>', desc: 'Copy a line ABOVE'
+  normal 'ck', ':-t.<left><left>', desc: 'Copy a line BELLOW', execute: false
+  normal 'cj', ':+t.<left><left>', desc: 'Copy a line ABOVE', execute: false
 
-  (1..4).each do |n|
+  (1..6).each do |n|
     normal n.to_s, ":let &l:foldlevel = #{n - 1}", desc: "Fold until level #{n}"
   end
 
-  prefix 't', name: 'Tabularize', desc: 'Text alignment' do
+  prefix 't', name: 'Toggles', desc: 'Toggles' do
+    normal 'c', ':ContextToggle', desc: 'Context.vim'
+    normal 'r', ':RainbowToggle', desc: 'Rainbow'
+  end
+
+  prefix 'ta', name: 'Tabularize', desc: 'Text alignment' do
     [',', '=', ':'].each do |key|
       normal key, ":Tabularize /#{key}\\zs", desc: "Align by #{key}"
       visual key, ":Tabularize /#{key}\\zs", desc: "Align by #{key}"
@@ -90,7 +106,7 @@ prefix ';', name: 'FuzzyFinder', desc: 'Fuzzy everything' do
   normal 't', ':Tags', desc: 'Search tags'
   normal 'T', ':BTags', desc: 'Search file tags'
   normal 'c', ':BCommits', desc: 'Commits'
-  normal '/', '<Plug>(AerojumpBolt)', desc: 'Search lines' # LOOKME: ADD remap options
+  normal '/', '<Plug>(AerojumpBolt)', desc: 'Search lines', recursively: true
   normal 'a', ':Args', desc: 'Arglist files'
   normal 'me', ':CocList outline', desc: 'Symbols in the current file.'
 
@@ -142,6 +158,12 @@ end
 prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
   normal 'b', ':below new \| resize 10 \| terminal bundle install', desc: 'Bundle Install'
   normal 't', ":call RunTestsOnLeftPane(expand('%:p')) <CR> :echo g:VimuxLastCommand", desc: 'Run tests(whole file)'
+  # normal 't', desc: 'Run current file' do |nvim|
+  #   line = nvim.current.buffer.lines.to_a[5]
+  #   puts line
+  #   # nvim.command("echom '#{line}'")
+  #   # nvim.command("echom 'Yay'")
+  # end
   normal 'T', ":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))<CR> :echo g:VimuxLastCommand", desc: 'Run tests(current line)'
   normal 'c', ":call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))", desc: "Rubycop", filetype: :ruby
   normal '!', ':VimuxPromptCommand', desc: 'Promp Vimux'
@@ -150,11 +172,9 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
   visual '!', 'vy :call VimuxSlime()<CR>', desc: 'Run selection in Tmux '
 end
 
-insert 'kj', '<esc>', desc: 'Esc in insert mode'
-
 normal '*', ':%s/\<<C-r><C-w>\>//n<cr>0N', desc: 'Select all occurences of the word and display a counter', execute: false
 normal '<expr> gp', "'`['.strpart(getregtype(), 0, 1).'`]'", desc: 'Selecte pasted text'
-visual 's', ':s//g<Left><Left>', desc: 'Substitute inside selection'
+visual 's', ':s//g<Left><Left>', desc: 'Substitute inside selection', execute: false
 
 normal 'N', 'n', desc: ''
 normal 'n', 'N', desc: ''
@@ -168,10 +188,15 @@ visual '>', '>gv|', desc: 'Select blocks after indenting'
 
 normal 'Q', 'q', desc: 'Record macro'
 
-normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
+# normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
 
 normal '[g', '<Plug>(coc-diagnostic-prev)', desc: ''
 normal ']g', '<Plug>(coc-diagnostic-next)', desc: ''
+
+normal ';w', ':w', desc: 'Quick save'
+
+normal 'f', '<Plug>Sneak_s', desc: 'Find by 2 chars(forward)', recursively: true
+normal 'F', '<Plug>Sneak_S', desc: 'Find by 2 chars(backward)', recursively: true
 
 insert '<expr> <C-j>', 'pumvisible() ? "\<C-n>" : "\<C-j>"', desc: 'Remap move DOWN on suggestions'
 insert '<expr> <C-k>', 'pumvisible() ? "\<C-p>" : "\<C-k>"', desc: 'Remap move UP on suggestions'

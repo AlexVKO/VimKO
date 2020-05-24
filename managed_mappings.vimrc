@@ -12,8 +12,12 @@ nnoremap <leader> :<c-u>WhichKey '<leader>'<CR>
 vnoremap <leader> :<c-u>WhichKeyVisual '<leader>'<CR>
 
 " Remove lines with a specify pattern
-nnoremap <leader>r :g//d<left><left><CR>
+nnoremap <leader>r :g//d<left><left>
 call extend(g:which_key_map, {'r':'Remove lines with a specify pattern'})
+
+" Parameterize current line
+nnoremap <leader>J :call ExecuteRubyMapping('<leader>J', 'all')<CR>
+call extend(g:which_key_map, {'J':'Parameterize current line'})
 
 " Toggle Checkbox (empty/[ ]/[x])
 nnoremap <leader>x :call ToogleCheckbox()<CR>
@@ -34,11 +38,11 @@ call extend(g:which_key_map, {'H':'Highlight reset'})
 xmap <leader>H <Plug>(quickhl-manual-reset)
 
 " Indente file
-nnoremap <leader>e =ae<C-O>
+nnoremap <leader>e =ae``
 call extend(g:which_key_map, {'e':'Indente file'})
 
 " Indente paragraph
-nnoremap <leader>a =ip<C-O>
+nnoremap <leader>a =ap``
 call extend(g:which_key_map, {'a':'Indente paragraph'})
 
 " Remove empty spaces
@@ -50,7 +54,7 @@ nnoremap <leader>o <esc>viwp
 call extend(g:which_key_map, {'o':'Overwrite word'})
 
 " Substitute all occurences
-nnoremap <leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left><CR>
+nnoremap <leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
 call extend(g:which_key_map, {'saw':'Substitute all occurences'})
 
 " Smart Duplication
@@ -61,19 +65,19 @@ call extend(g:which_key_map, {'d':'Smart Duplication'})
 xnoremap <leader>d :co-1<CR>
 
 " Line cut/past a line BELLOW
-nnoremap <leader>xk :call CutAndPasteByLineNumber('-')<left><left><CR>
+nnoremap <leader>xk :call CutAndPasteByLineNumber('-')<left><left>
 call extend(g:which_key_map, {'xk':'Line cut/past a line BELLOW'})
 
 " Line cut/past a line ABOVE
-nnoremap <leader>xj :call CutAndPasteByLineNumber('+')<left><left><CR>
+nnoremap <leader>xj :call CutAndPasteByLineNumber('+')<left><left>
 call extend(g:which_key_map, {'xj':'Line cut/past a line ABOVE'})
 
 " Copy a line BELLOW
-nnoremap <leader>ck :-t.<left><left><CR>
+nnoremap <leader>ck :-t.<left><left>
 call extend(g:which_key_map, {'ck':'Copy a line BELLOW'})
 
 " Copy a line ABOVE
-nnoremap <leader>cj :+t.<left><left><CR>
+nnoremap <leader>cj :+t.<left><left>
 call extend(g:which_key_map, {'cj':'Copy a line ABOVE'})
 
 " Fold until level 1
@@ -92,41 +96,65 @@ call extend(g:which_key_map, {'3':'Fold until level 3'})
 nnoremap <leader>4 :let &l:foldlevel = 3<CR>
 call extend(g:which_key_map, {'4':'Fold until level 4'})
 
+" Fold until level 5
+nnoremap <leader>5 :let &l:foldlevel = 4<CR>
+call extend(g:which_key_map, {'5':'Fold until level 5'})
+
+" Fold until level 6
+nnoremap <leader>6 :let &l:foldlevel = 5<CR>
+call extend(g:which_key_map, {'6':'Fold until level 6'})
+
+
+  " ----------------------------------------------------------------
+  " Prefix Leader > Toggles
+  " Key <leader>t
+  " Toggles
+  " ----------------------------------------------------------------
+  let g:which_key_map['t'] = { 'name' : '+Leader > Toggles' }
+
+  " Context.vim
+  nnoremap <leader>tc :ContextToggle<CR>
+  call extend(g:which_key_map['t'], {'c':'Context.vim'})
+
+  " Rainbow
+  nnoremap <leader>tr :RainbowToggle<CR>
+  call extend(g:which_key_map['t'], {'r':'Rainbow'})
+
 
   " ----------------------------------------------------------------
   " Prefix Leader > Tabularize
-  " Key <leader>t
+  " Key <leader>ta
   " Text alignment
   " ----------------------------------------------------------------
-  let g:which_key_map['t'] = { 'name' : '+Leader > Tabularize' }
+  let g:which_key_map['ta'] = { 'name' : '+Leader > Tabularize' }
 
   " Align by ,
-  nnoremap <leader>t, :Tabularize /,\zs<CR>
-  call extend(g:which_key_map['t'], {',':'Align by ,'})
+  nnoremap <leader>ta, :Tabularize /,\zs<CR>
+  call extend(g:which_key_map['ta'], {',':'Align by ,'})
 
   " Align by ,
-  xnoremap <leader>t, :Tabularize /,\zs<CR>
+  xnoremap <leader>ta, :Tabularize /,\zs<CR>
 
   " Align by =
-  nnoremap <leader>t= :Tabularize /=\zs<CR>
-  call extend(g:which_key_map['t'], {'=':'Align by ='})
+  nnoremap <leader>ta= :Tabularize /=\zs<CR>
+  call extend(g:which_key_map['ta'], {'=':'Align by ='})
 
   " Align by =
-  xnoremap <leader>t= :Tabularize /=\zs<CR>
+  xnoremap <leader>ta= :Tabularize /=\zs<CR>
 
   " Align by :
-  nnoremap <leader>t: :Tabularize /:\zs<CR>
-  call extend(g:which_key_map['t'], {':':'Align by :'})
+  nnoremap <leader>ta: :Tabularize /:\zs<CR>
+  call extend(g:which_key_map['ta'], {':':'Align by :'})
 
   " Align by :
-  xnoremap <leader>t: :Tabularize /:\zs<CR>
+  xnoremap <leader>ta: :Tabularize /:\zs<CR>
 
   " Align by input
-  nnoremap <leader>tt :Tabularize /<CR>
-  call extend(g:which_key_map['t'], {'t':'Align by input'})
+  nnoremap <leader>tat :Tabularize /
+  call extend(g:which_key_map['ta'], {'t':'Align by input'})
 
   " Align by input
-  xnoremap <leader>tt :Tabularize /<CR>
+  xnoremap <leader>tat :Tabularize /<CR>
 
 
   " ----------------------------------------------------------------
@@ -300,7 +328,7 @@ nnoremap ;c :BCommits<CR>
 call extend(g:which_key_map_fuzzyfinder, {'c':'Commits'})
 
 " Search lines
-nnoremap ;/ <Plug>(AerojumpBolt)
+nmap ;/ <Plug>(AerojumpBolt)
 call extend(g:which_key_map_fuzzyfinder, {'/':'Search lines'})
 
 " Arglist files
@@ -342,15 +370,15 @@ nnoremap , :<c-u>WhichKey ','<CR>
 vnoremap , :<c-u>WhichKeyVisual ','<CR>
 
 " (c)opy the current node
-nnoremap ,c :saveas <C-r>=expand('%')<CR><C-F><CR>
+nnoremap ,c :saveas <C-r>=expand('%')<CR><C-F>
 call extend(g:which_key_map_files, {'c':'(c)opy the current node'})
 
 " (d)elete the current node
-nnoremap ,d :!rm %<CR>
+nnoremap ,d :!rm %
 call extend(g:which_key_map_files, {'d':'(d)elete the current node'})
 
 " (m)ove the current node
-nnoremap ,m :!mv <C-r>=expand('%')<cr> <C-r>=expand('%')<CR><C-F><CR>
+nnoremap ,m :!mv <C-r>=expand('%')<cr> <C-r>=expand('%')<CR><C-F>
 call extend(g:which_key_map_files, {'m':'(m)ove the current node'})
 
 " (r)eload the file
@@ -454,7 +482,7 @@ nnoremap sz :Goyo<CR><CR>
 call extend(g:which_key_map_windows, {'z':'Zoom buffer'})
 
 " Substitute inside selection
-xnoremap s :s//g<Left><Left><CR>
+xnoremap s :s//g<Left><Left>
 
 
 " ----------------------------------------------------------------
@@ -494,11 +522,8 @@ xnoremap !! vy :call VimuxSlime()<CR>
 nnoremap !l :VimuxRunLastCommand<CR> :echo g:VimuxLastCommand<CR>
 call extend(g:which_key_map_terminal, {'l':'Run last command'})
 
-" Esc in insert mode
-inoremap kj <esc>
-
 " Select all occurences of the word and display a counter
-nnoremap * :%s/\<<C-r><C-w>\>//n<cr>0N<CR>
+nnoremap * :%s/\<<C-r><C-w>\>//n<cr>0N
 
 " Selecte pasted text
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
@@ -522,11 +547,17 @@ xnoremap > >gv|
 
 " Record macro
 nnoremap Q q
-
-" Easymotion
-nmap / <Plug>(easymotion-overwin-f2)
 nnoremap [g <Plug>(coc-diagnostic-prev)
 nnoremap ]g <Plug>(coc-diagnostic-next)
+
+" Quick save
+nnoremap ;w :w<CR>
+
+" Find by 2 chars(forward)
+nmap f <Plug>Sneak_s
+
+" Find by 2 chars(backward)
+nmap F <Plug>Sneak_S
 
 " Remap move DOWN on suggestions
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
