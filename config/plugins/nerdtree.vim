@@ -1,6 +1,7 @@
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
 let g:NERDTreeMinimalUI = 1
 
 let NERDTreeIgnore = [

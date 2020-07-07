@@ -17,8 +17,12 @@ call plug#begin()
   Plug 'justinmk/vim-sneak'
   let g:sneak#label = 1
 
+  Plug 'easymotion/vim-easymotion'
+
   " Fuzzy finder for lines in the current file
   Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  Plug 'bkad/CamelCaseMotion'
 
 " -----------------------------------------------------------------------------
 " General
@@ -32,6 +36,8 @@ call plug#begin()
 
   " Smooth scrolling
   Plug 'yuttie/comfortable-motion.vim'
+    let g:comfortable_motion_no_default_key_mappings = 1
+    let g:comfortable_motion_impulse_multiplier = 1
 
   Plug 'drzel/vim-line-no-indicator'
 
@@ -46,7 +52,9 @@ call plug#begin()
   Plug 'leoatchina/vim-which-key'
 
   " Mapping manager
-  Plug 'AlexVKO/vim-mapping-manager', { 'do' : ':UpdateRemotePlugins' }
+  " Plug 'AlexVKO/vim-mapping-manager', { 'do' : ':UpdateRemotePlugins' }
+  Plug 'file://'.expand('~/.config/vim_mapping_manager'), { 'do' : ':UpdateRemotePlugins', 'as': 'vim-mapping-manager-dev' }
+
 
   " Edit selected code in new buffer
   Plug 'chrisbra/NrrwRgn'
@@ -133,7 +141,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   source $HOME/.config/nvim/config/plugins/fzf.vimrc
-  let g:fzf_layout = { 'down': '~40%' }
+  " let g:fzf_layout = { 'down': '~40%' }
 
   Plug 'alexvko/fzf-to-functions.vim'
 
@@ -167,7 +175,7 @@ call plug#begin()
   Plug 'SirVer/ultisnips'
     let g:UltiSnipsEditSplit="vertical"
     let g:UltiSnipsExpandTrigger="<C-l>"
-    let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/config/snippets']
+    " let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/config/snippets']
     let g:UltiSnipsJumpForwardTrigger="<c-n>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
