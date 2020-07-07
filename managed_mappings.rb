@@ -6,6 +6,10 @@
 leader ' ' do
   normal 'r', ':g//d<left><left>', desc: 'Remove lines with a specify pattern', execute: false
 
+  normal 'z', desc: 'Jusst testing' do |nvim|
+    nvim.current.line = "Yay"
+  end
+
   normal 'J', desc: 'Parameterize current line' do |nvim|
     line = nvim.current.line
     line.gsub!(/[^0-9A-Za-z]/, '').strip.gsub(/ +/, '-')
@@ -43,6 +47,30 @@ leader ' ' do
   prefix 't', name: 'Toggles', desc: 'Toggles' do
     normal 'c', ':ContextToggle', desc: 'Context.vim'
     normal 'r', ':RainbowToggle', desc: 'Rainbow'
+    normal 'e', desc: 'Toggle everything(under cursor)' do |nvim|
+      word = nvim.evaluate('expand("<cword>")')
+      nvim.command(":echom '#{word}'")
+      new_word = {
+        'true' => 'false', 'false' => 'true',
+        '0' => '1', '1' => '0'
+      }[word]
+
+      if new_word
+        nvim.command(":normal ciw#{new_word}")
+        break
+      end
+
+      current_line = nvim.evaluate('getline(".")')
+
+      if current_line['def self.']
+        nvim.command(':normal 0wwdf.')
+      elsif current_line['def ']
+        nvim.command(':normal 0wwiself.')
+      end
+    end
+
+    # TODO: Implement expressions
+    # normal '<expr> <C-k>', 'pumvisible() ? "\<C-p>" : "\<C-k>"', desc: 'Remap move UP on suggestions'
   end
 
   prefix 'ta', name: 'Tabularize', desc: 'Text alignment' do
@@ -107,13 +135,29 @@ prefix ';', name: 'FuzzyFinder', desc: 'Fuzzy everything' do
   normal 'T', ':BTags', desc: 'Search file tags'
   normal 'c', ':BCommits', desc: 'Commits'
   normal '/', '<Plug>(AerojumpBolt)', desc: 'Search lines', recursively: true
-  normal 'a', ':Args', desc: 'Arglist files'
+  normal 'af', ':Args', desc: 'Arglist files'
+  normal 'ad', ':argadd %', desc: 'Arglist files'
+  normal 'ar', ':argdelete %', desc: 'Arglist files'
   normal 'me', ':CocList outline', desc: 'Symbols in the current file.'
+  normal 'n', ':e notes.md', desc: 'Open notes'
+  normal 'r', ':Rg <c-r>=expand("<cword>")', desc: 'QuickFix current word'
+
+  normal 'd', desc: 'Go to Datafix' do |nvim|
+    current_branch = `git rev-parse --abbrev-ref HEAD`
+    ticket_number = current_branch.to_i
+    nvim.command(":e datafixes/datafix#{ticket_number}.rb")
+  end
 
   prefix name: 'Rails', desc: 'Rails files', filetype: :ruby do
     normal 'm', ':Files app/models/', desc: 'Models'
     normal 'c', ':Files app/controllers/', desc: 'Controllers'
     normal 'r', ':Files <cr> spec/_spec.rb<left><left><left><left><left><left><left><left>', desc: 'RSpec'
+  end
+
+  prefix name: 'Javascript', desc: 'JS files', filetype: :javascript do
+    normal 'i', ":Rg \"import.*<c-r>=expand('<cword>')<CR>\"", desc: 'Current module was imported'
+    # normal 'e', ":Rg \"export.*<c-r>=expand('<cword>')<CR>\"", desc: 'Current module was exported'
+    normal 'e', ":ImportJSGoto", desc: 'Current module was exported'
   end
 end
 
@@ -122,6 +166,12 @@ prefix ',', name: 'Files', desc: 'File' do
   normal 'd', ':!rm %', desc: '(d)elete the current node', execute: false
   normal 'm', ":!mv <C-r>=expand('%')<cr> <C-r>=expand('%')<CR><C-F>", desc: '(m)ove the current node', execute: false
   normal 'r', ':checktime', desc: "(r)eload the file"
+
+  prefix 'w', name: 'WorkDir', desc: 'Working directory' do
+    normal 'g', ':SetProjectRoot()', desc: "Set git root as working directory"
+    normal 'c', ':lcd %:p:h', desc: "Set working directory as current files directory"
+    normal 'e', ':echo getcwd()', desc: "echo current working directory"
+  end
 
   normal 'y', ":let @+=join([expand('%'), line('.')], ':')<CR>:echo 'Relative path copied to clipboard.'", desc: 'Copy Relative path'
   normal 'Y', ":let @+=expand('%:p')<CR>:echo 'Absolute pat copied to clipboard.'", desc: 'Copy Absolute path'
@@ -132,13 +182,31 @@ prefix ',', name: 'Files', desc: 'File' do
   normal 'o', ':call OpenCurrentFileOnGithub()', desc: 'Open on GitHub'
 
   prefix name: 'Javascript', desc: 'JS files', filetype: :javascript do
-    normal 'i', ':Rg "import " . <c-r>=expand("<cword>")', desc: 'Current module was imported'
   end
 
   prefix name: 'Ruby', desc: 'Ruby files', filetype: :ruby do
     normal 'f', ":! bundle exec rubocop -a <C-r>=expand('%')<cr>  >/dev/null<cr>", desc: "Run rubocop"
   end
 
+  # Formatting selected code.
+  # xmap <leader>f  <Plug>(coc-format-selected)
+  # nmap <leader>f  <Plug>(coc-format-selected)
+  #
+  # " Remap keys for applying codeAction to the current buffer.
+  # nmap <leader>ac  <Plug>(coc-codeaction)
+  # " Apply AutoFix to problem on the current line.
+  # nmap <leader>qf  <Plug>(coc-fix-current)
+  # " Map function and class text objects
+  #
+  # " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+  # xmap if <Plug>(coc-funcobj-i)
+  # omap if <Plug>(coc-funcobj-i)
+  # xmap af <Plug>(coc-funcobj-a)
+  # omap af <Plug>(coc-funcobj-a)
+  # xmap ic <Plug>(coc-classobj-i)
+  # omap ic <Plug>(coc-classobj-i)
+  # xmap ac <Plug>(coc-classobj-a)
+  # omap ac <Plug>(coc-classobj-a)
   prefix name: 'JSON', desc: 'JSON files', filetype: :json do
     normal 'f', ":%!python -m json.tool", desc: "Prettify"
   end
@@ -157,19 +225,63 @@ end
 
 prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
   normal 'b', ':below new \| resize 10 \| terminal bundle install', desc: 'Bundle Install'
-  normal 't', ":call RunTestsOnLeftPane(expand('%:p')) <CR> :echo g:VimuxLastCommand", desc: 'Run tests(whole file)'
-  # normal 't', desc: 'Run current file' do |nvim|
-  #   line = nvim.current.buffer.lines.to_a[5]
-  #   puts line
-  #   # nvim.command("echom '#{line}'")
-  #   # nvim.command("echom 'Yay'")
-  # end
-  normal 'T', ":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))<CR> :echo g:VimuxLastCommand", desc: 'Run tests(current line)'
-  normal 'c', ":call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))", desc: "Rubycop", filetype: :ruby
+  normal 't', desc: 'Run tests(whole file)' do |nvim|
+    name = nvim.current.buffer.name
+    if name.end_with?('.rb')
+      if name.include?('datafixes/datafix')
+        nvim.command(":call VimuxRunCommand(\"#{nvim.current.buffer.lines[5]}\")")
+      else
+        # TODO
+        nvim.command(":call RunTestsOnLeftPane(expand('%:p'))")
+      end
+    else
+      # TODO
+      nvim.command(":call RunTestsOnLeftPane(expand('%:p'))")
+    end
+  end
+  normal 'T', desc: 'Run tests(current line)' do |nvim|
+    name = nvim.current.buffer.name
+    if name.end_with?('.rb')
+      if name.include?('datafixes/datafix')
+        nvim.command(":call VimuxRunCommand(\"#{nvim.current.buffer.lines[5]}\")")
+      else
+        # TODO
+        nvim.command(":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))")
+      end
+    else
+      # TODO
+      nvim.command(":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))")
+    end
+  end
+
+  normal 're', desc: 'reload rails' do |nvim|
+    nvim.command(":call VimuxRunCommand('reload!')")
+  end
+
+  normal 'rc', desc: 'Sends rails console' do |nvim|
+    nvim.command(":call VimuxRunCommand('rails c')")
+  end
+
+  normal 'c', desc: 'Open console' do |nvim|
+    name = nvim.current.buffer.name
+    if name.end_with?('.rb')
+      nvim.command(':call RunTestsOnLeftPane("rails c")<CR>')
+    else
+      nvim.command(":echom no console setup")
+    end
+  end
+
+  # normal 'c', ":call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))", desc: "Rubycop", filetype: :ruby
   normal '!', ':VimuxPromptCommand', desc: 'Promp Vimux'
   normal 'l', ':VimuxRunLastCommand<CR> :echo g:VimuxLastCommand', desc: 'Run last command'
 
   visual '!', 'vy :call VimuxSlime()<CR>', desc: 'Run selection in Tmux '
+
+  # todo: run rake command from a fzf list
+  # todo: fzf unchecked files
+  normal 'x', desc: 'Sends exit' do |nvim|
+    nvim.command(":call VimuxRunCommand('exit')")
+  end
 end
 
 normal '*', ':%s/\<<C-r><C-w>\>//n<cr>0N', desc: 'Select all occurences of the word and display a counter', execute: false
@@ -190,13 +302,13 @@ normal 'Q', 'q', desc: 'Record macro'
 
 # normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
 
-normal '[g', '<Plug>(coc-diagnostic-prev)', desc: ''
-normal ']g', '<Plug>(coc-diagnostic-next)', desc: ''
+normal '[g', '<Plug>(coc-diagnostic-prev)', desc: '', recursively: true
+normal ']g', '<Plug>(coc-diagnostic-next)', desc: '', recursively: true
 
 normal ';w', ':w', desc: 'Quick save'
 
-normal 'f', '<Plug>Sneak_s', desc: 'Find by 2 chars(forward)', recursively: true
-normal 'F', '<Plug>Sneak_S', desc: 'Find by 2 chars(backward)', recursively: true
+normal 'f', '<Plug>Sneak_f', desc: 'Find by 2 chars(forward)', recursively: true
+normal 'F', '<Plug>Sneak_F', desc: 'Find by 2 chars(backward)', recursively: true
 
 insert '<expr> <C-j>', 'pumvisible() ? "\<C-n>" : "\<C-j>"', desc: 'Remap move DOWN on suggestions'
 insert '<expr> <C-k>', 'pumvisible() ? "\<C-p>" : "\<C-k>"', desc: 'Remap move UP on suggestions'
@@ -212,7 +324,18 @@ prefix 'g', name: 'Git', desc: 'Git and Github commands' do
   normal 'ac', ":call VimuxRunCommand('git add . && git commit')", desc: 'Add and Commit'
 end
 
+# insert '<C-y>,' name: 'Ruby Emmet', desc: 'REmmet is a plugin for many popular text editors which greatly improves Ruby workflow' do
+#   # TODO
+# end
+
 normal 'gg', ':1', desc: 'Work around for keeping g a prefix for Git'
+
+normal '<silent> <C-d>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)', desc: 'Smooth scrolling'
+normal '<silent> <C-u>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)', desc: 'Smooth scrolling'
+normal '<silent> <C-f>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)', desc: 'Smooth scrolling'
+normal '<silent> <C-b>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)', desc: 'Smooth scrolling'
+
+normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
 
 command 'Retab', ':set expandtab | retab', desc: "Replace tabs to specs of the current file"
 command '-bang Args', "call fzf#run(fzf#wrap('args', {'source': argv()}, <bang>0))", desc: "Funtion for FZF"

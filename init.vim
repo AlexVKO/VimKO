@@ -129,7 +129,7 @@ set timeoutlen=500
 
 function! RunTestsOnLeftPane(file_name)
   if(match(a:file_name, '_spec.rb') != -1)
-    VimuxRunCommand("clear; bundle exec rspec " . a:file_name . " --fail-fast -fd")
+    VimuxRunCommand("clear; bundle exec spring rspec " . a:file_name . " --fail-fast -fd")
   elseif(match(a:file_name, '.feature') != -1)
     VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
   elseif(match(a:file_name, 'test/.*_test.exs') != -1)
@@ -162,3 +162,26 @@ function! CutAndPasteByLineNumber(relative_line_number)
   normal P
   call setpos(".", cursor_position)
 endfunction
+
+" set working directory to git project root
+" or directory of current file if not git project
+function! SetProjectRoot()
+  " default to the current file's directory
+  lcd %:p:h
+  let git_dir = system("git rev-parse --show-toplevel")
+  " See if the command output starts with 'fatal' (if it does, not in a git repo)
+  let is_not_git_dir = matchstr(git_dir, '^fatal:.*')
+  " if git project, change local directory to git project root
+  if empty(is_not_git_dir)
+    lcd `=git_dir`
+  endif
+endfunction
+
+" TODO add to mappings manager 
+cnoremap <C-A> <Home>
+
+
+
+
+
+

@@ -15,8 +15,12 @@ vnoremap <leader> :<c-u>WhichKeyVisual '<leader>'<CR>
 nnoremap <leader>r :g//d<left><left>
 call extend(g:which_key_map, {'r':'Remove lines with a specify pattern'})
 
+" Jusst testing
+nnoremap <leader>z :call ExecuteRubyMapping('leaderz', 'all')<CR>
+call extend(g:which_key_map, {'z':'Jusst testing'})
+
 " Parameterize current line
-nnoremap <leader>J :call ExecuteRubyMapping('<leader>J', 'all')<CR>
+nnoremap <leader>J :call ExecuteRubyMapping('leaderJ', 'all')<CR>
 call extend(g:which_key_map, {'J':'Parameterize current line'})
 
 " Toggle Checkbox (empty/[ ]/[x])
@@ -119,6 +123,10 @@ call extend(g:which_key_map, {'6':'Fold until level 6'})
   " Rainbow
   nnoremap <leader>tr :RainbowToggle<CR>
   call extend(g:which_key_map['t'], {'r':'Rainbow'})
+
+  " Toggle everything(under cursor)
+  nnoremap <leader>te :call ExecuteRubyMapping('leaderte', 'all')<CR>
+  call extend(g:which_key_map['t'], {'e':'Toggle everything(under cursor)'})
 
 
   " ----------------------------------------------------------------
@@ -332,12 +340,32 @@ nmap ;/ <Plug>(AerojumpBolt)
 call extend(g:which_key_map_fuzzyfinder, {'/':'Search lines'})
 
 " Arglist files
-nnoremap ;a :Args<CR>
-call extend(g:which_key_map_fuzzyfinder, {'a':'Arglist files'})
+nnoremap ;af :Args<CR>
+call extend(g:which_key_map_fuzzyfinder, {'af':'Arglist files'})
+
+" Arglist files
+nnoremap ;ad :argadd %<CR>
+call extend(g:which_key_map_fuzzyfinder, {'ad':'Arglist files'})
+
+" Arglist files
+nnoremap ;ar :argdelete %<CR>
+call extend(g:which_key_map_fuzzyfinder, {'ar':'Arglist files'})
 
 " Symbols in the current file.
 nnoremap ;me :CocList outline<CR>
 call extend(g:which_key_map_fuzzyfinder, {'me':'Symbols in the current file.'})
+
+" Open notes
+nnoremap ;n :e notes.md<CR>
+call extend(g:which_key_map_fuzzyfinder, {'n':'Open notes'})
+
+" QuickFix current word
+nnoremap ;r :Rg <c-r>=expand("<cword>")<CR>
+call extend(g:which_key_map_fuzzyfinder, {'r':'QuickFix current word'})
+
+" Go to Datafix
+nnoremap ;d :call ExecuteRubyMapping(';d', 'all')<CR>
+call extend(g:which_key_map_fuzzyfinder, {'d':'Go to Datafix'})
 
 
   " ----------------------------------------------------------------
@@ -357,6 +385,21 @@ call extend(g:which_key_map_fuzzyfinder, {'me':'Symbols in the current file.'})
   " RSpec
   autocmd FileType ruby nnoremap ;r :Files <cr> spec/_spec.rb<left><left><left><left><left><left><left><left><CR>
   autocmd FileType ruby call extend(g:which_key_map_fuzzyfinder, {'r':'RSpec'})
+
+
+  " ----------------------------------------------------------------
+  " Namespace FuzzyFinder > Javascript
+  " Filetype: javascript
+  " JS files
+  " ----------------------------------------------------------------
+
+  " Current module was imported
+  autocmd FileType javascript nnoremap ;i :Rg "import.*<c-r>=expand('<cword>')<CR>"<CR>
+  autocmd FileType javascript call extend(g:which_key_map_fuzzyfinder, {'i':'Current module was imported'})
+
+  " Current module was exported
+  autocmd FileType javascript nnoremap ;e :ImportJSGoto<CR>
+  autocmd FileType javascript call extend(g:which_key_map_fuzzyfinder, {'e':'Current module was exported'})
 
 
 " ----------------------------------------------------------------
@@ -385,6 +428,26 @@ call extend(g:which_key_map_files, {'m':'(m)ove the current node'})
 nnoremap ,r :checktime<CR>
 call extend(g:which_key_map_files, {'r':'(r)eload the file'})
 
+
+  " ----------------------------------------------------------------
+  " Prefix Files > WorkDir
+  " Key ,w
+  " Working directory
+  " ----------------------------------------------------------------
+  let g:which_key_map_files['w'] = { 'name' : '+Files > WorkDir' }
+
+  " Set git root as working directory
+  nnoremap ,wg :SetProjectRoot()<CR>
+  call extend(g:which_key_map_files['w'], {'g':'Set git root as working directory'})
+
+  " Set working directory as current files directory
+  nnoremap ,wc :lcd %:p:h<CR>
+  call extend(g:which_key_map_files['w'], {'c':'Set working directory as current files directory'})
+
+  " echo current working directory
+  nnoremap ,we :echo getcwd()<CR>
+  call extend(g:which_key_map_files['w'], {'e':'echo current working directory'})
+
 " Copy Relative path
 nnoremap ,y :let @+=join([expand('%'), line('.')], ':')<CR>:echo 'Relative path copied to clipboard.'<CR>
 call extend(g:which_key_map_files, {'y':'Copy Relative path'})
@@ -411,10 +474,6 @@ call extend(g:which_key_map_files, {'o':'Open on GitHub'})
   " Filetype: javascript
   " JS files
   " ----------------------------------------------------------------
-
-  " Current module was imported
-  autocmd FileType javascript nnoremap ,i :Rg "import " . <c-r>=expand("<cword>")<CR>
-  autocmd FileType javascript call extend(g:which_key_map_files, {'i':'Current module was imported'})
 
 
   " ----------------------------------------------------------------
@@ -500,16 +559,24 @@ nnoremap !b :below new \| resize 10 \| terminal bundle install<CR>
 call extend(g:which_key_map_terminal, {'b':'Bundle Install'})
 
 " Run tests(whole file)
-nnoremap !t :call RunTestsOnLeftPane(expand('%:p')) <CR> :echo g:VimuxLastCommand<CR>
+nnoremap !t :call ExecuteRubyMapping('!t', 'all')<CR>
 call extend(g:which_key_map_terminal, {'t':'Run tests(whole file)'})
 
 " Run tests(current line)
-nnoremap !T :call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))<CR> :echo g:VimuxLastCommand<CR>
+nnoremap !T :call ExecuteRubyMapping('!T', 'all')<CR>
 call extend(g:which_key_map_terminal, {'T':'Run tests(current line)'})
 
-" Rubycop
-autocmd FileType ruby nnoremap !c :call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))<CR>
-autocmd FileType ruby call extend(g:which_key_map_terminal, {'c':'Rubycop'})
+" reload rails
+nnoremap !re :call ExecuteRubyMapping('!re', 'all')<CR>
+call extend(g:which_key_map_terminal, {'re':'reload rails'})
+
+" Sends rails console
+nnoremap !rc :call ExecuteRubyMapping('!rc', 'all')<CR>
+call extend(g:which_key_map_terminal, {'rc':'Sends rails console'})
+
+" Open console
+nnoremap !c :call ExecuteRubyMapping('!c', 'all')<CR>
+call extend(g:which_key_map_terminal, {'c':'Open console'})
 
 " Promp Vimux
 nnoremap !! :VimuxPromptCommand<CR>
@@ -521,6 +588,10 @@ xnoremap !! vy :call VimuxSlime()<CR>
 " Run last command
 nnoremap !l :VimuxRunLastCommand<CR> :echo g:VimuxLastCommand<CR>
 call extend(g:which_key_map_terminal, {'l':'Run last command'})
+
+" Sends exit
+nnoremap !x :call ExecuteRubyMapping('!x', 'all')<CR>
+call extend(g:which_key_map_terminal, {'x':'Sends exit'})
 
 " Select all occurences of the word and display a counter
 nnoremap * :%s/\<<C-r><C-w>\>//n<cr>0N
@@ -547,17 +618,17 @@ xnoremap > >gv|
 
 " Record macro
 nnoremap Q q
-nnoremap [g <Plug>(coc-diagnostic-prev)
-nnoremap ]g <Plug>(coc-diagnostic-next)
+nmap [g <Plug>(coc-diagnostic-prev)
+nmap ]g <Plug>(coc-diagnostic-next)
 
 " Quick save
 nnoremap ;w :w<CR>
 
 " Find by 2 chars(forward)
-nmap f <Plug>Sneak_s
+nmap f <Plug>Sneak_f
 
 " Find by 2 chars(backward)
-nmap F <Plug>Sneak_S
+nmap F <Plug>Sneak_F
 
 " Remap move DOWN on suggestions
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
@@ -600,6 +671,21 @@ call extend(g:which_key_map_git, {'ac':'Add and Commit'})
 
 " Work around for keeping g a prefix for Git
 nnoremap gg :1<CR>
+
+" Smooth scrolling
+nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+
+" Smooth scrolling
+nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+
+" Smooth scrolling
+nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
+
+" Smooth scrolling
+nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
+
+" Easymotion
+nmap / <Plug>(easymotion-overwin-f2)
 
 
 " ----------------------------------------------------------------
