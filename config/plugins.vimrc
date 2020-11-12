@@ -52,8 +52,8 @@ call plug#begin()
   Plug 'leoatchina/vim-which-key'
 
   " Mapping manager
-  " Plug 'AlexVKO/vim-mapping-manager', { 'do' : ':UpdateRemotePlugins' }
-  Plug 'file://'.expand('~/.config/vim_mapping_manager'), { 'do' : ':UpdateRemotePlugins', 'as': 'vim-mapping-manager-dev' }
+  Plug 'AlexVKO/vim-mapping-manager', { 'do' : ':UpdateRemotePlugins' }
+  " Plug 'file://'.expand('~/.config/vim_mapping_manager'), { 'do' : ':UpdateRemotePlugins', 'as': 'vim-mapping-manager-dev' }
 
 
   " Edit selected code in new buffer
@@ -170,7 +170,8 @@ call plug#begin()
 " Autocomplete and Snippets
 " -----------------------------------------------------------------------------
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-    let g:coc_global_extensions = ['coc-solargraph']
+    let g:coc_global_extensions = ['coc-solargraph', 'coc-json', 'coc-elixir', 'coc-fzf-preview', 'coc-git', 'coc-graphql', 'coc-html', 'coc-snippets', 'coc-todolist']
+    " 'coc-tabnine', 
 
   Plug 'SirVer/ultisnips'
     let g:UltiSnipsEditSplit="vertical"

@@ -168,7 +168,7 @@ prefix ',', name: 'Files', desc: 'File' do
   normal 'r', ':checktime', desc: "(r)eload the file"
 
   prefix 'w', name: 'WorkDir', desc: 'Working directory' do
-    normal 'g', ':SetProjectRoot()', desc: "Set git root as working directory"
+    normal 'g', ':call SetProjectRoot()', desc: "Set git root as working directory"
     normal 'c', ':lcd %:p:h', desc: "Set working directory as current files directory"
     normal 'e', ':echo getcwd()', desc: "echo current working directory"
   end

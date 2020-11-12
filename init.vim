@@ -32,7 +32,7 @@ set nowrap
 set inccommand=nosplit
 set list                " Show hidden characters
 set listchars=tab:→\ ,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
-set clipboard=unnamed
+set clipboard^=unnamed
 set foldmethod=indent
 set foldlevelstart=99
 
@@ -126,6 +126,11 @@ fu! ToogleCheckbox()
 endf
 
 set timeoutlen=500
+
+" Rin in other window
+" https://github.com/benmills/vimux/blob/master/plugin/vimux.vim#L174
+" let g:VimuxRunnerIndex='vertical.1'
+" let g:VimuxRunnerType='window'
 
 function! RunTestsOnLeftPane(file_name)
   if(match(a:file_name, '_spec.rb') != -1)

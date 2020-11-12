@@ -437,7 +437,7 @@ call extend(g:which_key_map_files, {'r':'(r)eload the file'})
   let g:which_key_map_files['w'] = { 'name' : '+Files > WorkDir' }
 
   " Set git root as working directory
-  nnoremap ,wg :SetProjectRoot()<CR>
+  nnoremap ,wg :call SetProjectRoot()<CR>
   call extend(g:which_key_map_files['w'], {'g':'Set git root as working directory'})
 
   " Set working directory as current files directory
