@@ -266,5 +266,5 @@ $ git clone git@github.com:AlexVKO/VimKO.git nvim
 
 And then inside neovim run :PlugInstall
 ```
-Inspired by:
+Based by:
   - https://github.com/rafi/vim-config
