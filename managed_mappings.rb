@@ -14,6 +14,7 @@ leader ' ' do
     line = nvim.current.line
     line.gsub!(/[^0-9A-Za-z]/, '').strip.gsub(/ +/, '-')
     nvim.current.line = line
+
   end
 
   normal 'x', ':call ToogleCheckbox()', desc: 'Toggle Checkbox (empty/[ ]/[x])'
@@ -142,12 +143,6 @@ prefix ';', name: 'FuzzyFinder', desc: 'Fuzzy everything' do
   normal 'n', ':e notes.md', desc: 'Open notes'
   normal 'r', ':Rg <c-r>=expand("<cword>")', desc: 'QuickFix current word'
 
-  normal 'd', desc: 'Go to Datafix' do |nvim|
-    current_branch = `git rev-parse --abbrev-ref HEAD`
-    ticket_number = current_branch.to_i
-    nvim.command(":e datafixes/datafix#{ticket_number}.rb")
-  end
-
   prefix name: 'Rails', desc: 'Rails files', filetype: :ruby do
     normal 'm', ':Files app/models/', desc: 'Models'
     normal 'c', ':Files app/controllers/', desc: 'Controllers'
@@ -155,6 +150,8 @@ prefix ';', name: 'FuzzyFinder', desc: 'Fuzzy everything' do
   end
 
   prefix name: 'Javascript', desc: 'JS files', filetype: :javascript do
+    normal 'p', ':Files pages/', desc: 'Pages'
+    normal 'c', ':Files components/', desc: 'Components'
     normal 'i', ":Rg \"import.*<c-r>=expand('<cword>')<CR>\"", desc: 'Current module was imported'
     # normal 'e', ":Rg \"export.*<c-r>=expand('<cword>')<CR>\"", desc: 'Current module was exported'
     normal 'e', ":ImportJSGoto", desc: 'Current module was exported'
@@ -224,7 +221,14 @@ prefix 's', name: 'Windows', desc: 'Windows management' do
 end
 
 prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
-  normal 'b', ':below new \| resize 10 \| terminal bundle install', desc: 'Bundle Install'
+  normal 'b', desc: 'Bundle Install' do |nvim|
+    name = nvim.current.buffer.name
+    if name.end_with?('.rb')
+        nvim.command(":below new \| resize 10 \| terminal bundle install")
+    elsif name.end_with?('.ex') || name.end_with?('.exs')
+      nvim.command(":below new \| resize 10 \| terminal mix deps.get")
+    end
+  end
   normal 't', desc: 'Run tests(whole file)' do |nvim|
     name = nvim.current.buffer.name
     if name.end_with?('.rb')
@@ -232,13 +236,34 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
         nvim.command(":call VimuxRunCommand(\"#{nvim.current.buffer.lines[5]}\")")
       else
         # TODO
-        nvim.command(":call RunTestsOnLeftPane(expand('%:p'))")
+        nvim.command(":call RunTestsOnLeftPane(expand('%'))")
       end
     else
       # TODO
-      nvim.command(":call RunTestsOnLeftPane(expand('%:p'))")
+      nvim.command(":call RunTestsOnLeftPane(expand('%'))")
     end
   end
+
+  normal 'R', desc: 'Run tests(current line)' do |nvim|
+    name = nvim.current.buffer.name
+
+    if name.end_with?('.rb')
+      nvim.command(%{:call VimuxRunCommand("bundle exec rubocop -A " . expand('%:p'))})
+    end
+  end
+
+  normal 'r', desc: 'Run tests(current line)' do |nvim|
+    name = nvim.current.buffer.name
+
+    if name.end_with?('.rb')
+      nvim.command(%{:call VimuxRunCommand("bundle exec rubocop " . expand('%:p'))})
+    end
+
+    if name.end_with?('.ex') || name.end_with?('.exs')
+      nvim.command(%{:call VimuxRunCommand("mix format " . expand('%:p'))})
+    end
+  end
+
   normal 'T', desc: 'Run tests(current line)' do |nvim|
     name = nvim.current.buffer.name
     if name.end_with?('.rb')
@@ -246,11 +271,11 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
         nvim.command(":call VimuxRunCommand(\"#{nvim.current.buffer.lines[5]}\")")
       else
         # TODO
-        nvim.command(":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))")
+        nvim.command(":call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))")
       end
     else
       # TODO
-      nvim.command(":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))")
+      nvim.command(":call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))")
     end
   end
 
@@ -330,10 +355,14 @@ end
 
 normal 'gg', ':1', desc: 'Work around for keeping g a prefix for Git'
 
-normal '<silent> <C-d>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)', desc: 'Smooth scrolling'
-normal '<silent> <C-u>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)', desc: 'Smooth scrolling'
-normal '<silent> <C-f>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)', desc: 'Smooth scrolling'
-normal '<silent> <C-b>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)', desc: 'Smooth scrolling'
+def conformatable_motion(height)
+  "comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * #{height})"
+end
+normal '<silent><nowait><expr>  <C-d>', "coc#float#has_scroll() ? coc#float#scroll(1) : #{conformatable_motion(2)}", desc: 'Smooth scrolling'
+normal '<silent>  <C-f>', ":call #{conformatable_motion(4)}", desc: 'Smooth scrolling'
+
+normal '<silent><nowait><expr>  <C-u>', "coc#float#has_scroll() ? coc#float#scroll(0) : #{conformatable_motion(-2)}", desc: 'Smooth scrolling'
+normal '<silent> <C-b>', ":call #{conformatable_motion(-4)}", desc: 'Smooth scrolling'
 
 normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
 

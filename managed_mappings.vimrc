@@ -363,10 +363,6 @@ call extend(g:which_key_map_fuzzyfinder, {'n':'Open notes'})
 nnoremap ;r :Rg <c-r>=expand("<cword>")<CR>
 call extend(g:which_key_map_fuzzyfinder, {'r':'QuickFix current word'})
 
-" Go to Datafix
-nnoremap ;d :call ExecuteRubyMapping(';d', 'all')<CR>
-call extend(g:which_key_map_fuzzyfinder, {'d':'Go to Datafix'})
-
 
   " ----------------------------------------------------------------
   " Namespace FuzzyFinder > Rails
@@ -392,6 +388,14 @@ call extend(g:which_key_map_fuzzyfinder, {'d':'Go to Datafix'})
   " Filetype: javascript
   " JS files
   " ----------------------------------------------------------------
+
+  " Pages
+  autocmd FileType javascript nnoremap ;p :Files pages/<CR>
+  autocmd FileType javascript call extend(g:which_key_map_fuzzyfinder, {'p':'Pages'})
+
+  " Components
+  autocmd FileType javascript nnoremap ;c :Files components/<CR>
+  autocmd FileType javascript call extend(g:which_key_map_fuzzyfinder, {'c':'Components'})
 
   " Current module was imported
   autocmd FileType javascript nnoremap ;i :Rg "import.*<c-r>=expand('<cword>')<CR>"<CR>
@@ -555,12 +559,20 @@ nnoremap ! :<c-u>WhichKey '!'<CR>
 vnoremap ! :<c-u>WhichKeyVisual '!'<CR>
 
 " Bundle Install
-nnoremap !b :below new \| resize 10 \| terminal bundle install<CR>
+nnoremap !b :call ExecuteRubyMapping('!b', 'all')<CR>
 call extend(g:which_key_map_terminal, {'b':'Bundle Install'})
 
 " Run tests(whole file)
 nnoremap !t :call ExecuteRubyMapping('!t', 'all')<CR>
 call extend(g:which_key_map_terminal, {'t':'Run tests(whole file)'})
+
+" Run tests(current line)
+nnoremap !R :call ExecuteRubyMapping('!R', 'all')<CR>
+call extend(g:which_key_map_terminal, {'R':'Run tests(current line)'})
+
+" Run tests(current line)
+nnoremap !r :call ExecuteRubyMapping('!r', 'all')<CR>
+call extend(g:which_key_map_terminal, {'r':'Run tests(current line)'})
 
 " Run tests(current line)
 nnoremap !T :call ExecuteRubyMapping('!T', 'all')<CR>
@@ -673,13 +685,13 @@ call extend(g:which_key_map_git, {'ac':'Add and Commit'})
 nnoremap gg :1<CR>
 
 " Smooth scrolling
-nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+nnoremap <silent><nowait><expr>  <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)
 
 " Smooth scrolling
-nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+nnoremap <silent>  <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
 
 " Smooth scrolling
-nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
+nnoremap <silent><nowait><expr>  <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)
 
 " Smooth scrolling
 nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>

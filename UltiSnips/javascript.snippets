@@ -1,0 +1,34 @@
+snippet log "console.log" b
+console.log("$1")
+endsnippet
+
+snippet rcomp "React Component" b
+export default function $1() {
+	return (
+
+	)
+}
+endsnippet
+
+snippet "kv;" "key: value" rA
+$1: $1
+endsnippet
+
+# Hooks
+snippet u.ss "useState()" b
+const [$1, set$3`!p snip.rv=upperfirst(t[1])`] = useState($2)
+endsnippet
+
+snippet u.ef "useEffect()" b
+useEffect(() => {
+	$0
+}, [$1])
+endsnippet
+
+snippet u.se "useSelector()" b
+const $1 = useSelector(({$2}) => $2.$1)
+endsnippet
+
+snippet u.di "useDispatch()" b
+const dispatch = useDispatch()
+endsnippet

@@ -48,6 +48,9 @@ call plug#begin()
   " A solid language pack for Vim.
   Plug 'sheerun/vim-polyglot'
 
+  " SSH 
+  Plug 'kenn7/vim-arsync'
+
   " Vim plugin that shows keybindings in popup
   Plug 'leoatchina/vim-which-key'
 
@@ -170,14 +173,14 @@ call plug#begin()
 " Autocomplete and Snippets
 " -----------------------------------------------------------------------------
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-    let g:coc_global_extensions = ['coc-solargraph']
+    let g:coc_global_extensions = ['coc-solargraph', 'coc-tabnine']
 
   Plug 'SirVer/ultisnips'
     let g:UltiSnipsEditSplit="vertical"
-    let g:UltiSnipsExpandTrigger="<C-l>"
+    let g:UltiSnipsExpandTrigger="<c-l>"
     " let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/config/snippets']
     let g:UltiSnipsJumpForwardTrigger="<c-n>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " let g:UltiSnipsJumpBackwardTrigger="<c-;>"
 
   Plug 'honza/vim-snippets'
   Plug 'ervandew/supertab'
@@ -248,6 +251,8 @@ call plug#begin()
 " Javascript
 " -----------------------------------------------------------------------------
   Plug 'Galooshi/vim-import-js'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 
   " ES2015 code snippets
   Plug 'epilande/vim-es2015-snippets'

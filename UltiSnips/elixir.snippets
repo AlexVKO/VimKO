@@ -1,0 +1,92 @@
+# Elixir
+snippet "defp " "private function" rbA
+defp $1($2) do
+end
+endsnippet
+
+snippet "kv;" "key: value" rA
+$1: $1
+endsnippet
+
+snippet "def " "private function" rbA
+def $1($2) do
+end
+endsnippet
+
+snippet "ins;" "IO.inspect " rA
+|> IO.inspect(label: "$1")
+endsnippet
+
+snippet "puts;" "IO.puts " brA
+IO.puts("$1")
+endsnippet
+
+snippet "red;" "Enum.reduce" rA
+|> Enum.reduce(${1:acc}, fn  -> $4 end)
+endsnippet
+
+# HTML
+snippet < "<% %>" 
+<% $1 %>
+endsnippet
+
+snippet = "<%= %>" 
+<%= $1 %>
+endsnippet
+
+# Phoenix
+global !p
+def build_module_for(type):
+  result =  path \
+    .replace("lib/", "") \
+    .replace(f"/{type}/", "/") \
+    .replace(".ex", "") \
+    .title() \
+    .replace("_", "") \
+    .split("/")
+
+  snip.rv =  ".".join(result)
+
+def root_module():
+  snip.rv = path \
+    .replace("lib/", "") \
+    .title() \
+    .replace("_", "") \
+    .split("/")[0]
+
+endglobal
+
+snippet defm "Define a module"
+defmodule `!p build_module_for("")` do
+end
+endsnippet
+
+snippet defview "Define a View"
+defmodule `!p build_module_for("views")` do
+  use `!p root_module()`, :view
+end
+endsnippet
+
+snippet "defrender " "Define a method for render" bAr
+defp render$1(assigns) do
+  ~H"""
+
+  """
+end
+endsnippet
+
+# ExUnit tests
+snippet "test " "define a test" rbA
+test "$1" do
+  assert 
+end
+endsnippet
+
+snippet "ass " "assert" rbA
+assert "$1"
+endsnippet
+
+snippet "desc " "describe" rbA
+describe "$1" do
+end
+endsnippet
