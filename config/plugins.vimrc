@@ -169,7 +169,7 @@ call plug#begin()
 " -----------------------------------------------------------------------------
 " Autocomplete and Snippets
 " -----------------------------------------------------------------------------
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     let g:coc_global_extensions = ['coc-solargraph']
 
   Plug 'SirVer/ultisnips'

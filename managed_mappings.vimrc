@@ -483,8 +483,12 @@ call extend(g:which_key_map_files, {'o':'Open on GitHub'})
   " ----------------------------------------------------------------
 
   " Run rubocop
-  autocmd FileType ruby nnoremap ,f :! bundle exec rubocop -a <C-r>=expand('%')<cr>  >/dev/null<cr><CR>
+  autocmd FileType ruby nnoremap ,f :call VimuxRunCommand("bundle exec rubocop <C-r>=expand('%')<cr>  -c .rubocop_future.yml")<CR>
   autocmd FileType ruby call extend(g:which_key_map_files, {'f':'Run rubocop'})
+
+  " Run rubocop
+  autocmd FileType ruby nnoremap ,F :call VimuxRunCommand("bundle exec rubocop -A <C-r>=expand('%')<cr>  -c .rubocop_future.yml")<CR>
+  autocmd FileType ruby call extend(g:which_key_map_files, {'F':'Run rubocop'})
 
 
   " ----------------------------------------------------------------
@@ -668,6 +672,14 @@ vnoremap g :<c-u>WhichKeyVisual 'g'<CR>
 " Add and Commit
 nnoremap gac :call VimuxRunCommand('git add . && git commit')<CR>
 call extend(g:which_key_map_git, {'ac':'Add and Commit'})
+
+" Add and Commit
+nnoremap gd :G diff %<cr><CR>
+call extend(g:which_key_map_git, {'d':'Add and Commit'})
+
+" Add and Commit
+nnoremap gb :G blame <cr><CR>
+call extend(g:which_key_map_git, {'b':'Add and Commit'})
 
 " Work around for keeping g a prefix for Git
 nnoremap gg :1<CR>

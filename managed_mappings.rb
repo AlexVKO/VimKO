@@ -185,7 +185,13 @@ prefix ',', name: 'Files', desc: 'File' do
   end
 
   prefix name: 'Ruby', desc: 'Ruby files', filetype: :ruby do
-    normal 'f', ":! bundle exec rubocop -a <C-r>=expand('%')<cr>  >/dev/null<cr>", desc: "Run rubocop"
+    if `pwd`['daisy']
+      normal 'f', ":call VimuxRunCommand(\"bundle exec rubocop <C-r>=expand('%')<cr>  -c .rubocop_future.yml\")", desc: "Run rubocop"
+      normal 'F', ":call VimuxRunCommand(\"bundle exec rubocop -A <C-r>=expand('%')<cr>  -c .rubocop_future.yml\")", desc: "Run rubocop"
+    else
+      normal 'f', ":call VimuxRunCommand(\"bundle exec rubocop <C-r>=expand('%')<cr>\")", desc: "Run rubocop"
+      normal 'F', ":call VimuxRunCommand(\"bundle exec rubocop -A <C-r>=expand('%')<cr>\")", desc: "Run rubocop"
+    end
   end
 
   # Formatting selected code.
@@ -322,6 +328,8 @@ end
 
 prefix 'g', name: 'Git', desc: 'Git and Github commands' do
   normal 'ac', ":call VimuxRunCommand('git add . && git commit')", desc: 'Add and Commit'
+  normal 'd', ":G diff %<cr>", desc: 'Add and Commit'
+  normal 'b', ":G blame <cr>", desc: 'Add and Commit'
 end
 
 # insert '<C-y>,' name: 'Ruby Emmet', desc: 'REmmet is a plugin for many popular text editors which greatly improves Ruby workflow' do
